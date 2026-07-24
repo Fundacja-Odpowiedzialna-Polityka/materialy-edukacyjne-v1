@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototyp - Materiały edukacyjne Fundacji Odpowiedzialna Polityka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Paleta wg FOP Brand guidelines v1.0 */
+  --paper:#F3F7FC;            /* Blue 050 — tło sekcji */
+  --card:#FFFFFF; --ink:#0E1B2E;               /* Atrament — tekst podstawowy */
+  --text-soft:#59697F;                          /* Szary tekst */
+  --line:#DCE6F2; --line-strong:#B9CCE5;        /* neutralne pochodne Blue 100/300 */
+  --brand:#3061AD;            /* Niebieski FOP — przyciski, linki, akcenty */
+  --brand-soft:#E7EFF9;       /* Blue 100 — delikatne tła bloków */
+  --brand-ink:#143055;        /* Granat FOP — tła, tekst nagłówkowy */
+  --brand-hover:#244C8A;      /* Blue 700 — stany hover */
+  --brand-300:#7FA3D4;        /* Blue 300 — elementy pomocnicze */
+  --grad:linear-gradient(135deg,#3061AD 0%,#143055 100%); /* gradient firmowy 135° */
+  --tak:#2E7D5B; --tak-soft:#E7F1EC; --tak-line:#BEDCCB;
+  --popraw:#B0700F; --popraw-soft:#F7EEDD; --popraw-line:#E8D0A3;
+  --usun:#B23A3A; --usun-soft:#F6E7E7; --usun-line:#E7BEBE;
+  --neutral:#7E8CA0; --neutral-soft:#EDF2F8;
+  --focus:#244C8A;
+  --serif:"Libre Franklin",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --sans:"Libre Franklin",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius:10px; --shadow:0 1px 2px rgba(20,48,85,.07),0 4px 14px rgba(20,48,85,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:4px}
+.mono{font-family:var(--mono)}
+.wrap{max-width:960px;margin:0 auto;padding:0 18px 120px}
+
+/* ---------- topbar ---------- */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(244,246,248,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar-inner{max-width:960px;margin:0 auto;padding:10px 18px 0}
+.brandrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:800;font-size:15px;color:var(--brand-ink);display:flex;align-items:center;gap:8px}
+.brand-sub{font-family:var(--sans);font-weight:500;font-size:12.5px;color:var(--text-soft)}
+.brand-logo{height:26px;width:auto;display:block}
+.spacer{flex:1 1 auto}
+.who{font-family:var(--mono);font-size:11.5px;color:var(--text-soft)}
+.btn{border:1px solid var(--line-strong);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:8px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--brand);color:var(--brand)}
+.btn-primary{background:var(--brand);border-color:var(--brand);color:#fff}
+.btn-primary:hover{background:var(--brand-hover);color:#fff}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed}
+.btn-ghost{border-color:transparent;background:transparent;color:var(--brand)}
+.btn-big{font-size:15px;padding:12px 22px;border-radius:10px}
+
+/* stepper */
+.stepper{display:flex;list-style:none;margin:10px 0 0;padding:0 0 10px;gap:0;overflow-x:auto}
+.step{display:flex;align-items:center;gap:8px;padding:6px 10px 6px 0;white-space:nowrap}
+.step + .step::before{content:"";width:26px;height:1px;background:var(--line-strong);margin-right:10px;flex:0 0 auto}
+.step button{border:none;background:transparent;display:flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--neutral);padding:2px 4px}
+.step .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line-strong);display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;background:var(--card);color:var(--neutral)}
+.step.done button{color:var(--brand)}
+.step.done .dot{border-color:var(--brand);color:var(--brand)}
+.step.cur button{color:var(--brand-ink)}
+.step.cur .dot{background:var(--brand);border-color:var(--brand);color:#fff}
+.step button:disabled{cursor:default;opacity:.7}
+
+/* ---------- start ---------- */
+.start{max-width:700px;margin:6vh auto 0;text-align:center;padding:0 8px}
+.start-hero{background:var(--grad);border-radius:16px;padding:46px 30px 42px;color:#fff;box-shadow:0 12px 34px rgba(20,48,85,.28);margin-bottom:26px}
+.start-logo{height:56px;width:auto;display:block;margin:0 auto 26px}
+.start-title{font-family:var(--serif);font-weight:900;font-size:33px;line-height:1.12;margin:0;color:#fff}
+.start-sub{font-weight:700;font-size:16.5px;color:#DAE6F6;margin:10px 0 0}
+.start-meta{font-family:var(--mono);font-size:11.5px;color:var(--text-soft);margin:16px auto 30px;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:9px 12px;display:inline-block;line-height:1.5}
+.start-field{display:flex;flex-direction:column;gap:6px;max-width:360px;margin:0 auto 18px;text-align:left}
+.start-field label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--text-soft);font-weight:700}
+.start-field select{font-family:var(--sans);font-size:15px;padding:11px 12px;border:1px solid var(--line-strong);border-radius:9px;background:var(--card)}
+.start-note{font-size:12.5px;color:var(--text-soft);max-width:480px;margin:22px auto 0;line-height:1.55}
+
+/* ---------- screens ---------- */
+.screen-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);font-weight:500;margin:22px 0 0}
+.screen-title{font-family:var(--serif);font-weight:800;font-size:23px;line-height:1.2;margin:4px 0 6px;color:var(--brand-ink)}
+.screen-sub{font-size:13.5px;color:var(--text-soft);margin:0 0 18px}
+.screen-sub b{color:var(--ink)}
+
+.infobox{display:flex;gap:9px;align-items:flex-start;background:var(--brand-soft);border:1px solid #D8E1EF;border-radius:10px;padding:11px 13px;font-size:13px;color:var(--brand-ink);margin:16px 0}
+.infobox svg{flex:0 0 auto;margin-top:2px}
+
+/* choice cards */
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.choice{border:1.5px solid var(--line-strong);background:var(--card);border-radius:12px;padding:20px 18px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.choice:hover{border-color:var(--brand)}
+.choice.sel{border-color:var(--brand);background:var(--brand-soft)}
+.choice .c-ico{color:var(--brand)}
+.choice .c-name{font-family:var(--serif);font-weight:800;font-size:17px;color:var(--brand-ink)}
+.choice .c-desc{font-size:13px;color:var(--text-soft);line-height:1.5}
+.choice .c-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand)}
+
+/* etap tiles */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 22px}
+.tile{border:1.5px solid var(--line-strong);background:var(--card);border-radius:10px;padding:12px;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:96px}
+.tile:hover{border-color:var(--brand)}
+.tile.sel{border-color:var(--brand);background:var(--brand-soft)}
+.tile .t-k{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--brand)}
+.tile .t-t{font-size:13.5px;font-weight:700;line-height:1.3}
+.tile .t-d{font-size:11.5px;color:var(--text-soft);line-height:1.4}
+.h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-soft);margin:18px 0 8px}
+.mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mat{border:1.5px solid var(--line-strong);background:var(--card);border-radius:10px;padding:14px;text-align:left;display:flex;gap:11px;align-items:flex-start}
+.mat:hover{border-color:var(--brand)}
+.mat.sel{border-color:var(--brand);background:var(--brand-soft)}
+.mat .m-name{font-weight:700;font-size:14.5px}
+.mat .m-desc{font-size:12.5px;color:var(--text-soft);margin-top:2px}
+.radio{width:16px;height:16px;border-radius:50%;border:2px solid var(--line-strong);flex:0 0 auto;margin-top:3px}
+.sel .radio{border-color:var(--brand);background:radial-gradient(circle at center,var(--brand) 0 45%,transparent 50%)}
+
+.scope{border-radius:10px;padding:12px 14px;font-size:13px;margin:18px 0;display:flex;gap:9px;align-items:flex-start;line-height:1.5}
+.scope svg{flex:0 0 auto;margin-top:2px}
+.scope.ok{background:var(--tak-soft);border:1px solid var(--tak-line);color:#1F5A41}
+.scope.warn{background:var(--popraw-soft);border:1px solid var(--popraw-line);color:#7A5210}
+.next-row{display:flex;justify-content:flex-end;gap:10px;margin-top:6px}
+
+/* generacja */
+.inputs3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:8px 0 18px}
+.inp{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:var(--shadow)}
+.inp .i-n{font-family:var(--mono);font-size:10.5px;color:var(--brand);letter-spacing:.08em;text-transform:uppercase}
+.inp .i-t{font-weight:700;font-size:13.5px;margin:3px 0 4px}
+.inp .i-d{font-size:12px;color:var(--text-soft);line-height:1.45}
+.genbox{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:22px;text-align:center}
+.spin{width:26px;height:26px;border:3px solid var(--brand-soft);border-top-color:var(--brand);border-radius:50%;margin:0 auto 12px;animation:sp 0.9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.gen-ready{font-family:var(--serif);font-size:18px;font-weight:800;color:var(--brand-ink)}
+.gen-sub{font-size:13px;color:var(--text-soft);margin:6px 0 16px}
+.rule-pill{display:inline-block;font-family:var(--mono);font-size:11px;background:var(--brand-soft);color:var(--brand-ink);border-radius:99px;padding:5px 12px;margin-top:14px}
+
+/* fallback */
+.fallback{background:var(--popraw-soft);border:1px solid var(--popraw-line);border-radius:12px;padding:20px}
+.fallback h3{font-family:var(--serif);font-size:18px;margin:0 0 8px;color:#7A5210}
+.fallback p{font-size:13.5px;line-height:1.55;margin:0 0 10px;color:#5C4310}
+.fallback ul{margin:0 0 14px;padding-left:18px;font-size:12.5px;color:#5C4310}
+.fallback ul li{margin:3px 0}
+
+/* ---------- recenzja (arkusz) ---------- */
+.source{font-family:var(--mono);font-size:11.5px;color:var(--text-soft);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 10px;line-height:1.45;margin:10px 0 6px}
+.source b{color:var(--brand-ink);font-weight:500}
+.progress{font-size:13px;color:var(--text-soft);margin:6px 0 2px}
+.progress b{color:var(--ink);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.chip{border:1px solid var(--line-strong);background:var(--card);border-radius:99px;padding:6px 13px;font-size:13px;font-weight:600;color:var(--text-soft);display:inline-flex;gap:7px;align-items:center}
+.chip[aria-pressed="true"]{color:#fff;border-color:var(--brand);background:var(--brand)}
+.chip .n{font-family:var(--mono);font-size:11px;opacity:.85}
+.chip.tak[aria-pressed="true"]{background:var(--tak);border-color:var(--tak)}
+.chip.popraw[aria-pressed="true"]{background:var(--popraw);border-color:var(--popraw)}
+.chip.usun[aria-pressed="true"]{background:var(--usun);border-color:var(--usun)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden;position:relative}
+.card.d-TAK{border-left:4px solid var(--tak)}
+.card.d-POPRAW{border-left:4px solid var(--popraw)}
+.card.d-USUN{border-left:4px solid var(--usun)}
+.card-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 16px 0}
+.id{font-family:var(--mono);font-size:12px;color:var(--brand-ink);font-weight:500}
+.tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;padding:3px 8px;border-radius:6px;background:var(--neutral-soft);color:var(--text-soft)}
+.tag.bloom{background:var(--brand-soft);color:var(--brand-ink)}
+.stamp{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:6px;border:2px solid;transform:rotate(-2.5deg)}
+.stamp.TAK{color:var(--tak);border-color:var(--tak-line);background:var(--tak-soft)}
+.stamp.POPRAW{color:var(--popraw);border-color:var(--popraw-line);background:var(--popraw-soft)}
+.stamp.USUN{color:var(--usun);border-color:var(--usun-line);background:var(--usun-soft)}
+.cel{font-size:12.5px;color:var(--text-soft);padding:10px 16px 0;font-style:italic}
+.ctx{padding:10px 16px 0}
+.ctx span{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--neutral);font-weight:700}
+.ctx p{margin:2px 0 0;color:var(--ink)}
+.q{padding:12px 16px 0;font-family:var(--serif);font-size:17px;line-height:1.35}
+.prawo{margin:8px 16px 0;font-family:var(--mono);font-size:11.5px;color:var(--brand-ink);background:var(--brand-soft);display:inline-block;border-radius:7px;padding:5px 10px;margin-left:16px}
+.desc{padding:8px 16px 0;font-size:14px}
+.desc p{margin:4px 0}
+.desc-ul{margin:4px 0;padding-left:20px}
+.desc-ul li{margin:2px 0}
+.opts{list-style:none;padding:10px 16px 4px;margin:0;display:flex;flex-direction:column;gap:8px}
+.opt{border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.opt.correct{border-color:var(--tak-line);background:var(--tak-soft)}
+.opt-mark{font-weight:700;margin-right:6px}
+.opt.correct .opt-mark{color:var(--tak)}
+.opt .why{display:block;margin-top:5px;font-size:12px;color:var(--text-soft)}
+.opt .why b{color:var(--usun);font-weight:600}
+details.fb{margin:6px 16px 0;border-top:1px dashed var(--line);padding-top:8px}
+details.fb>summary{cursor:pointer;font-size:12.5px;font-weight:600;color:var(--brand);list-style:none}
+details.fb>summary::-webkit-details-marker{display:none}
+details.fb>summary::before{content:"\25B8 "}
+details.fb[open]>summary::before{content:"\25BE "}
+.fb-row{font-size:13px;margin:8px 0}
+.fb-row b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--neutral);margin-bottom:2px}
+.src{margin:10px 16px 0;font-family:var(--mono);font-size:11.5px;color:var(--text-soft);background:var(--brand-soft);border-radius:8px;padding:8px 10px;line-height:1.45}
+.src .ver{color:var(--brand-ink);font-weight:500}
+.decision{border-top:1px solid var(--line);margin-top:12px;padding:12px 16px;background:#FBFCFD}
+.decision-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-soft);font-weight:700;margin-bottom:8px}
+.dbtns{display:flex;gap:8px;flex-wrap:wrap}
+.dbtn{flex:1 1 auto;min-width:120px;border:1.5px solid var(--line-strong);background:var(--card);border-radius:9px;padding:11px 10px;font-size:14px;font-weight:700;color:var(--text-soft);display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;line-height:1.25}
+.dbtn small{font-weight:500;font-size:11px;opacity:.85}
+.dbtn:hover{border-color:currentColor}
+.dbtn.tak:hover,.dbtn.tak.on{color:var(--tak);border-color:var(--tak);background:var(--tak-soft)}
+.dbtn.popraw:hover,.dbtn.popraw.on{color:var(--popraw);border-color:var(--popraw);background:var(--popraw-soft)}
+.dbtn.usun:hover,.dbtn.usun.on{color:var(--usun);border-color:var(--usun);background:var(--usun-soft)}
+.note{margin-top:10px}
+.note label{display:block;font-size:12px;font-weight:600;margin-bottom:4px}
+.note label.req::after{content:" *";color:var(--usun)}
+.note textarea{width:100%;font-family:var(--sans);font-size:13.5px;padding:9px 11px;border:1px solid var(--line-strong);border-radius:8px;resize:vertical;min-height:64px}
+.note .hint{font-size:11.5px;color:var(--usun);margin-top:4px;display:none}
+.note.missing .hint{display:block}
+.note.missing textarea{border-color:var(--usun-line)}
+.meta-line{font-size:11.5px;color:var(--neutral);margin-top:8px;font-family:var(--mono)}
+
+.actionbar{position:fixed;bottom:0;left:0;right:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-top:1px solid var(--line)}
+.actionbar-inner{max-width:960px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.actionbar .rule{font-size:12.5px;color:var(--text-soft)}
+.actionbar .rule b{color:var(--ink)}
+
+/* ---------- bank ---------- */
+.bank-sec{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:14px 0;overflow:hidden}
+.bank-head{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.bank-head h3{margin:0;font-family:var(--serif);font-size:16px;font-weight:800;color:var(--brand-ink)}
+.bank-head .bk{font-family:var(--mono);font-size:12px;color:var(--brand);font-weight:600}
+.bank-head .cn{font-family:var(--mono);font-size:12px;color:var(--text-soft);margin-left:auto}
+.bank-body{padding:6px 16px 12px}
+.role-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neutral);margin:12px 0 4px}
+.b-item{border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:7px 0;display:flex;flex-direction:column;gap:5px}
+.b-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.b-title{font-size:13.5px;line-height:1.4}
+.b-meta{font-family:var(--mono);font-size:11px;color:var(--neutral)}
+.b-uwagi{font-size:12px;color:var(--text-soft);border-left:2px solid var(--popraw-line);padding-left:8px}
+.schip{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:5px;border:1.5px solid}
+.schip.opublikowane{color:var(--tak);border-color:var(--tak-line);background:var(--tak-soft)}
+.schip.do_poprawek{color:var(--popraw);border-color:var(--popraw-line);background:var(--popraw-soft)}
+.schip.wykluczone{color:var(--usun);border-color:var(--usun-line);background:var(--usun-soft)}
+.schip.archiwalne{color:var(--neutral);border-color:var(--line-strong);background:var(--neutral-soft)}
+.b-empty{font-size:12.5px;color:var(--neutral);font-style:italic;padding:10px 2px}
+.backlog-sec{border:1px dashed var(--popraw-line);background:var(--popraw-soft);border-radius:var(--radius);margin:18px 0;padding:14px 16px}
+.backlog-sec h3{margin:0 0 6px;font-size:14px;color:#7A5210}
+.backlog-sec .b-item{background:var(--card)}
+
+/* modal & toast */
+.modal-bg{position:fixed;inset:0;background:rgba(21,32,48,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:18px}
+.modal-bg.open{display:flex}
+.modal{background:var(--card);border-radius:12px;max-width:640px;width:100%;max-height:82vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(21,32,48,.35)}
+.modal h2{font-family:var(--serif);font-size:18px;margin:0;padding:16px 18px;border-bottom:1px solid var(--line)}
+.modal .mbody{padding:14px 18px;overflow:auto;font-size:14px;line-height:1.55}
+.modal textarea{width:100%;height:280px;font-family:var(--mono);font-size:11.5px;border:1px solid var(--line-strong);border-radius:8px;padding:10px;resize:vertical}
+.modal .mfoot{padding:12px 18px;border-top:1px solid var(--line);display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.pub-big{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--brand-ink);margin:0 0 8px}
+.pub-meta{font-family:var(--mono);font-size:12px;background:var(--brand-soft);border-radius:8px;padding:9px 11px;color:var(--brand-ink);line-height:1.6}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(30px);background:var(--brand-ink);color:#fff;padding:11px 18px;border-radius:10px;font-size:13.5px;font-weight:600;opacity:0;transition:.25s;z-index:120;box-shadow:var(--shadow);pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:760px){
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .inputs3{grid-template-columns:1fr}
+  .choice-grid,.mat-grid{grid-template-columns:1fr}
+  .start-title{font-size:26px}
+  .stamp{transform:none}
+}
+.oos{opacity:.8;pointer-events:none;cursor:not-allowed}
+.oos .t-t,.oos .m-name{color:var(--text-soft)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="topbar" id="topbar" hidden>
+  <div class="topbar-inner">
+    <div class="brandrow">
+      <div class="brand"><img class="brand-logo" src="data:image/png;base64,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" alt="Fundacja Odpowiedzialna Polityka"> <span class="brand-sub">· panel administratora</span></div>
+      <div class="spacer"></div>
+      <span class="who" id="who"></span>
+      <button class="btn btn-ghost" id="btnRole" onclick="goOdbiorca()" hidden>&#8249; Zmień odbiorcę</button>
+      <button class="btn" onclick="go('bank')">Bank materiałów</button>
+      <button class="btn" onclick="openExport()">Eksport JSON</button>
+    </div>
+    <ol class="stepper" id="stepper"></ol>
+  </div>
+</div>
+
+<div class="wrap"><div id="app"></div></div>
+
+<div class="actionbar" id="actionbar" hidden>
+  <div class="actionbar-inner">
+    <span class="rule">Reguła bramki: <b>do banku trafiają wyłącznie pozycje z decyzją TAK.</b> POPRAW i USUŃ wymagają uzasadnienia.</span>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" onclick="publish()">Zatwierdź recenzję i opublikuj</button>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Eksport stanu — ślad audytu (JSON)</h2>
+    <div class="mbody">
+      <textarea id="json-out" readonly></textarea>
+    </div>
+    <div class="mfoot">
+      <button class="btn" onclick="closeExport()">Zamknij</button>
+      <button class="btn" onclick="copyJSON()">Kopiuj</button>
+      <button class="btn btn-primary" onclick="downloadJSON()">Pobierz plik</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="pubmodal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Pop-up dla użytkownika aplikacji — podgląd</h2>
+    <div class="mbody" id="pubbody"></div>
+    <div class="mfoot">
+      <button class="btn" onclick="downloadPub('csv')">CSV — zaakceptowane</button>
+      <button class="btn" onclick="downloadPub('fix')">CSV — do poprawy</button>
+      <button class="btn" onclick="downloadPub('bank')">HTML — baza banku</button>
+      <button class="btn" onclick="closePub();goOdbiorca()">Ścieżka dla innego odbiorcy</button>
+      <button class="btn btn-primary" onclick="closePub();go('bank')">Przejdź do banku materiałów</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" aria-live="polite"></div>
+
+<script>
+/* ================= DANE PILOTAŻU ================= */
+const QMETA = {
+  obserwator: {"tytul": "Ustalenie wyników głosowania — bank pytań dla obserwatorki społecznej (Anna)", "akt": "Wytyczne PKW dla OKW w kraju (uchwała 211/2023) + Kodeks wyborczy", "stan_prawny": "wytyczne PKW 2023-09-25 · Kodeks wyborczy 2023-03-31", "wybory": "Sejm/Senat/referendum 15.10.2023"},
+  komisja: {"tytul": "Ustalenie wyników głosowania — bank pytań dla członka komisji (Tomasz)", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju) + Kodeks wyborczy", "stan_prawny": "wytyczne PKW 2023-09-25 · Kodeks wyborczy 2023-03-31", "wybory": "Sejm/Senat/referendum 15.10.2023"}
+};
+const SRC_QUIZ_OBS = [{"id": "obs-ustalenie-001", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać, że obserwatorka ma prawo być obecna przy wszystkich czynnościach ustalania wyniku (kompetencja: znajomość prawa).", "poziom_blooma": "rozumienie", "typ": "wielokrotny_wybor", "kontekst": "Komisja przystępuje do liczenia po zamknięciu lokalu.", "pytanie": "Wskaż, przy których czynnościach komisji podczas ustalania wyniku obserwatorka społeczna ma prawo być obecna.", "opcje": [{"tekst": "Przy wszystkich czynnościach komisji — od zamknięcia lokalu po sporządzenie protokołu.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Tylko do momentu zamknięcia lokalu; przy liczeniu głosów już nie.", "poprawna": false, "uzasadnienie_dystraktora": "myli fazę — obserwator ma prawo obecności także przy liczeniu i sporządzaniu protokołu (art. 103b § 1 pkt 2)"}, {"tekst": "Przy każdej czynności, ale za każdorazową zgodą przewodniczącego.", "poprawna": false, "uzasadnienie_dystraktora": "zaniża uprawnienie — prawo obecności nie zależy od zgody komisji przy poszczególnych czynnościach"}], "feedback_poprawny": "Tak. Obserwatorka społeczna, na mocy art. 103c stosującego odpowiednio przepisy o mężu zaufania, ma prawo być obecna przy wszystkich czynnościach komisji, w tym przy liczeniu i sporządzaniu protokołu (art. 103b § 1 pkt 1–2). To prawo obserwacji jest podstawą całej jej roli.", "feedback_niepoprawny": "Sprawdź zakres prawa obecności: nie kończy się ono na zamknięciu lokalu i nie wymaga zgody komisji przy każdej czynności. Obejmuje wszystkie czynności ustalania wyniku.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art103c", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 103c", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-002", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Odróżnić uprawnienia obserwatora społecznego od męża zaufania — brak prawa wnoszenia uwag do protokołu (kompetencja: granica roli).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Obserwatorka społeczna może wnieść do protokołu głosowania uwagi z wymienieniem konkretnych zarzutów.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "myli obserwatora społecznego z mężem zaufania — wnoszenie uwag do protokołu (art. 103b § 1 pkt 3) jest dla obserwatora społecznego wyłączone przez art. 103c § 2"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — zgadza się. Prawo wnoszenia uwag do protokołu przysługuje mężowi zaufania (art. 103b § 1 pkt 3), ale wobec obserwatora społecznego jest wyłączone (art. 103c § 2). Anna dokumentuje odstępstwa we własnych notatkach i przekazuje je swoją ścieżką (koordynator, raport akcji) — to jej właściwy tryb.", "feedback_niepoprawny": "To rozpowszechniona pomyłka. Uwagi do protokołu wnosi mąż zaufania, nie obserwator społeczny. Anna zapisuje spostrzeżenia u siebie i zgłasza je koordynatorowi — nie do protokołu komisji.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art103c", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 103c", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-003", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać zakazany podział komisji na podgrupy liczące równolegle (kompetencja: rozpoznanie odstępstwa).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Aby liczyć szybciej, komisja może podzielić się na podgrupy, z których każda liczy równolegle inny stos kart.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "mit „będzie szybciej” — kuszący przy zmęczeniu, ale niedopuszczalny: liczenie prowadzi cała komisja wspólnie"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Czynności liczenia komisja wykonuje wspólnie, bez dzielenia się na równolegle pracujące podgrupy (art. 69). Chodzi o to, by każdy członek widział karty. Podział na podgrupy Anna zanotuje jako odstępstwo.", "feedback_niepoprawny": "To częsta pułapka „będzie szybciej”. Mimo presji czasu komisja nie może liczyć w rozdzielnych podgrupach — to czynność wspólna całego składu. Taki podział jest odstępstwem do zanotowania.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art69", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 69", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-004", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować granicę roli, gdy w liczeniu uczestniczy osoba spoza komisji (kompetencja: znajomość prawa + brak ingerencji).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Podczas liczenia Anna widzi, że mąż zaufania sortuje i przelicza karty razem z członkami komisji.", "pytanie": "Wskaż, jak powinna zareagować Anna.", "opcje": [{"tekst": "Odnotować odstępstwo — karty liczy sam skład komisji, a mąż zaufania nie ma do tego uprawnienia.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać udział za dozwolony, bo mąż zaufania ma przecież prawo być obecny przy liczeniu głosów.", "poprawna": false, "uzasadnienie_dystraktora": "myli prawo obecności z prawem udziału w czynności — obecność nie uprawnia do liczenia kart"}, {"tekst": "Samej włączyć się do liczenia kart, skoro również jest obecna w lokalu podczas prac komisji.", "poprawna": false, "uzasadnienie_dystraktora": "rażące wyjście z roli — obserwator patrzy i notuje, nie wykonuje czynności komisji"}], "feedback_poprawny": "Tak. Liczenia dokonuje sama komisja (art. 69 § 1). Udział osoby spoza składu to odstępstwo — Anna opisuje je faktograficznie (kto, kiedy, przy którym kroku), nie ingerując w pracę komisji.", "feedback_niepoprawny": "Rozdziel dwie rzeczy: prawo obecności to nie prawo udziału w liczeniu. Karty liczy tylko komisja. Anna tego nie robi ani nie sankcjonuje — odnotowuje.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art69", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 69", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-005", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Ocenić reakcję komisji na niezgodność sumy — ponowne przeliczenie, nie „domykanie” (kompetencja: rzetelność procesu).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Suma się nie zgadza; komisja poprawia liczbę „na oko”, żeby wynik się zgodził, i idzie dalej.", "pytanie": "Zdecyduj, co Anna powinna zrobić.", "opcje": [{"tekst": "Odnotować brak reakcji na rozbieżność, ze wskazaniem protokołu.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać, że drobne korekty wyniku „na oko” są dopuszczalne, więc nie ma tu czego odnotowywać.", "poprawna": false, "uzasadnienie_dystraktora": "sankcjonowanie nieprawidłowości — przy rozbieżności prawo wymaga ponownego przeliczenia (art. 71 § 1)"}, {"tekst": "Podać komisji poprawny wynik, który sama wyliczyła, żeby szybko naprawić dostrzeżony błąd.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli — obserwator nie ustala wyniku za komisję ani nie koryguje jej pracy"}], "feedback_poprawny": "Tak. Przy niezgodności komisja ma przeliczyć ponownie to, czego dotyczy rozbieżność (art. 71 § 1), a nie „domknąć” wynik. Brak takiej reakcji to odstępstwo — Anna opisuje je faktograficznie, nie zastępując decyzji komisji.", "feedback_niepoprawny": "„Domknięcie” wyniku bez ponownego przeliczenia jest nieprawidłowe. Anna tego nie akceptuje jako normy, ale też nie liczy za komisję — notuje brak reakcji na rozbieżność.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art71", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 71", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-006", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować katalog osób uprawnionych do obecności i granicę roli (kompetencja: znajomość prawa + brak ingerencji).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Podczas liczenia w lokalu pojawia się osoba, która nie należy do komisji ani do katalogu osób uprawnionych do obecności.", "pytanie": "Wskaż właściwe działanie Anny.", "opcje": [{"tekst": "Odnotować obecność osoby nieuprawnionej — godzina i opis.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Samodzielnie i stanowczo wyprosić tę osobę z lokalu wyborczego.", "poprawna": false, "uzasadnienie_dystraktora": "nadgorliwość i wyjście z roli — porządku w lokalu pilnuje komisja, nie obserwator"}, {"tekst": "Założyć, że skoro osoba tam jest, to ktoś ją wpuścił zgodnie z zasadami, i nic nie notować.", "poprawna": false, "uzasadnienie_dystraktora": "bierność — obecność osoby spoza katalogu uprawnionych to odstępstwo, które należy udokumentować"}], "feedback_poprawny": "Tak. Po zamknięciu lokalu mogą w nim przebywać m.in. mężowie zaufania, obserwatorzy społeczni i międzynarodowi oraz obsługa informatyczna (pkt 100). Obecność osoby spoza tego katalogu Anna dokumentuje faktograficznie; usunięcie osoby należy do komisji.", "feedback_niepoprawny": "Dwa wychylenia są tu błędne: samodzielne wypraszanie (to zadanie komisji) oraz zignorowanie sytuacji. Właściwa reakcja to rzetelne odnotowanie z godziną i opisem.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt100", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział V, pkt 100", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-zakonczenie-007", "rola": "obserwator", "faza": "zakonczenie_glosowania", "cel_uczenia": "Rozpoznać, czy liczenie rozpoczęto przy wymaganym kworum 2/3 (kompetencja: znajomość prawa).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Anna liczy obecnych członków — jest ich mniej niż 2/3 składu, a komisja zaczyna liczyć głosy.", "pytanie": "Zdecyduj, co robi Anna.", "opcje": [{"tekst": "Odnotować, że liczenie rozpoczęto bez wymaganego kworum, z godziną i liczbą obecnych członków.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Samodzielnie wstrzymać liczenie do czasu uzupełnienia składu.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli — obserwator nie wstrzymuje czynności komisji"}, {"tekst": "Uznać, że liczebność składu to wewnętrzna sprawa komisji, i nie notować.", "poprawna": false, "uzasadnienie_dystraktora": "bierność — rozpoczęcie liczenia bez kworum to odstępstwo, które należy udokumentować"}], "feedback_poprawny": "Tak. Do liczenia komisja przystępuje przy obecności co najmniej 2/3 pełnego składu, w tym przewodniczącego lub zastępcy (pkt 99). Rozpoczęcie bez kworum to odstępstwo — Anna je opisuje; jeśli chce zwrócić komisji uwagę, robi to w formie pytania, nie polecenia.", "feedback_niepoprawny": "Kworum 2/3 to warunek rozpoczęcia liczenia, więc jego brak jest istotny i podlega odnotowaniu. Anna nie wstrzymuje jednak czynności sama — dokumentuje i ewentualnie pyta.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt99", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział V, pkt 99", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-zakonczenie-008", "rola": "obserwator", "faza": "zakonczenie_glosowania", "cel_uczenia": "Zastosować zasadę „pytanie zamiast polecenia” wobec braku zabezpieczenia urny (kompetencja: interakcje z administracją + bezzwłoczny przekaz).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Przed rozpoczęciem liczenia Anna widzi, że otwór urny nie został prawidłowo zapieczętowany.", "pytanie": "Wskaż reakcję zgodną z rolą obserwatora.", "opcje": [{"tekst": "Odnotować brak prawidłowego zapieczętowania i niezwłocznie przekazać koordynatorowi; komisji można zwrócić uwagę w formie pytania.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Poinformować komisję poleceniem: „Ta urna jest źle zaplombowana, poprawcie to natychmiast”.", "poprawna": false, "uzasadnienie_dystraktora": "forma polecenia — Kodeks postępowania dopuszcza zwrócenie uwagi tylko w formie pytania, nie nakazu"}, {"tekst": "Samodzielnie dokleić pasek i przyłożyć zabezpieczenie, żeby usprawnić pracę.", "poprawna": false, "uzasadnienie_dystraktora": "nadgorliwość i dotykanie sprzętu komisji — obserwator nie wykonuje czynności zabezpieczających"}], "feedback_poprawny": "Tak. Otwór urny pieczętuje przewodniczący (pkt 101). Niezabezpieczona urna to sytuacja poważna — wymaga bezzwłocznego przekazania koordynatorowi (reguła rzetelnego/bezzwłocznego przekazu). Komisji Anna może zwrócić uwagę wyłącznie w formie pytania (reguła interakcji z administracją).", "feedback_niepoprawny": "Kierunek jest dobry, ale nie przez polecenie ani samodzielną naprawę. Właściwie: odnotuj, przekaż koordynatorowi bez zwłoki, a komisji — jeśli już — zadaj pytanie.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt101", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział V, pkt 101", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-rozliczenie-009", "rola": "obserwator", "faza": "rozliczenie_kart", "cel_uczenia": "Rozpoznać naruszenie rozdzielności trzech protokołów przy liczbie otrzymanych kart (kompetencja: rzetelny przekaz faktograficzny).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Komisja wpisuje jedną, łączną liczbę otrzymanych kart zamiast trzech odrębnych.", "pytanie": "Zdecyduj, co odnotowuje Anna.", "opcje": [{"tekst": "Odnotować brak odrębnego wpisu dla Sejmu, Senatu i referendum.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać jeden wpis łączny za wystarczający, bo „sumy i tak się na koniec zgodzą”.", "poprawna": false, "uzasadnienie_dystraktora": "myli rozdzielność protokołów — w wyborach łączonych każdą liczbę ustala się osobno dla trzech głosowań (pkt 111)"}, {"tekst": "Samodzielnie przepisać brakujące liczby do właściwych protokołów, żeby pomóc komisji.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli — wypełnianie protokołów należy do komisji, nie do obserwatora"}], "feedback_poprawny": "Tak. W wyborach łączonych liczbę otrzymanych kart przenosi się z protokołu wewnętrznego odrębnie do każdego z trzech protokołów (pkt 111). Wpis łączny to odstępstwo — Anna opisuje je, wskazując konkretny protokół; nie uzupełnia protokołów za komisję.", "feedback_niepoprawny": "Rozdzielność trzech protokołów jest tu istotą: liczba łączna nie zastępuje trzech odrębnych wpisów. Anna to odnotowuje, ale protokołów nie wypełnia.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt111", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 111", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-rozliczenie-010", "rola": "obserwator", "faza": "rozliczenie_kart", "cel_uczenia": "Zastosować kontrolę spójności: liczba uprawnionych równa w trzech protokołach (kompetencja: kontrola sum).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Liczba osób uprawnionych do głosowania może się różnić między protokołem dla Sejmu, dla Senatu i dla referendum.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "myli liczbę uprawnionych (ta sama grupa wyborców) z liczbą kart danego głosowania — liczby uprawnionych mają być równe we wszystkich trzech protokołach"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. To ta sama grupa uprawnionych wyborców, więc liczba uprawnionych powinna być równa w protokole Sejmu, Senatu i referendum (pkt 111). Rozbieżność bez wyjaśnienia Anna zanotuje jako sygnał do sprawdzenia.", "feedback_niepoprawny": "Uważaj na pojęcia: liczba uprawnionych to ta sama grupa dla wszystkich trzech głosowań, więc powinna być równa. Różne bywają liczby kart, nie liczba uprawnionych.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt111", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 111", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-rozliczenie-011", "rola": "obserwator", "faza": "rozliczenie_kart", "cel_uczenia": "Rozpoznać nieprawidłowe pakowanie kart niewykorzystanych (kompetencja: rozpoznanie odstępstwa).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Komisja wrzuca karty niewykorzystane z trzech głosowań do jednego pudełka, bez pieczęci.", "pytanie": "Wskaż, co odnotowuje Anna.", "opcje": [{"tekst": "Odnotować, że kart niewykorzystanych nie spakowano odrębnie dla trzech głosowań ani nie opieczętowano.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać wspólne, niezapieczętowane pakowanie za dopuszczalne, bo oszczędza czas.", "poprawna": false, "uzasadnienie_dystraktora": "mit oszczędności — karty niewykorzystane pakuje się odrębnie dla każdych wyborów, pieczętuje i podpisuje (pkt 111)"}, {"tekst": "Samej rozdzielić i opieczętować pakiety, by pomóc komisji.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli i dotykanie kart — pakowanie i pieczętowanie wykonuje komisja"}], "feedback_poprawny": "Tak. Karty niewykorzystane liczy się i pakuje odrębnie dla Sejmu, Senatu i referendum, a pakiety pieczętuje i podpisuje (pkt 111). Wspólne lub niezabezpieczone pakowanie to odstępstwo — Anna je opisuje, nie wykonując tych czynności sama.", "feedback_niepoprawny": "Odrębność i zabezpieczenie pakietów to nie formalność — to warunek rozliczalności kart. Anna to odnotowuje, ale pakietów nie pakuje ani nie pieczętuje.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt111", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 111", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-rozliczenie-012", "rola": "obserwator", "faza": "rozliczenie_kart", "cel_uczenia": "Rozpoznać niewłaściwe potraktowanie karty znalezionej/zwróconej (kompetencja: znajomość prawa).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Komisja znajduje kartę poza urną i wrzuca ją do urny, żeby „głos się nie zmarnował”.", "pytanie": "Zdecyduj, co robi Anna.", "opcje": [{"tekst": "Odnotować odstępstwo — taka karta idzie do odrębnego pakietu, nie do urny.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać wrzucenie karty do urny za właściwe rozwiązanie, „żeby głos się nie zmarnował”.", "poprawna": false, "uzasadnienie_dystraktora": "sankcjonowanie nieprawidłowości — takich kart nie uwzględnia się w obliczeniach (pkt 102)"}, {"tekst": "Samodzielnie sięgnąć do urny i wyjąć z niej tę kartę.", "poprawna": false, "uzasadnienie_dystraktora": "rażące wyjście z roli i dotykanie kart — obserwator nie ingeruje w zawartość urny"}], "feedback_poprawny": "Tak. Kart znalezionych lub zwróconych przez wyborcę nie wrzuca się do urny ani nie uwzględnia w obliczeniach — pakuje się je odrębnie (pkt 102). Wrzucenie takiej karty do urny to odstępstwo, które Anna opisuje; sama kart nie wyjmuje.", "feedback_niepoprawny": "„Żeby się nie zmarnował” to pułapka — takiej karty nie liczy się i nie wrzuca do urny. Anna to notuje, ale nie sięga do urny.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt102", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział V, pkt 102", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-013", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Ocenić krytyczne odstępstwo: otwarcie urny bez kontroli plomb (kompetencja: bezzwłoczny przekaz + znajomość prawa).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Komisja od razu otwiera urnę i wyjmuje karty, nie sprawdzając wcześniej, czy plomby są nienaruszone.", "pytanie": "Wskaż właściwą reakcję Anny.", "opcje": [{"tekst": "Odnotować jako krytyczne odstępstwo brak kontroli plomb i zgłosić to koordynatorowi bez zwłoki.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać, że skoro plomby z daleka wyglądają w porządku, osobna kontrola przed otwarciem nie jest konieczna.", "poprawna": false, "uzasadnienie_dystraktora": "bierność — sprawdzenie nienaruszenia plomb przed otwarciem urny jest wymaganym krokiem (pkt 112–113)"}, {"tekst": "Samodzielnie podejść do urny i obejrzeć z bliska stan plomb przed otwarciem.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli i dotykanie sprzętu — kontrolę plomb wykonuje komisja, nie obserwator"}], "feedback_poprawny": "Tak. Przed otwarciem urny komisja sprawdza nienaruszenie plomb i zaklejenia (pkt 112–113). Pominięcie tej kontroli to poważne, krytyczne odstępstwo — wymaga bezzwłocznego przekazania koordynatorowi. Anna nie sprawdza plomb sama.", "feedback_niepoprawny": "Kontrola plomb przed otwarciem urny jest warunkiem wiarygodności liczenia, więc jej pominięcie jest krytyczne — notuj i zgłoś od razu. Ale plomb nie sprawdzasz osobiście.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt112", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 112", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-014", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować rozdzielność liczenia kart z kopert (głosowanie korespondencyjne) (kompetencja: kontrola rozdzielności).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Karty wyjęte z kopert na kartę do głosowania (głosowanie korespondencyjne) można policzyć łącznie dla wszystkich trzech głosowań.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "myli rozdzielność protokołów — karty z kopert ustala się odrębnie dla Sejmu, Senatu i referendum (pkt 115)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — zgadza się. Karty z kopert ustala się i liczy odrębnie dla każdego z trzech głosowań (pkt 115). Połączenie liczb Anna zanotuje jako odstępstwo.", "feedback_niepoprawny": "Także karty korespondencyjne podlegają rozdzielności trzech protokołów — liczy się je osobno, nie łącznie.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt115", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 115", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-015", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać błędną kwalifikację karty całkowicie przedartej (kompetencja: rozpoznanie odstępstwa).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Komisja wlicza do obliczeń kartę, która jest całkowicie przedarta na dwie części.", "pytanie": "Zdecyduj, co odnotowuje Anna.", "opcje": [{"tekst": "Odnotować, że karta całkowicie przedarta została wliczona do obliczeń, mimo że należy ją pominąć.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać, że skoro na karcie widać znak przy nazwisku, głos i tak się liczy.", "poprawna": false, "uzasadnienie_dystraktora": "błędna kwalifikacja — kartę całkowicie przedartą pomija się w obliczeniach niezależnie od jej treści (pkt 116)"}, {"tekst": "Samodzielnie zdecydować, że karta jest nieważna, i tak ją zakwalifikować.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli sędziego — o kwalifikacji kart decyduje komisja, nie obserwator"}], "feedback_poprawny": "Tak. Kartę całkowicie przedartą pomija się przy ustalaniu liczby kart (pkt 116). Wliczenie jej to odstępstwo — Anna je opisuje. O kwalifikacji kart decyduje komisja; Anna jej nie zastępuje.", "feedback_niepoprawny": "Rozdziel dwie rzeczy: rozpoznanie błędu (to robisz) od rozstrzygania o ważności karty (to robi komisja). Karta całkowicie przedarta jest pomijana.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt116", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 116", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-016", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Ocenić, czy o kartach spornych komisja decyduje wspólnie (kompetencja: granica „świadek, nie sędzia”).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Członek komisji samodzielnie uznaje sporną kartę za ważną i odkłada ją na stos, bez decyzji całego składu.", "pytanie": "Wskaż właściwą reakcję Anny.", "opcje": [{"tekst": "Odnotować jednoosobowe rozstrzygnięcie spornej karty, z przykładem.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać za normalne, że to najbardziej doświadczony członek komisji sam rozstrzyga sporne karty.", "poprawna": false, "uzasadnienie_dystraktora": "sankcjonowanie nieprawidłowości — o kartach/głosach spornych komisja decyduje wspólnie (pkt 118)"}, {"tekst": "Przedstawić komisji własną ocenę tego, czy sporna karta jest ważna.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli sędziego — obserwator nie rozstrzyga o ważności kart"}], "feedback_poprawny": "Tak. O kartach i głosach spornych komisja decyduje wspólnie (pkt 118). Rozstrzygnięcie jednoosobowe to odstępstwo — Anna opisuje je na konkretnym przykładzie. Sama nie przedstawia oceny ważności; jest świadkiem, nie sędzią.", "feedback_niepoprawny": "Istota roli: dokumentujesz, że decyzja zapadła niewłaściwym trybem (jednoosobowo), ale nie proponujesz własnego rozstrzygnięcia. O ważności decyduje komisja wspólnie.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt118", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 118", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-017", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować kontrolę sumy kart (nieważne + ważne = wyjęte z urny) (kompetencja: kontrola sum).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Jeśli suma kart ważnych i nieważnych nie zgadza się z liczbą kart wyjętych z urny, komisja może przejść dalej, o ile różnica jest niewielka.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "mit „drobnej różnicy” — kontrola sumy musi się zgadzać; przy rozbieżności właściwą reakcją jest ponowne przeliczenie, nie akceptacja różnicy"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. W każdym protokole suma kart nieważnych i ważnych ma równać się liczbie kart wyjętych z urny (pkt 118). Niezgodności nie „przepuszcza się” z powodu małej różnicy — Anna zanotuje brak reakcji na rozbieżność.", "feedback_niepoprawny": "„Niewielka różnica” nie jest dopuszczalna — suma musi się zgadzać. Rozbieżność to sygnał do ponownego przeliczenia, a jej zignorowanie jest odstępstwem.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt118", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 118", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-018", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać niezachowanie kolejności/zabezpieczenia kart Senatu i referendum (kompetencja: rozpoznanie odstępstwa).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Komisja jednocześnie liczy głosy do Sejmu, Senatu i referendum, a stosy kart się mieszają.", "pytanie": "Wskaż, co odnotowuje Anna.", "opcje": [{"tekst": "Odnotować równoległe ustalanie wyników trzech głosowań z mieszaniem stosów kart.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Uznać równoległe ustalanie wyników za dopuszczalne, ponieważ wyraźnie przyspiesza pracę komisji.", "poprawna": false, "uzasadnienie_dystraktora": "przeniesienie mitu podgrup na porządek prac — wyniki ustala się pojedynczo, a karty pozostałych głosowań zabezpiecza w pakietach tymczasowych (pkt 118)"}, {"tekst": "Zaproponować komisji właściwą, pojedynczą kolejność ustalania wyników trzech głosowań.", "poprawna": false, "uzasadnienie_dystraktora": "forma polecenia/organizowania pracy — obserwator nie kieruje przebiegiem czynności komisji"}], "feedback_poprawny": "Tak. Karty ważne do Senatu i referendum zabezpiecza się w opisanych, opieczętowanych pakietach tymczasowych, a wynik ustala pojedynczo (pkt 118). Równoległe mieszanie stosów to odstępstwo — Anna je opisuje, nie organizując pracy komisji.", "feedback_niepoprawny": "Porządek prac też podlega obserwacji: równoległe ustalanie z mieszaniem stosów jest nieprawidłowe. Anna to notuje, ale nie narzuca komisji kolejności.", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt118", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 118", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "obs-ustalenie-019", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać wymóg podania wyników do publicznej wiadomości i rolę obserwatora (kompetencja: obrona jawności).", "poziom_blooma": "analiza", "typ": "wielokrotny_wybor", "kontekst": "Komisja podpisała protokół i przygotowuje się do przekazania go wyżej.", "pytanie": "Wskaż, co komisja ma zrobić dla jawności wyniku i co weryfikuje Anna.", "opcje": [{"tekst": "Wywiesić kopię protokołu w lokalu, w miejscu łatwo dostępnym dla wyborców; Anna sprawdza, czy to zrobiono.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Przekazać wynik tylko komisji wyższego stopnia; wywieszenie w lokalu nie jest wymagane.", "poprawna": false, "uzasadnienie_dystraktora": "błędna wiedza — komisja podaje wyniki do publicznej wiadomości przez wywieszenie kopii protokołu (art. 77 § 1)"}, {"tekst": "Anna sama wywiesza kopię protokołu, jeśli komisja zwleka.", "poprawna": false, "uzasadnienie_dystraktora": "wyjście z roli — czynność podania wyniku do wiadomości wykonuje komisja, nie obserwator"}], "feedback_poprawny": "Tak. Niezwłocznie po sporządzeniu protokołu komisja podaje wyniki do publicznej wiadomości, wywieszając kopię protokołu w łatwo dostępnym miejscu (art. 77 § 1). Anna weryfikuje, czy to zrobiono; nie wykonuje tej czynności za komisję.", "feedback_niepoprawny": "Jawność wyniku to nie tylko przekazanie „w górę” — wymagane jest publiczne wywieszenie kopii protokołu. Anna to sprawdza, ale sama kopii nie wywiesza.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art77", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 77", "stan_prawny": "2023-03-31", "wybory": null}}, {"id": "obs-ustalenie-020", "rola": "obserwator", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować zasadę rzetelnego przekazu — tylko własne, naoczne obserwacje (kompetencja: rzetelny przekaz).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Inny obserwator mówi Annie, że „ktoś podmienił karty” — Anna sama tego nie widziała.", "pytanie": "Zdecyduj, jak Anna powinna postąpić z tą informacją.", "opcje": [{"tekst": "Zgłosić szczegółowo własne, naoczne spostrzeżenia; cudzą relację co najwyżej jako niepotwierdzoną.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Zgłosić usłyszaną od innej osoby relację jako fakt, ponieważ sam zarzut brzmi bardzo poważnie.", "poprawna": false, "uzasadnienie_dystraktora": "sankcjonowanie cudzej obserwacji — relacja z drugiej ręki może być manipulacją; przekazuje się własne, naoczne spostrzeżenia"}, {"tekst": "Nie zgłaszać w tej sprawie niczego, żeby nie ryzykować jakiejkolwiek pomyłki w raporcie.", "poprawna": false, "uzasadnienie_dystraktora": "bierność — własne, pewne spostrzeżenia należy przekazać; milczenie osłabia obronę praw wyborców"}], "feedback_poprawny": "Tak. Rzetelny przekaz opiera się na naoczności: Anna opisuje szczegółowo (kto, co, kiedy, jak) to, czego sama jest pewna, a relacji z drugiej ręki nie podaje jako własnej obserwacji. To chroni wiarygodność całej akcji obserwacyjnej.", "feedback_niepoprawny": "Znajdź środek między dwoma błędami: nie podawaj cudzej relacji jako faktu, ale też nie milcz o tym, co sama pewnie zaobserwowałaś. Podstawą jest własna naoczność.", "zrodlo": {"chunk_id": "kodeks-wyborczy:art103c", "akt": "Ustawa z dnia 5 stycznia 2011 r. — Kodeks wyborczy", "jednostka": "art. 103c", "stan_prawny": "2023-03-31", "wybory": null}}];
+const SRC_QUIZ_KOM = [{"id": "kom-ustalenie-001", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować próg 2/3 pełnego składu (z zaokrągleniem w górę) przed rozpoczęciem ustalania wyników (kompetencja: kworum czynności).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Komisja liczy 9 osób. O 21:30 obecnych jest 5 członków, w tym przewodniczący. Część osób chce zaczynać liczenie.", "pytanie": "Zdecyduj, czy komisja może przystąpić do ustalania wyników głosowania.", "opcje": [{"tekst": "Nie — przy 9-osobowym składzie potrzeba co najmniej 6 obecnych; czekacie na kolejnego członka.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Tak — 5 osób to ponad połowa składu, a przewodniczący jest na miejscu.", "poprawna": false, "uzasadnienie_dystraktora": "myli próg połowy z progiem 2/3 pełnego składu, zaokrąglanym w górę (przy 9 osobach → 6)"}, {"tekst": "Tak — o gotowości do liczenia rozstrzyga przewodniczący, niezależnie od liczby obecnych.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi wymóg kworum na decyzję jednej osoby — próg 2/3 wiąże także przewodniczącego"}], "feedback_poprawny": "Tak. Czynności ustalania wyników komisja wykonuje w składzie co najmniej 2/3 pełnego składu, w tym przewodniczący lub zastępca; ułamek zaokrągla się w górę, więc przy 9 osobach minimum to 6 (pkt 104). Kwadrans czekania jest tańszy niż podważona procedura.", "feedback_niepoprawny": "Sprawdź próg: 2/3 pełnego składu z zaokrągleniem w górę — przy 9 osobach to 6 członków, a decyzja przewodniczącego tego progu nie zastępuje (pkt 104).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt104", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 104", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-002", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać i zablokować pomysł podziału komisji na grupy robocze po zakończeniu głosowania (kompetencja: wspólność czynności).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Jest po północy. Doświadczony członek proponuje: „Podzielmy się — jedna grupa liczy Sejm, druga Senat, skończymy dwa razy szybciej”.", "pytanie": "Wskaż, jak reagujesz jako członek komisji.", "opcje": [{"tekst": "Zgłaszasz sprzeciw — czynności po zakończeniu głosowania komisja wykonuje wspólnie, bez grup roboczych.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Zgadzasz się, jeśli podział przegłosuje większość członków komisji.", "poprawna": false, "uzasadnienie_dystraktora": "uchwała większości nie uchyla zakazu z wytycznych — tworzenie grup roboczych jest niedopuszczalne"}, {"tekst": "Zgadzasz się, o ile obie grupy pracują przy sąsiednich stołach i widzą się nawzajem.", "poprawna": false, "uzasadnienie_dystraktora": "wspólna sala nie zmienia istoty: część kart ocenia wtedy część składu, a nie cała komisja"}], "feedback_poprawny": "Tak. Tworzenie z członków komisji grup roboczych, które wykonywałyby oddzielnie czynności po zakończeniu głosowania, jest niedopuszczalne (pkt 105). Twój spokojny sprzeciw chroni wynik przed podważeniem — to nie jest „utrudnianie pracy”.", "feedback_niepoprawny": "Ani głosowanie, ani sąsiednie stoły nie legalizują podgrup: każdy członek ma widzieć każdą kartę, a zakaz grup roboczych jest zapisany wprost (pkt 105).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt105", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 105", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-003", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać, że każdą kartę przed oceną okazuje się wszystkim obecnym członkom (kompetencja: wspólny ogląd kart).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Członek komisji może samodzielnie przejrzeć część kart, jeśli po skończeniu pokaże pozostałym wyniki swojego liczenia.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "myli okazanie wyników z okazaniem kart — przed oceną każdą kartę okazuje się wszystkim obecnym członkom, a przeglądanie pojedynczo lub w grupach jest zakazane (pkt 106)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Przed ustaleniem ważności karty i głosu każda karta jest okazywana wszystkim obecnym członkom komisji; przeglądanie kart pojedynczo przez część członków albo w odrębnych grupach jest zakazane (pkt 106).", "feedback_niepoprawny": "Pokazanie kolegom gotowego wyniku to za mało: wszyscy obecni członkowie mają widzieć każdą kartę przed jej oceną (pkt 106).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt106", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 106", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-004", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wskazać właściwą organizację przeglądania kart: wspólny ogląd bez paraliżowania pracy (kompetencja: organizacja czynności).", "poziom_blooma": "rozumienie", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Wskaż, jak komisja organizuje przeglądanie kart podczas ustalania wyników.", "opcje": [{"tekst": "Tak, aby każdy członek widział karty i mógł dokonać ich oceny, bez opóźniania pracy komisji.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Tak, aby karty oceniał przewodniczący, a pozostali członkowie zapisywali podawane wyniki.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi ocenę kart na jedną osobę — ocena to czynność wspólna całego składu"}, {"tekst": "Tak, aby każdy członek dokładnie przejrzał swój przydzielony stos kart.", "poprawna": false, "uzasadnienie_dystraktora": "to praca w podgrupach: część kart widzi wtedy część składu, wbrew zasadzie wspólnego oglądu"}], "feedback_poprawny": "Tak. Pracę organizuje się tak, by każdy członek widział karty i mógł je ocenić, a jednocześnie by nie prowadziło to do utrudniania, opóźniania ani paraliżowania pracy komisji (pkt 107). Wspólny ogląd i płynność idą w parze.", "feedback_niepoprawny": "Ocena kart nie należy do jednej osoby ani do „przydzielonych stosów” — każdy członek ma widzieć karty, a organizacja ma nie paraliżować pracy (pkt 107).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt107", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 107", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-005", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wykonać kontrolę nienaruszenia pieczęci i plomb bezpośrednio przed otwarciem urny (kompetencja: zabezpieczenie materiałów).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Lokal zamknięty, kworum jest. Członek komisji sięga do urny: „Otwieramy i wyjmujemy?”.", "pytanie": "Zdecyduj, co komisja robi w pierwszej kolejności.", "opcje": [{"tekst": "Sprawdza, czy pieczęcie na urnie i wlocie lub jednorazowe plomby–nalepki pozostały nienaruszone, i dopiero potem otwiera urnę.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Otwiera urnę od razu — plomby były zakładane przy zamykaniu lokalu, więc kolejna kontrola dubluje pracę.", "poprawna": false, "uzasadnienie_dystraktora": "pomija wymaganą kontrolę nienaruszenia pieczęci i plomb wykonywaną bezpośrednio przed otwarciem urny (pkt 112)"}, {"tekst": "Prosi obserwatora społecznego, aby obejrzał plomby i potwierdził, że są w porządku.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi czynność komisji na obserwatora — kontrola plomb to zadanie komisji, obserwator jedynie patrzy"}], "feedback_poprawny": "Tak. Komisja sprawdza, czy pieczęcie na urnie i na wlocie (lub plomby–nalepki) pozostały nienaruszone, po czym otwiera urnę i wyjmuje karty (pkt 112). Ta minuta kontroli to dowód, że nikt nie ingerował w karty.", "feedback_niepoprawny": "Kontrola plomb bezpośrednio przed otwarciem urny to osobny, wymagany krok — i wykonuje go komisja, nie obserwator (pkt 112).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt112", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 112", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-006", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać niedopuszczalność przewracania wypełnionej urny przy wyjmowaniu kart (kompetencja: staranność z materiałami).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Gdy urna jest mocno zapełniona, komisja może ją przewrócić i wysypać karty na stół, żeby przyspieszyć pracę.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "mit „będzie szybciej” — przewracanie wypełnionej urny jest niedopuszczalne; przy pełnej urnie najpierw wyjmuje się część kart (pkt 113)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Karty wyjmuje się starannie, tak by nie uszkodzić ani kart, ani urny; przewracanie wypełnionej urny jest niedopuszczalne, a przy mocno zapełnionej urnie najpierw wyjmuje się część kart (pkt 113).", "feedback_niepoprawny": "To pułapka pośpiechu: wysypanie kart grozi ich uszkodzeniem, a karty całkowicie przedarte wypadają z obliczeń. Wyjmuj karty partiami (pkt 113).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt113", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 113", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-007", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wykonać właściwe postępowanie z przedmiotami innymi niż karty znalezionymi w urnie (kompetencja: rozdzielenie i odnotowanie).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Po otwarciu urny między kartami znajdujecie czystą kartkę papieru i ulotkę reklamową.", "pytanie": "Wskaż, co komisja robi z takim znaleziskiem.", "opcje": [{"tekst": "Oddziela je od kart do głosowania i odnotowuje ich odnalezienie we właściwych punktach protokołów.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Dolicza je do kart nieważnych, bo nie są urzędowymi kartami do głosowania.", "poprawna": false, "uzasadnienie_dystraktora": "myli przedmiot z kartą nieważną — kartka czy ulotka nie wchodzi do obliczeń w punkcie 11, tylko podlega odnotowaniu"}, {"tekst": "Usuwa je od razu z lokalu, żeby nie mieszały się z kartami podczas liczenia.", "poprawna": false, "uzasadnienie_dystraktora": "pomija obowiązek odnotowania — informację o odnalezieniu przedmiotów wpisuje się do protokołów"}], "feedback_poprawny": "Tak. Inne przedmioty (np. czyste kartki, nakładki brajlowskie) komisja oddziela od kart, a informację o ich odnalezieniu odnotowuje w punkcie 24 protokołów Sejmu i Senatu oraz w punkcie 32 protokołu referendum (pkt 114).", "feedback_niepoprawny": "Rozdziel pojęcia: kartka to przedmiot, nie karta nieważna — nie wchodzi do obliczeń, ale jej odnalezienie odnotowuje się w protokołach; usunięcie bez śladu też jest błędem (pkt 114).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt114", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 114", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}, "punkt_protokolu": "pkt 24 (Sejm/Senat) · pkt 32 (referendum)"}, {"id": "kom-ustalenie-008", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wykonać pierwszą czynność wobec kopert na kartę do głosowania: odrębne ustalenie liczby kart z kopert (kompetencja: głosowanie korespondencyjne).", "poziom_blooma": "rozumienie", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Wskaż, co komisja robi w pierwszej kolejności z kopertami na kartę do głosowania znalezionymi w urnie.", "opcje": [{"tekst": "Wyjmuje z nich karty i ustala ich liczbę odrębnie dla Sejmu, Senatu i referendum, wpisując ją w punkcie 10a protokołów.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Dokłada karty z kopert do wspólnego stosu i liczy je razem ze wszystkimi kartami wyjętymi z urny.", "poprawna": false, "uzasadnienie_dystraktora": "gubi odrębne ustalenie liczby kart z kopert — punkt 10a wymaga osobnych liczb dla trzech głosowań"}, {"tekst": "Odkłada zaklejone koperty do pakietu i przekazuje je do komisji wyższego stopnia.", "poprawna": false, "uzasadnienie_dystraktora": "to karty do policzenia w obwodzie, nie depozyt do przekazania — liczby porównuje się z liczbą kopert"}], "feedback_poprawny": "Tak. W pierwszej kolejności wyjmuje się karty z kopert na kartę do głosowania i ustala ich liczbę — odrębnie w wyborach do Sejmu, do Senatu oraz w referendum — wpisując ją w punkcie 10a właściwego protokołu (pkt 115).", "feedback_niepoprawny": "Karty z głosowania korespondencyjnego liczy się w obwodzie, odrębnie dla każdego głosowania (punkt 10a), zanim trafią do dalszych obliczeń (pkt 115).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt115", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 115", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}, "punkt_protokolu": "pkt 10a"}, {"id": "kom-ustalenie-009", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Zdecydować o właściwym postępowaniu z kartą całkowicie przedartą (kompetencja: kwalifikacja kart).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Wśród kart z urny jest karta przedarta całkowicie na dwie części; obie części leżą obok siebie i widać znak „x”.", "pytanie": "Zdecyduj, co komisja robi z tą kartą.", "opcje": [{"tekst": "Wydziela ją, nie bierze pod uwagę przy obliczeniach i pakuje w opieczętowany, opisany pakiet.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Skleja obie części i liczy kartę normalnie, skoro znak „x” jest czytelny.", "poprawna": false, "uzasadnienie_dystraktora": "„ratowanie” karty — kartę całkowicie przedartą pomija się w obliczeniach niezależnie od czytelności znaku (pkt 116)"}, {"tekst": "Liczy ją jako kartę nieważną i wpisuje do punktu 11 protokołu.", "poprawna": false, "uzasadnienie_dystraktora": "myli kategorie — karta nieważna to karta nieurzędowa lub bez pieczęci; przedartej całkowicie w ogóle nie bierze się pod uwagę"}], "feedback_poprawny": "Tak. Karty całkowicie przedarte na dwie lub więcej części wydziela się i nie bierze pod uwagę przy obliczeniach, a następnie pakuje w opieczętowany i opisany pakiet (pkt 116). Nie wchodzą one ani do kart ważnych, ani do nieważnych.", "feedback_niepoprawny": "Nie sklejamy kart: całkowicie przedarta karta wypada z obliczeń — i nie jest tym samym co karta nieważna z punktu 11 (pkt 116).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt116", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 116", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-010", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Odróżnić kartę nieważną (pkt 11 protokołu) od głosu nieważnego (kompetencja: pojęcia protokołu).", "poziom_blooma": "analiza", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Wskaż kartę, którą komisja policzy jako kartę nieważną w punkcie 11 protokołu.", "opcje": [{"tekst": "Kartę nieopatrzoną pieczęcią obwodowej komisji.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Kartę ze znakiem „x” przy kandydatach z dwóch różnych list.", "poprawna": false, "uzasadnienie_dystraktora": "to głos nieważny na karcie ważnej — wytyczne wprost przestrzegają, by nie pomylić tych liczb w protokole"}, {"tekst": "Kartę z dopiskiem wyborcy na marginesie, poza kratkami.", "poprawna": false, "uzasadnienie_dystraktora": "dopiski poza kratką nie wpływają na ważność — karta i głos pozostają ważne"}], "feedback_poprawny": "Tak. Karta nieważna to karta inna niż ustalona urzędowo lub nieopatrzona pieczęcią komisji (pkt 118). Wytyczne wprost przestrzegają, by w punkcie 11 nie wpisać omyłkowo liczby głosów nieważnych — to dwie różne rzeczy.", "feedback_niepoprawny": "Rozdziel dwa poziomy: ważność karty (urzędowa karta z pieczęcią) i ważność głosu (co zaznaczono w kratkach). „X” przy dwóch listach to głos nieważny, a dopisek nie zmienia niczego (pkt 118).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt118", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 118", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}, "punkt_protokolu": "pkt 11"}, {"id": "kom-ustalenie-011", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wpisać liczbę zero do protokołu we właściwy sposób (kompetencja: wypełnianie protokołu).", "poziom_blooma": "zapamietywanie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Jeżeli ustalona przez komisję liczba wynosi zero, właściwe kratki w protokole zostawia się puste.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "puste pole wygląda jak przeoczenie i pozwala dopisać cyfrę — przy zerze wpisuje się „0” w ostatniej kratce z prawej strony (pkt 110)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Liczby wpisuje się od prawej strony, a jeżeli ustalona liczba wynosi zero, w ostatniej kratce z prawej strony wpisuje się cyfrę „0” (pkt 110). Wypełniona kratka odróżnia „ustaliliśmy zero” od „zapomnieliśmy wpisać”.", "feedback_niepoprawny": "Puste pole to nie zero — to luka, którą ktoś może zakwestionować. Wpisz „0” w ostatniej kratce z prawej strony (pkt 110).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt110", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 110", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-012", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Zastosować obowiązek przejrzenia całej karty przed kwalifikacją głosu (kompetencja: metoda oceny kart).", "poziom_blooma": "stosowanie", "typ": "scenariusz", "kontekst": "Kolega z komisji przegląda karty szybko: widzi pierwszy znak „x” na liście nr 2 i od razu odkłada kartę na stos głosów ważnych.", "pytanie": "Rozpoznaj, co jest nie tak w tym sposobie pracy.", "opcje": [{"tekst": "Kartę trzeba przejrzeć w całości — dalej może być znak „x” na innej liście, a to czyni głos nieważnym.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Nic — pierwszy znak „x” przesądza, na kogo oddano głos, więc dalsze przeglądanie to strata czasu.", "poprawna": false, "uzasadnienie_dystraktora": "mit „pierwszego x” — o ważności decyduje cała karta, nie pierwszy znaleziony znak (pkt 119)"}, {"tekst": "Karty powinien przeglądać w ten sposób przewodniczący, a nie szeregowy członek komisji.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi problem na hierarchię — ocena kart jest czynnością wspólną, a błąd dotyczy metody, nie stanowiska"}], "feedback_poprawny": "Tak. Komisja jest obowiązana przejrzeć całą kartę, a nie poprzestać na miejscu pierwszego znaku „x” — znak przy kandydatach na więcej niż jednej liście powoduje nieważność głosu (pkt 119). Pełne przejrzenie każdej karty to najtańsza ochrona przed błędnym wynikiem.", "feedback_niepoprawny": "Pierwszy znak „x” niczego nie przesądza: dopiero cała karta pokazuje, czy głos jest ważny. To kwestia metody, nie stanowiska w komisji (pkt 119).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt119", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 119", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-013", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać definicję znaku „x” i to, że wątpliwości rozstrzyga komisja (kompetencja: ocena znaku).", "poziom_blooma": "rozumienie", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Wskaż, jak wytyczne definiują znak „x” w kratce i kto rozstrzyga przypadki wątpliwe.", "opcje": [{"tekst": "Co najmniej dwie linie przecinające się w obrębie kratki; wątpliwości rozstrzyga komisja.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Dwie proste linie tworzące symetryczny krzyżyk; wątpliwości rozstrzyga przewodniczący.", "poprawna": false, "uzasadnienie_dystraktora": "zawęża definicję do „idealnego krzyżyka” i oddaje rozstrzygnięcie jednej osobie zamiast komisji"}, {"tekst": "Dowolny znak wyrażający wolę wyborcy; wątpliwości rozstrzyga mąż zaufania.", "poprawna": false, "uzasadnienie_dystraktora": "rozszerza definicję poza znak „x” i oddaje decyzję osobie, która nie ocenia kart"}], "feedback_poprawny": "Tak. Znakiem „x” są co najmniej dwie linie, które przecinają się w obrębie kratki; ustalenie, czy znak jest znakiem „x” i czy stoi w kratce, należy do komisji (pkt 119). Znak nie musi być „ładny” — musi się przecinać w kratce.", "feedback_niepoprawny": "Definicja jest szeroka (co najmniej dwie przecinające się linie), a rozstrzyganie wątpliwości należy do komisji jako całości — nie do przewodniczącego ani męża zaufania (pkt 119).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt119", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 119", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-014", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Rozpoznać, że znaki poza kratką traktuje się jako dopiski bez wpływu na ważność głosu (kompetencja: ocena znaku).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Znak „x” postawiony przez wyborcę poza kratką unieważnia głos na tej karcie.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "myli dopisek z głosem — znaki poza kratką, w tym znak „x”, traktuje się jako dopiski, które nie wpływają na ważność głosu (pkt 119)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Wszelkie znaki, wykreślenia i przekreślenia poza kratką — także znak „x” — traktuje się jako dopiski, które nie wpływają na ważność głosu (pkt 119). Liczy się to, co w kratkach.", "feedback_niepoprawny": "W wyborach o ważności głosu decydują znaki w kratkach; to, co poza nimi, jest dopiskiem. Uwaga: w referendum reguły dla znaków w obrębie kratki są surowsze (pkt 119, por. pkt 143).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt119", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 119", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-015", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Zakwalifikować głos ze znakiem „x” przy dwóch kandydatach z tej samej listy (kompetencja: kwalifikacja głosu, Sejm).", "poziom_blooma": "analiza", "typ": "scenariusz", "kontekst": "Na karcie do Sejmu wyborca postawił znak „x” przy dwóch kandydatach z tej samej listy: przy pozycji 3 i przy pozycji 7.", "pytanie": "Zdecyduj, jak komisja kwalifikuje ten głos.", "opcje": [{"tekst": "Głos ważny, oddany na kandydata z pozycji 3 — tego, którego nazwisko jest wyżej na liście.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Głos nieważny, bo znak „x” postawiono przy więcej niż jednym kandydacie.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi regułę różnych list na jedną listę — w obrębie jednej listy głos pozostaje ważny (pkt 120)"}, {"tekst": "Głos ważny na listę, ale bez wskazania pierwszeństwa któregokolwiek kandydata.", "poprawna": false, "uzasadnienie_dystraktora": "myli z przypadkiem „x” wyłącznie przy skreślonym kandydacie — tu pierwszeństwo ma kandydat wyżej umieszczony"}], "feedback_poprawny": "Tak. Znak „x” przy dwóch lub więcej kandydatach z jednej listy daje głos ważny, oddany na tego z nich, którego nazwisko jest umieszczone wyżej na liście (pkt 120). Nieważność powstaje dopiero przy znakach na różnych listach.", "feedback_niepoprawny": "Kluczowe rozróżnienie: dwa „x” na jednej liście → głos ważny (liczy się kandydat wyżej); „x” na dwóch różnych listach → głos nieważny (pkt 120–121).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt120", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 120", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-016", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wskazać przypadek głosu nieważnego w wyborach do Sejmu (kompetencja: kwalifikacja głosu, Sejm).", "poziom_blooma": "analiza", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Wskaż kartę, na której głos w wyborach do Sejmu jest nieważny.", "opcje": [{"tekst": "Znak „x” przy nazwiskach kandydatów z dwóch różnych list.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Znak „x” przy dwóch kandydatach z tej samej listy.", "poprawna": false, "uzasadnienie_dystraktora": "w obrębie jednej listy głos jest ważny — liczy się kandydat umieszczony wyżej (pkt 120)"}, {"tekst": "Znak „x” w kratce oraz hasło dopisane obok, poza kratkami.", "poprawna": false, "uzasadnienie_dystraktora": "dopiski poza kratką nie wpływają na ważność głosu (pkt 119)"}], "feedback_poprawny": "Tak. Głos jest nieważny, gdy znak „x” postawiono przy kandydatach z dwóch lub większej liczby różnych list, gdy nie postawiono go przy nikim albo gdy stoi wyłącznie przy liście, której rejestrację unieważniono (pkt 121).", "feedback_niepoprawny": "Dwa „x” w obrębie jednej listy i dopiski nie unieważniają głosu. Nieważność powstaje przy znakach na różnych listach, przy pustej karcie lub przy liście unieważnionej (pkt 120–121).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt121", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 121", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-017", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Ocenić właściwą reakcję na niezgodność sumy głosów z liczbą kart ważnych (kompetencja: kontrola sum protokołu).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Suma głosów nieważnych (pkt 13) i ważnych (pkt 14) jest o 2 mniejsza niż liczba kart ważnych (pkt 12). Jest 2:40 w nocy i część komisji chce po prostu wpisać liczby.", "pytanie": "Zdecyduj, co komisja powinna zrobić.", "opcje": [{"tekst": "Poszukać przyczyny błędu, sprostować obliczenia i dopiero właściwe liczby wpisać do protokołu.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Wpisać liczby mimo rozbieżności i opisać różnicę w uwagach protokołu.", "poprawna": false, "uzasadnienie_dystraktora": "uwagi nie zastępują zgodności — te liczby muszą być równe, a rozbieżność wymaga sprostowania obliczeń (pkt 123)"}, {"tekst": "Powiększyć liczbę głosów ważnych o 2, tak aby suma zgodziła się z liczbą kart.", "poprawna": false, "uzasadnienie_dystraktora": "„domykanie” wyniku — dopisanie liczby bez przeliczenia fałszuje obliczenia zamiast je prostować"}], "feedback_poprawny": "Tak. Suma punktów 13 i 14 musi równać się liczbie z punktu 12; przy rozbieżności komisja szuka przyczyny błędu i po sprostowaniu obliczeń wpisuje właściwe liczby (pkt 123). Zmęczenie o 2:40 jest realne — ale protokół z niezgodną sumą i tak wróci do poprawy.", "feedback_niepoprawny": "Ani uwagi, ani „dopisanie dwóch głosów” nie rozwiązują problemu: liczby muszą być równe, a droga prowadzi przez znalezienie błędu i ponowne obliczenie (pkt 123).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt123", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 123", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}, "punkt_protokolu": "pkt 12–14"}, {"id": "kom-ustalenie-018", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Wykonać właściwą kolejność: kontrola pakietu Senatu po zakończeniu obliczeń dla Sejmu (kompetencja: porządek trzech głosowań).", "poziom_blooma": "rozumienie", "typ": "wielokrotny_wybor", "kontekst": null, "pytanie": "Komisja zakończyła obliczenia dla wyborów do Sejmu. Wskaż następny krok.", "opcje": [{"tekst": "Sprawdza, czy pakiet z kartami ważnymi do Senatu nie został naruszony, i przystępuje do ustalania wyników do Senatu.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Ustala równolegle wyniki do Senatu i referendum, żeby nadrobić czas.", "poprawna": false, "uzasadnienie_dystraktora": "równoległe liczenie to praca w podgrupach — wyniki trzech głosowań ustala się po kolei (pkt 125)"}, {"tekst": "Wprowadza dane sejmowe do systemu informatycznego, zanim zajmie się kolejnymi głosowaniami.", "poprawna": false, "uzasadnienie_dystraktora": "myli kolejność — dane wprowadza się po sporządzeniu protokołu, nie między głosowaniami"}], "feedback_poprawny": "Tak. Po wykonaniu czynności dla Sejmu komisja sprawdza, czy pakiet z kartami ważnymi do Senatu nie został naruszony, i przystępuje do ustalania wyników głosowania na kandydatów na senatora; analogicznie potem dla referendum (pkt 125).", "feedback_niepoprawny": "Wyniki trzech głosowań ustala się po kolei, nie równolegle, a dane do systemu to etap po sporządzeniu protokołu. Najpierw kontrola pakietu Senatu (pkt 125).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt125", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 125", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-019", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Zakwalifikować głos do Senatu ze znakiem przy kandydacie skreślonym i innym kandydacie (kompetencja: kwalifikacja głosu, Senat).", "poziom_blooma": "rozumienie", "typ": "prawda_falsz", "kontekst": null, "pytanie": "Na karcie do Senatu wyborca postawił znak „x” przy kandydacie skreślonym i przy innym kandydacie. Taki głos jest nieważny.", "opcje": [{"tekst": "Prawda", "poprawna": false, "uzasadnienie_dystraktora": "zbyt pochopna nieważność — taki głos jest ważny i zalicza się go kandydatowi, którego nazwisko nie zostało skreślone (pkt 128)"}, {"tekst": "Fałsz", "poprawna": true, "uzasadnienie_dystraktora": null}], "feedback_poprawny": "Fałsz — dobrze. Jeżeli wyborca postawił znak „x” przy nazwisku kandydata skreślonego oraz przy nazwisku innego kandydata, głos jest ważny i zaliczany kandydatowi nieskreślonemu (pkt 128).", "feedback_niepoprawny": "Zanim uznasz głos za nieważny, sprawdź reguły ratujące jego ważność: przy skreślonym i innym kandydacie głos liczy się nieskreślonemu (pkt 128).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt128", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 128", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}, {"id": "kom-ustalenie-020", "rola": "czlonek_komisji", "faza": "ustalenie_wynikow", "cel_uczenia": "Ocenić głos referendalny z zamazaną kratką — reguła surowsza niż w wyborach (kompetencja: kwalifikacja głosu, referendum).", "poziom_blooma": "ocena", "typ": "scenariusz", "kontekst": "Na karcie referendalnej przy pierwszym pytaniu wyborca zamazał długopisem kratkę „TAK”, a następnie postawił wyraźny znak „x” w kratce „NIE”.", "pytanie": "Oceń, jak komisja kwalifikuje głos w zakresie tego pytania.", "opcje": [{"tekst": "Głos nieważny przy tym pytaniu — w referendum zamazanie kratki powoduje nieważność głosu.", "poprawna": true, "uzasadnienie_dystraktora": null}, {"tekst": "Głos ważny na „NIE” — intencja wyborcy jest czytelna, a zamazanie traktuje się jak dopisek.", "poprawna": false, "uzasadnienie_dystraktora": "przenosi łagodniejszą regułę wyborów na referendum — w referendum znaki graficzne w obrębie kratki, w tym zamazania, powodują nieważność głosu przy danym pytaniu (pkt 143)"}, {"tekst": "Kartę pomija się w obliczeniach dla tego pytania, jak kartę uszkodzoną.", "poprawna": false, "uzasadnienie_dystraktora": "myli głos nieważny z kartą pomijaną — pomija się karty całkowicie przedarte; karta z nieważnym głosem zostaje w obliczeniach"}], "feedback_poprawny": "Tak. W referendum znaki graficzne naniesione w obrębie kratki — w szczególności zamazanie kratki czy przekreślenie znaku — powodują nieważność głosu w zakresie danego pytania; wytyczne podkreślają, że ta reguła różni się od reguł w wyborach (pkt 143). Nieważność dotyczy tego pytania, nie całej karty.", "feedback_niepoprawny": "To najczęstsza pułapka referendalna: reguła „dopisków” z wyborów nie działa wewnątrz kratki referendalnej. Zamazana kratka unieważnia głos przy tym pytaniu, ale karta zostaje w obliczeniach (pkt 143).", "zrodlo": {"chunk_id": "wytyczne-kraj:pkt143", "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)", "jednostka": "Rozdział VI, pkt 143", "stan_prawny": "2023-09-25", "wybory": "Sejm/Senat/referendum 15.10.2023"}}];
+const LISTA = {"meta": {"tytul": "Zamknięcie lokalu wyborczego — lista kontrolna zadań komisji (wspólna dla obu ról)", "otwarcie": "Gdy na zegarze wybije godzina 21:00 lub ostatni wyborcy z kolejki oddadzą swój głos, kończy się głosowanie.", "zrodlo": "„Lista głównych zadań komisji w celu ustalenia wyniku głosowania”, FOP, wersja 1.0, październik 2023 · Wytyczne PKW 211/2023 (stan 2023-09-25)"}, "items": [{"id": "kom-F-001", "nazwa": "Zamyka drzwi wejściowe", "prawo": "Wytyczne, Rozdział V, pkt 97", "opis": "Kiedy przewodniczący zarządzi zakończenie głosowania, komisja zamyka drzwi wejściowe."}, {"id": "kom-F-002", "nazwa": "Sprawdza kworum", "prawo": "Wytyczne, Rozdział V, pkt 99, pkt 104", "opis": "Po zakończeniu głosowania komisja sprawdza, czy liczba obecnych członków to co najmniej 2/3 jej pełnego składu, w tym przewodniczący lub jego zastępca."}, {"id": "kom-F-003", "nazwa": "Sprawdza, czy w lokalu nie znajdują się osoby nieuprawnione", "prawo": "Wytyczne, Rozdział V, pkt 99, pkt 100", "opis": "Komisja sprawdza, czy oprócz członków komisji w lokalu nie przebywają inne osoby niż:\n- mężowie zaufania,\n- obserwatorzy społeczni,\n- obserwatorzy międzynarodowi,\n- obsługa informatyczna (jeśli jest zapewniona).\nJedynie w czasie otwierania urny i wyjmowania z niej kart dopuszczalna jest obecność w lokalu dziennikarzy."}, {"id": "kom-F-004", "nazwa": "Zapieczętowuje wlot urny", "prawo": "Wytyczne, Rozdział V, pkt 101", "opis": "Przewodniczący komisji zapieczętowuje otwór urny wyborczej:\n- zaklejając go paskiem papieru, na którym stawia się pieczęć komisji oraz na którym podpisują się obecni członkowie komisji,\n- naklejając jednorazowe plomby — nalepki foliowe opatrzone unikatowym numerem; nalepkę stempluje się pieczęcią komisji, a jej numer wpisuje się do protokołu wewnętrznego."}]};
+
+const ETAPY = [
+  {k:"A", t:"Otwarcie lokalu wyborczego", d:"od 6:00 do pierwszego wyborcy"},
+  {k:"B", t:"Obsługa wyborcy w lokalu", d:"przebieg głosowania od wejścia do lokalu po jego opuszczenie"},
+  {k:"C", t:"Głosowanie przez pełnomocnika", d:""},
+  {k:"D", t:"Wyborca prosi o pomoc", d:""},
+  {k:"E", t:"Głosowanie z zaświadczeniem", d:"o prawie do głosowania poza miejscem zamieszkania"},
+  {k:"F", t:"Zamknięcie lokalu wyborczego", d:""},
+  {k:"G", t:"Rozliczenie kart", d:""},
+  {k:"H", t:"Ustalenie wyników głosowania", d:""}
+];
+const ROLE = {komisja:"Członek komisji / członkini komisji", obserwator:"Obserwator / obserwatorka"};
+const MAT  = {lista:"Lista kontrolna", quiz:"Pytania do quizów"};
+const TYP  = {wielokrotny_wybor:"wielokrotny wybór", prawda_falsz:"prawda / fałsz", scenariusz:"scenariusz"};
+const DLAB = {TAK:"TAK", POPRAW:"POPRAW", USUN:"USUŃ"};
+const SLAB = {opublikowane:"opublikowane", do_poprawek:"do poprawek", wykluczone:"wykluczone", archiwalne:"archiwalne"};
+
+function inScope(rola,etap,mat){
+  const r = (rola==="komisja"||rola==="obserwator");
+  return r && ((etap==="F" && mat==="lista") || (etap==="H" && mat==="quiz"));
+}
+function etapEnabled(k){ return Object.keys(MAT).some(m=>inScope(state.rola,k,m)); }
+function matEnabled(m){ return state.etap ? inScope(state.rola,state.etap,m) : ETAPY.some(e=>inScope(state.rola,e.k,m)); }
+function etapOf(k){ return ETAPY.find(e=>e.k===k); }
+function etapLabel(k){ const e=etapOf(k); return e? e.k+") "+e.t : k; }
+
+/* ================= STAN (tylko w pamięci sesji) ================= */
+const state = {
+  screen:"start", ekspert:"", rola:null, etap:null, material:null,
+  session:null, genPhase:0, fallbackLogged:false,
+  bank:[], backlog:[], pubCount:{}, rFilter:"all",
+  bankRola:"all", bankStatus:"all"
+};
+
+/* ================= NARZĘDZIA ================= */
+function esc(s){ return (s==null?"":String(s)).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+function today(){ return new Date().toISOString().slice(0,10); }
+function descHtml(s){
+  const lines=String(s).split("\n"); let out="", ul=false;
+  lines.forEach(l=>{
+    const t=l.trim();
+    if(t.startsWith("- ")){ if(!ul){out+='<ul class="desc-ul">';ul=true;} out+="<li>"+esc(t.slice(2))+"</li>"; }
+    else { if(ul){out+="</ul>";ul=false;} if(t) out+="<p>"+esc(t)+"</p>"; }
+  });
+  if(ul) out+="</ul>";
+  return out;
+}
+let tt;
+function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show");
+  clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2100); }
+
+/* ================= NAWIGACJA ================= */
+function go(s){ state.screen=s; window.scrollTo({top:0}); render(); }
+function setEkspert(v){ state.ekspert=v; const b=document.getElementById("startbtn"); if(b) b.disabled=!v; }
+function startFlow(){ if(!state.ekspert){toast("Wybierz osobę ewaluującą materiały");return;} go("odbiorca"); }
+function goOdbiorca(){ go("odbiorca"); }
+function setRola(r){
+  if(state.rola!==r){ state.etap=null; state.material=null; state.session=null; state.genPhase=0; }
+  state.rola=r; state.fallbackLogged=false; go("etap");
+}
+function setEtap(k){ if(!etapEnabled(k)){ toast("Etap poza zakresem pilotażu — element nieaktywny"); return; }
+  state.etap=k;
+  if(state.material && !inScope(state.rola,k,state.material)) state.material=null;
+  state.session=null; state.genPhase=0; state.fallbackLogged=false; render(); }
+function setMat(m){ if(!matEnabled(m)){ toast("Ten typ materiału jest poza zakresem pilotażu dla wybranego etapu"); return; }
+  state.material=m; state.session=null; state.genPhase=0; state.fallbackLogged=false; render(); }
+function nextFromEtap(){
+  if(!state.etap){toast("Wybierz etap dnia głosowania");return;}
+  if(!state.material){toast("Wybierz typ materiału");return;}
+  if(inScope(state.rola,state.etap,state.material)){ state.genPhase=0; go("generacja"); }
+  else { go("fallback"); }
+}
+function startGen(){
+  state.genPhase=1; render();
+  setTimeout(()=>{ state.genPhase=2; buildSession(); render(); }, 1400);
+}
+function buildSession(){
+  const items = state.material==="quiz" ? (state.rola==="komisja" ? SRC_QUIZ_KOM : SRC_QUIZ_OBS) : LISTA.items;
+  const dec={}; items.forEach(it=>dec[it.id]={decyzja:null,uwagi:"",data:""});
+  state.session={rola:state.rola,etap:state.etap,material:state.material,items:items,decisions:dec};
+  state.rFilter="all";
+}
+function addBacklog(){
+  state.backlog.push({rola:state.rola,etap:state.etap,material:state.material,data:today(),zglosil:state.ekspert,status:"do decyzji ownera"});
+  state.fallbackLogged=true; toast("Zgłoszono do backlogu — decyzja o zakresie należy do ownera FOP"); render();
+}
+
+/* ================= RECENZJA: settery ================= */
+function sess(){ return state.session; }
+function setDecision(id,dec){ const d=sess().decisions[id];
+  d.decyzja=(d.decyzja===dec)?null:dec; d.data=d.decyzja?today():""; render(); }
+function setUwagi(id,v){ sess().decisions[id].uwagi=v;
+  const w=document.getElementById("note-"+id); if(w && v.trim()) w.classList.remove("missing"); }
+function setFilter(f){ state.rFilter=(state.rFilter===f?"all":f); render(); }
+function counts(){ const c={TAK:0,POPRAW:0,USUN:0,none:0}; if(!sess())return c;
+  sess().items.forEach(it=>{const d=sess().decisions[it.id]; if(d.decyzja)c[d.decyzja]++; else c.none++;}); return c; }
+
+/* ================= PUBLIKACJA ================= */
+function publish(){
+  const s=sess(); if(!s) return;
+  let bad=null;
+  s.items.forEach(it=>{ const d=s.decisions[it.id];
+    if(!d.decyzja){ bad=bad||{id:it.id,why:"dec"}; }
+    else if((d.decyzja==="POPRAW"||d.decyzja==="USUN") && !(d.uwagi||"").trim()){ bad=bad||{id:it.id,why:"uw"}; }
+  });
+  if(bad){
+    if(bad.why==="uw"){ const w=document.getElementById("note-"+bad.id); if(w) w.classList.add("missing"); }
+    toast(bad.why==="dec" ? "Oceń wszystkie pozycje — bramka wymaga decyzji dla każdej" : "Decyzje POPRAW i USUŃ wymagają uzasadnienia");
+    const el=document.getElementById("card-"+bad.id); if(el) el.scrollIntoView({behavior:"smooth",block:"center"});
+    return;
+  }
+  const key=s.rola+"|"+s.etap+"|"+s.material;
+  const n=(state.pubCount[key]||0); state.pubCount[key]=n+1;
+  const wersja="v1."+n; const dt=today();
+  state.bank.forEach(b=>{ if(b.rola===s.rola && b.etap===s.etap && b.typ===s.material && b.status!=="archiwalne") b.status="archiwalne"; });
+  const stat={TAK:"opublikowane",POPRAW:"do_poprawek",USUN:"wykluczone"};
+  const c={TAK:0,POPRAW:0,USUN:0};
+  s.items.forEach(it=>{ const d=s.decisions[it.id]; c[d.decyzja]++;
+    state.bank.push({uid:key+"|"+wersja+"|"+it.id, id:it.id, rola:s.rola, etap:s.etap, typ:s.material,
+      status:stat[d.decyzja], wersja:wersja, data:dt, owner:state.ekspert, uwagi:(d.uwagi||"").trim()||null, payload:it});
+  });
+  const pubRecs = state.bank.filter(b=> b.rola===s.rola && b.etap===s.etap && b.typ===s.material && b.wersja===wersja && b.status==="opublikowane");
+  const fixRecs = state.bank.filter(b=> b.rola===s.rola && b.etap===s.etap && b.typ===s.material && b.wersja===wersja && b.status==="do_poprawek");
+  state.lastPub={c:c,wersja:wersja,dt:dt,rola:s.rola,etap:s.etap,typ:s.material,razem:s.items.length,records:pubRecs,fixes:fixRecs};
+  state.session=null; state.genPhase=0;
+  openPub();
+  savePubFiles();
+}
+function openPub(){
+  const p=state.lastPub;
+  document.getElementById("pubbody").innerHTML =
+    '<p class="pub-big">Doszło do zmiany materiałów szkoleniowych.</p>'+
+    '<p><b>Co się zmieniło:</b> zaktualizowano materiały dla odbiorcy <b>'+esc(ROLE[p.rola])+'</b> — etap <b>'+esc(etapLabel(p.etap))+'</b>, typ: <b>'+esc(MAT[p.typ])+'</b>.</p>'+
+    '<div class="pub-meta">opublikowano: '+p.c.TAK+' / '+p.razem+' pozycji · wersja '+esc(p.wersja)+'<br>data obowiązywania: '+esc(p.dt)+' · owner: '+esc(state.ekspert)+'<br>do poprawek: '+p.c.POPRAW+' · wykluczone: '+p.c.USUN+'</div>'+
+    '<p style="font-size:12.5px;color:var(--text-soft);margin-top:12px">Ten komunikat to podgląd powiadomienia, które w aplikacji uczącej zobaczy użytkownik po aktualizacji treści (happy path, krok 4). Poprzednia wersja materiałów tej ścieżki została oznaczona jako archiwalna.</p>'+
+    (p.records && p.records.length
+      ? '<p style="font-size:12.5px;color:var(--text-soft);margin-top:8px"><b>Dowód wykonania recenzji:</b> zaakceptowane pozycje ('+p.records.length+') zostały zapisane do akceptacji eksperta jako plik CSV:<br><span style="font-family:\'Space Mono\',monospace;font-size:11.5px">'+esc(pubFileBase())+'.csv</span>'
+        +(p.fixes && p.fixes.length? '<br>Pozycje do poprawy ('+p.fixes.length+') z notatkami eksperta zapisano w osobnym arkuszu CSV (do ponownej poprawy w AI):<br><span style="font-family:\'Space Mono\',monospace;font-size:11.5px">'+esc(fixFileBase())+'.csv</span>':'')
+        +'<br>Baza zaakceptowanych pytań z Banku materiałów zapisała się jako HTML:<br><span style="font-family:\'Space Mono\',monospace;font-size:11.5px">'+esc(bankFileBase())+'.html</span>'
+        +'<br>Jeśli przeglądarka zablokowała kolejne pobrania, użyj przycisków poniżej.</p>'
+      : '<p style="font-size:12.5px;color:var(--text-soft);margin-top:8px"><b>Dowód wykonania:</b> żadna pozycja nie otrzymała decyzji TAK — plik CSV z zaakceptowanymi materiałami nie powstał, więc recenzja nie ma dowodu wykonania.'
+        +(p.fixes && p.fixes.length? ' Pozycje do poprawy ('+p.fixes.length+') z notatkami eksperta zapisano w osobnym arkuszu CSV (do ponownej poprawy w AI).':'')+'</p>');
+  document.getElementById("pubmodal").classList.add("open");
+}
+function closePub(){ document.getElementById("pubmodal").classList.remove("open"); }
+
+/* ================= ZAPIS PLIKÓW PO AKCEPTACJI (CSV zaakceptowane + CSV do poprawy + HTML baza banku) ================= */
+function fnSafe(s){ return String(s==null?"":s).replace(/[\\\/:*?"<>|]/g,"-").replace(/\s+/g," ").trim(); }
+function pubFileBase(){
+  const p=state.lastPub; if(!p) return "bank-materialow";
+  return [ fnSafe(state.ekspert||"ekspert"), "Bank Materiałów", fnSafe(etapLabel(p.etap)), fnSafe(ROLE[p.rola]), p.dt ].join("_");
+}
+function fixFileBase(){
+  const p=state.lastPub; if(!p) return "do-poprawy";
+  return [ fnSafe(state.ekspert||"ekspert"), "Do poprawy", fnSafe(etapLabel(p.etap)), fnSafe(ROLE[p.rola]), p.dt ].join("_");
+}
+function bankFileBase(){
+  return [ fnSafe(state.ekspert||"ekspert"), "Bank Materiałów", "baza zaakceptowanych", today() ].join("_");
+}
+function csvCell(v){ v=(v==null?"":String(v)); return '"'+v.replace(/"/g,'""')+'"'; }
+function pubOptTxt(it){
+  if(!it.opcje) return {opcje:"",poprawna:""};
+  const all=it.opcje.map(o=>(o.poprawna?"[POPRAWNA] ":"")+o.tekst).join(" | ");
+  const ok=it.opcje.filter(o=>o.poprawna).map(o=>o.tekst).join(" | ");
+  return {opcje:all,poprawna:ok};
+}
+function buildPubCSV(){
+  const p=state.lastPub; if(!p||!p.records) return "";
+  const head=["lp","id","typ_materialu","odbiorca","etap","tytul_lub_pytanie","tresc_lub_kontekst","opcje","odpowiedz_poprawna","zrodlo_prawa","wersja","data_utworzenia","recenzent","status"];
+  const rows=[head.map(csvCell).join(",")];
+  p.records.forEach((b,i)=>{
+    const it=b.payload||{};
+    const isQuiz=(b.typ==="quiz");
+    const o=pubOptTxt(it);
+    const zrodlo=isQuiz ? (it.zrodlo? (it.zrodlo.akt+" · "+it.zrodlo.jednostka+" · stan prawny "+it.zrodlo.stan_prawny) : "") : (it.prawo||"");
+    rows.push([ i+1, b.id, MAT[b.typ]||b.typ, ROLE[b.rola]||b.rola, etapLabel(b.etap),
+      isQuiz? (it.pytanie||"") : (it.nazwa||""),
+      isQuiz? (it.kontekst||"") : (it.opis||""),
+      o.opcje, o.poprawna, zrodlo, b.wersja, b.data, b.owner, b.status
+    ].map(csvCell).join(","));
+  });
+  return "\uFEFF"+rows.join("\r\n");
+}
+function buildFixCSV(){
+  const p=state.lastPub; if(!p||!p.fixes) return "";
+  const head=["lp","id","typ_materialu","odbiorca","etap","tytul_lub_pytanie","notatka_eksperta","tresc_oryginalna_json","polecenie_dla_AI","wersja","data_recenzji","recenzent","status"];
+  const rows=[head.map(csvCell).join(",")];
+  p.fixes.forEach((b,i)=>{
+    const it=b.payload||{};
+    const isQuiz=(b.typ==="quiz");
+    const cmd="Popraw materiał "+b.id+" zgodnie z notatką eksperta z kolumny notatka_eksperta. Pracuj wyłącznie na treści z kolumny tresc_oryginalna_json: zachowaj strukturę JSON, rolę, poziom Blooma i cytowane źródło prawa (pkt wytycznych zmieniaj tylko, jeśli notatka tego wymaga). Nie dodawaj nowych faktów prawnych bez oparcia w źródle — braki oznacz [DO UZUPEŁNIENIA]. Zwróć pełny poprawiony JSON do ponownej recenzji eksperta.";
+    rows.push([ i+1, b.id, MAT[b.typ]||b.typ, ROLE[b.rola]||b.rola, etapLabel(b.etap),
+      isQuiz? (it.pytanie||"") : (it.nazwa||""),
+      b.uwagi||"", JSON.stringify(it), cmd, b.wersja, b.data, b.owner, b.status
+    ].map(csvCell).join(","));
+  });
+  return "\uFEFF"+rows.join("\r\n");
+}
+function bankAccepted(){ return state.bank.filter(b=>b.status==="opublikowane"); }
+function buildBankHTML(){
+  const acc=bankAccepted();
+  let sections="";
+  ETAPY.forEach(e=>{
+    ["komisja","obserwator"].forEach(r=>{
+      const items=acc.filter(b=>b.etap===e.k && b.rola===r);
+      if(!items.length) return;
+      const cards=items.map((b,i)=>{
+        const it=b.payload||{}; const isQuiz=(b.typ==="quiz");
+        let body="";
+        if(isQuiz){
+          body += it.kontekst? '<p class="ctx">'+esc(it.kontekst)+'</p>' : "";
+          body += '<p class="q">'+esc(it.pytanie||"")+'</p>';
+          body += '<ul>'+(it.opcje||[]).map(o=>'<li class="'+(o.poprawna?'ok':'')+'">'+(o.poprawna?'&#10003; ':'')+esc(o.tekst)+'</li>').join("")+'</ul>';
+          if(it.feedback_poprawny) body += '<p class="fb"><b>Feedback:</b> '+esc(it.feedback_poprawny)+'</p>';
+          if(it.zrodlo) body += '<p class="src">'+esc(it.zrodlo.akt+" · "+it.zrodlo.jednostka+" · stan prawny "+it.zrodlo.stan_prawny)+'</p>';
+        }else{
+          body += '<p class="q">'+esc(it.nazwa||"")+'</p>';
+          body += '<p class="ctx">'+esc(it.opis||"").replace(/\n/g,"<br>")+'</p>';
+          if(it.prawo) body += '<p class="src">'+esc(it.prawo)+'</p>';
+        }
+        return '<article class="card"><div class="cid">'+(i+1)+' · '+esc(b.id)+(it.typ? ' · '+esc(TYP[it.typ]||it.typ):'')+' · '+esc(MAT[b.typ])+' · wersja '+esc(b.wersja)+' · obowiązuje od '+esc(b.data)+' · owner: '+esc(b.owner)+'</div>'+body+'</article>';
+      }).join("");
+      sections += '<h2 class="sec">'+esc(etapLabel(e.k))+' — '+esc(ROLE[r])+' <span class="cnt">('+items.length+' pozycji)</span></h2>'+cards;
+    });
+  });
+  if(!sections) sections='<p>Bank nie zawiera jeszcze zaakceptowanych pozycji.</p>';
+  return '<!DOCTYPE html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+
+  '<title>'+esc(bankFileBase())+'</title><style>'+
+  'body{font-family:"Libre Franklin",system-ui,sans-serif;color:#0E1B2E;background:#F4F7FC;margin:0;padding:32px}'+
+  '.hd{background:linear-gradient(135deg,#3061AD,#143055);color:#fff;border-radius:14px;padding:24px 28px;margin-bottom:24px}'+
+  '.hd h1{margin:0 0 6px;font-size:22px}.hd p{margin:2px 0;font-size:13.5px;opacity:.92}'+
+  '.sec{font-size:16px;color:#143055;margin:26px 0 10px;border-bottom:2px solid #D7E2F2;padding-bottom:6px}.cnt{font-weight:400;color:#59697F;font-size:13px}'+
+  '.card{background:#fff;border:1px solid #D7E2F2;border-radius:12px;padding:16px 20px;margin-bottom:14px}'+
+  '.cid{font-family:"Space Mono",monospace;font-size:11.5px;color:#59697F;margin-bottom:8px}'+
+  '.q{font-weight:700;margin:0 0 8px}.ctx{color:#3a4a63;font-size:14px;margin:0 0 8px}'+
+  'ul{margin:0 0 8px;padding-left:20px}li{margin:3px 0;font-size:14px}li.ok{color:#1c6b3c;font-weight:700}'+
+  '.fb{font-size:13px;color:#3a4a63;margin:0 0 6px}.src{font-family:"Space Mono",monospace;font-size:11.5px;color:#59697F;margin:0}'+
+  '</style></head><body>'+
+  '<div class="hd"><h1>Bank materiałów — baza zaakceptowanych pytań i zadań</h1>'+
+  '<p>pozycji zaakceptowanych łącznie: <b>'+acc.length+'</b> · wygenerowano: <b>'+today()+'</b> · zapis wykonał recenzent: <b>'+esc(state.ekspert||"")+'</b></p>'+
+  '<p>Wyłącznie materiały z decyzją TAK z recenzji FOP (bramka ludzka), posegregowane po etapach i odbiorcach. Wygenerowano z prototypu silnika treści mikrolearningu.</p></div>'+
+  sections+'</body></html>';
+}
+function triggerDownload(content,mime,fname){
+  const blob=new Blob([content],{type:mime});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download=fname;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+}
+function downloadPub(kind){
+  const p=state.lastPub;
+  if(kind==="csv"){
+    if(!p||!p.records||!p.records.length){ toast("Brak zaakceptowanych pozycji w tej publikacji"); return; }
+    triggerDownload(buildPubCSV(),"text/csv;charset=utf-8",pubFileBase()+".csv");
+  } else if(kind==="fix"){
+    if(!p||!p.fixes||!p.fixes.length){ toast("Ta publikacja nie ma pozycji do poprawy"); return; }
+    triggerDownload(buildFixCSV(),"text/csv;charset=utf-8",fixFileBase()+".csv");
+  } else if(kind==="bank"){
+    if(!bankAccepted().length){ toast("Bank nie zawiera jeszcze zaakceptowanych pozycji"); return; }
+    triggerDownload(buildBankHTML(),"text/html;charset=utf-8",bankFileBase()+".html");
+  }
+}
+function savePubFiles(){
+  const p=state.lastPub; if(!p) return;
+  const parts=[];
+  if(p.records && p.records.length){ downloadPub("csv"); parts.push("CSV zaakceptowane"); }
+  if(p.fixes && p.fixes.length){ setTimeout(()=>downloadPub("fix"),700); parts.push("CSV do poprawy"); }
+  if(bankAccepted().length){ setTimeout(()=>downloadPub("bank"),1400); parts.push("HTML baza banku"); }
+  if(parts.length) toast("Zapisano: "+parts.join(" + "));
+}
+
+/* ================= RENDER: nagłówek ================= */
+const STEPS=[
+ {id:"start", lab:"Ekspert"},
+ {id:"odbiorca", lab:"Odbiorca"},
+ {id:"etap", lab:"Etap i materiał"},
+ {id:"gen", lab:"Propozycja i recenzja"},
+ {id:"bank", lab:"Bank"}
+];
+function stepIdx(){ const s=state.screen;
+  if(s==="start")return 0; if(s==="odbiorca")return 1; if(s==="etap")return 2;
+  if(s==="generacja"||s==="fallback"||s==="recenzja")return 3; return 4; }
+function stepGo(i){
+  if(i===1) goOdbiorca();
+  else if(i===2){ if(state.rola) go("etap"); }
+  else if(i===3){ if(state.session) go("recenzja"); else if(state.rola&&state.etap&&state.material) nextFromEtap(); }
+  else if(i===4) go("bank");
+}
+function renderTopbar(){
+  const tb=document.getElementById("topbar");
+  tb.hidden = (state.screen==="start");
+  document.getElementById("btnRole").hidden = (state.screen==="odbiorca");
+  document.getElementById("who").textContent =
+    (state.ekspert? "recenzent: "+state.ekspert : "") + (state.rola? " · odbiorca: "+ROLE[state.rola] : "");
+  const cur=stepIdx();
+  document.getElementById("stepper").innerHTML = STEPS.map((st,i)=>{
+    const cls = i===cur? "cur" : (i<cur? "done":"");
+    const clickable = (i===1) || (i===2&&state.rola) || (i===3&&(state.session||(state.rola&&state.etap&&state.material))) || (i===4);
+    return '<li class="step '+cls+'"><button '+(clickable&&i!==cur?'':'disabled ')+'onclick="stepGo('+i+')"><span class="dot">'+(i+1)+'</span>'+st.lab+'</button></li>';
+  }).join("");
+  document.getElementById("actionbar").hidden = (state.screen!=="recenzja");
+}
+
+/* ================= EKRANY ================= */
+function rStart(){
+  const opts=[1,2,3,4,5].map(n=>'<option'+(state.ekspert==="Ekspert "+n?' selected':'')+'>Ekspert '+n+'</option>').join("");
+  return '<div class="start">'+
+    '<div class="start-hero">'+
+    '<img class="start-logo" src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCABUAPwDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z" alt="Fundacja Odpowiedzialna Polityka — logo">'+
+    '<h1 class="start-title">Fundacja Odpowiedzialna Polityka</h1>'+
+    '<p class="start-sub">panel administratora kreowania materiałów edukacyjnych</p>'+
+    '</div>'+
+    '<div class="start-meta">źródła prawa pilotażu: Wytyczne PKW 211/2023 (stan 2023-09-25) · Kodeks wyborczy (stan 2023-03-31)<br>wybory: Sejm / Senat / referendum 15.10.2023 · dane pilotażowe</div>'+
+    '<div class="start-field"><label for="eksel">Wybierz osobę ewaluującą materiały</label>'+
+    '<select id="eksel" onchange="setEkspert(this.value)"><option value="">— wybierz eksperta —</option>'+opts+'</select></div>'+
+    '<button class="btn btn-primary btn-big" id="startbtn" '+(state.ekspert?'':'disabled ')+'onclick="startFlow()">Rozpocznij ścieżkę produkcji</button>'+
+    '<p class="start-note">Prototyp klikalny silnika treści mikrolearningu (kulisy + interfejs). Ścieżka: AI proponuje wsad z 3 wejść → recenzja FOP (bramka ludzka) → publikacja z wersją, datą obowiązywania i ownerem. Bez recenzji nic nie idzie dalej. Stan sesji nie jest zapisywany trwale — użyj „Eksport JSON”.</p>'+
+  '</div>';
+}
+
+function rOdbiorca(){
+  const ico1='<svg class="c-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="1.5"/><path d="M8 10V7a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3M9.5 13.5h5"/></svg>';
+  const ico2='<svg class="c-ico" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const c=(key,ico,tag,desc)=>'<button class="choice'+(state.rola===key?' sel':'')+'" onclick="setRola(\''+key+'\')">'+ico+
+    '<span class="c-tag">'+tag+'</span><span class="c-name">'+esc(ROLE[key])+'</span><span class="c-desc">'+desc+'</span></button>';
+  return '<p class="screen-eyebrow">Krok 2 · Odbiorca</p>'+
+    '<h2 class="screen-title">Wybierz odbiorcę, dla którego generujesz materiały</h2>'+
+    '<p class="screen-sub">Baza treści jest jedna — materiały obu ról trafiają do wspólnego banku.</p>'+
+    '<div class="choice-grid">'+
+      c("komisja",ico1,"ObKW","Prowadzi czynności w lokalu wyborczym. Materiały: listy zadań i wiedza proceduralna krok po kroku.")+
+      c("obserwator",ico2,"Obserwacja społeczna","Świadek, nie sędzia. Materiały: obecność przy czynnościach, granice roli, właściwa ścieżka przekazywania spostrzeżeń.")+
+    '</div>'+
+    '<div class="infobox"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>'+
+    '<span><b>Ważne:</b> po przejściu kolejnych ekranów i zatwierdzeniu materiałów zawsze możesz wrócić do tego ekranu (przycisk „&#8249; Zmień odbiorcę” u góry) i poprowadzić ścieżkę kreowania materiałów dla innego odbiorcy.</span></div>';
+}
+
+function rEtap(){
+  const tiles=ETAPY.map(e=>{ const en=etapEnabled(e.k);
+    return '<button class="tile'+(state.etap===e.k?' sel':'')+(en?'':' oos')+'" '+(en?'':'disabled aria-disabled="true" tabindex="-1" title="Poza zakresem pilotażu" ')+'onclick="setEtap(\''+e.k+'\')">'+
+    '<span class="t-k">'+e.k+')</span><span class="t-t">'+esc(e.t)+'</span>'+(e.d?'<span class="t-d">'+esc(e.d)+'</span>':'')+(en?'':'<span class="t-d">poza pilotażem</span>')+'</button>';}).join("");
+  const m=(key,desc)=>{ const en=matEnabled(key);
+    return '<button class="mat'+(state.material===key?' sel':'')+(en?'':' oos')+'" '+(en?'':'disabled aria-disabled="true" tabindex="-1" title="Poza zakresem pilotażu" ')+'onclick="setMat(\''+key+'\')"><span class="radio"></span>'+
+    '<span><span class="m-name">'+esc(MAT[key])+'</span><div class="m-desc">'+desc+(en?'':' <b>Poza zakresem pilotażu dla wybranego etapu.</b>')+'</div></span></button>';};
+  let scope="";
+  if(state.etap && state.material){
+    if(inScope(state.rola,state.etap,state.material)){
+      const src = state.material==="quiz"
+        ? (state.rola==="komisja"
+            ? "bank pytań dla członka komisji (20 pozycji) · Wytyczne PKW 211/2023, Rozdz. VI + Kodeks wyborczy"
+            : "bank pytań dla obserwatorki (20 pozycji) · Kodeks wyborczy + wytyczne PKW 211/2023")
+        : "publikacja FOP „Lista głównych zadań komisji…” v1.0 (X 2023) · Wytyczne PKW, Rozdział V — jedna lista, wspólna dla obu ról";
+      scope='<div class="scope ok"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>'+
+        '<span><b>W zakresie pilotażu.</b> Zatwierdzone źródło: '+src+'. Silnik przygotuje propozycję do recenzji.</span></div>';
+    } else {
+      scope='<div class="scope warn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2.5 20h19L12 3Z"/><path d="M12 10v4M12 17.3h.01"/></svg>'+
+        '<span><b>Poza zakresem bieżącego pilotażu.</b> Pilotaż obejmuje obie role (członek komisji i obserwator) w dwóch kombinacjach: etap F × lista kontrolna (wspólna) oraz etap H × pytania do quizów (20 pozycji na rolę). Silnik nie generuje treści bez zatwierdzonego źródła i zakresu — zobaczysz jego bezpieczną reakcję.</span></div>';
+    }
+  }
+  const canNext = state.etap && state.material;
+  const nextLab = canNext && !inScope(state.rola,state.etap,state.material) ? "Dalej — reakcja silnika" : "Generuj propozycję wsadu (AI)";
+  return '<p class="screen-eyebrow">Krok 3 · Etap i materiał</p>'+
+    '<h2 class="screen-title">Na jaki etap dnia głosowania generujesz materiały?</h2>'+
+    '<p class="screen-sub">Odbiorca: <b>'+esc(ROLE[state.rola])+'</b> · Elementy poza zakresem pilotażu są przyciemnione (20% przezroczystości) i nieaktywne.</p>'+
+    '<div class="tiles">'+tiles+'</div>'+
+    '<div class="h3">Jakie materiały wygenerować? (w tym prototypie dostępne dwa typy)</div>'+
+    '<div class="mat-grid">'+
+      m("lista","Sekwencja zadań etapu z odniesieniem do punktów Wytycznych PKW — wg szablonu FOP.")+
+      m("quiz","Pytania proceduralne na bazie list kontrolnych: cel uczenia, dystraktory, feedback, źródło prawa.")+
+    '</div>'+scope+
+    '<div class="next-row"><button class="btn btn-primary" '+(canNext?'':'disabled ')+'onclick="nextFromEtap()">'+nextLab+'</button></div>';
+}
+
+function rGeneracja(){
+  const inp=(n,t,d)=>'<div class="inp"><div class="i-n">Wejście '+n+'</div><div class="i-t">'+t+'</div><div class="i-d">'+d+'</div></div>';
+  const wsad = state.material==="quiz"
+    ? (state.rola==="komisja"
+        ? "Lista zadań ustalenia wyniku głosowania · Niezbędnik · materiały „Do pytań”"
+        : "Kodeks Obserwatora Społecznego (10 reguł) · bank scenek · materiały „Do pytań”")
+    : "Szablon listy kontrolnej + publikacja „Lista głównych zadań komisji w celu ustalenia wyniku głosowania” v1.0 (X 2023) — lista wspólna dla obu ról";
+  const inputs='<div class="inputs3">'+
+    inp(1,"Learning objectives","Learning_objectives_2026 — rama walidacji celów uczenia dla roli i etapu")+
+    inp(2,"Wsad FOP",esc(wsad))+
+    inp(3,"Źródła prawa","Wytyczne PKW 211/2023 (stan 2023-09-25) · Kodeks wyborczy (stan 2023-03-31)")+
+    '</div>';
+  let box="";
+  if(state.genPhase===0){
+    box='<div class="genbox"><p class="gen-sub" style="margin-top:0">Silnik zbuduje propozycję wsadu wyłącznie z trzech powyższych wejść. Nie interpretuje prawa i nie zgaduje cytatów — brak oparcia w źródle oznacza [DO UZUPEŁNIENIA].</p>'+
+      '<button class="btn btn-primary btn-big" onclick="startGen()">Generuj propozycję wsadu</button></div>';
+  } else if(state.genPhase===1){
+    box='<div class="genbox"><div class="spin" aria-hidden="true"></div><p class="gen-sub">Silnik składa propozycję z 3 wejść…</p></div>';
+  } else {
+    const n=sess()? sess().items.length : 0;
+    box='<div class="genbox"><p class="gen-ready">Propozycja gotowa: '+n+' pozycji</p>'+
+      '<p class="gen-sub">status: <b>do recenzji</b> — obowiązkowa bramka ludzka. Bez recenzji FOP nic nie idzie dalej.</p>'+
+      '<button class="btn btn-primary btn-big" onclick="go(\'recenzja\')">Przejdź do recenzji</button>'+
+      '<div><span class="rule-pill">AI proponuje → recenzja FOP → publikacja z wersją, datą i ownerem</span></div></div>';
+  }
+  return '<p class="screen-eyebrow">Krok 3a · Propozycja AI</p>'+
+    '<h2 class="screen-title">Silnik: propozycja wsadu do mikrolearningu</h2>'+
+    '<p class="screen-sub">'+esc(ROLE[state.rola])+' · '+esc(etapLabel(state.etap))+' · '+esc(MAT[state.material])+'</p>'+
+    inputs+box;
+}
+
+function rFallback(){
+  return '<p class="screen-eyebrow">Krok 3a · Reakcja silnika</p>'+
+    '<h2 class="screen-title">Silnik zatrzymał generację</h2>'+
+    '<p class="screen-sub">'+esc(ROLE[state.rola])+' · '+esc(etapLabel(state.etap))+' · '+esc(MAT[state.material])+'</p>'+
+    '<div class="fallback"><h3>Poza zakresem bieżącego pilotażu</h3>'+
+    '<p>Nie wygeneruję tych materiałów — kombinacja <b>'+esc(ROLE[state.rola])+' × '+esc(etapLabel(state.etap))+' × '+esc(MAT[state.material])+'</b> jest poza zatwierdzonym zakresem pilotażu (obie role × etap F × lista kontrolna — wspólna; obie role × etap H × pytania do quizów). Generowanie poza zakresem obeszłoby bramkę zakresu i dałoby treść bez zatwierdzonego źródła prawa i bez zaplanowanej recenzji.</p>'+
+    '<ul><li>AI nie interpretuje prawa ani nie rozstrzyga wątpliwości prawnych — od tego jest ekspert FOP.</li>'+
+    '<li>Silnik nie zgaduje cytatów: brak oparcia w dozwolonym źródle → [DO UZUPEŁNIENIA].</li>'+
+    '<li>Decyzja o rozszerzeniu zakresu należy do człowieka (owner FOP), nie do silnika.</li></ul>'+
+    '<div style="display:flex;gap:10px;flex-wrap:wrap">'+
+    (state.fallbackLogged
+      ? '<span class="btn" style="cursor:default;border-color:var(--tak-line);color:var(--tak);background:var(--tak-soft)">&#10003; zgłoszono do backlogu</span>'
+      : '<button class="btn btn-primary" onclick="addBacklog()">Dodaj do backlogu (do decyzji ownera)</button>')+
+    '<button class="btn" onclick="go(\'etap\')">Wróć do wyboru etapu</button></div></div>';
+}
+
+/* ================= RECENZJA ================= */
+function dz(id){
+  const d=sess().decisions[id];
+  const b=(val,cls,lab,sub)=>'<button class="dbtn '+cls+(d.decyzja===val?' on':'')+'" onclick="setDecision(\''+id+'\',\''+val+'\')"><span>'+lab+'</span><small>'+sub+'</small></button>';
+  let note="";
+  if(d.decyzja==="POPRAW") note=noteBox(id,"Jakie poprawki i czego dotyczą?",true,d.uwagi);
+  else if(d.decyzja==="USUN") note=noteBox(id,"Dlaczego pozycja się nie nadaje?",true,d.uwagi);
+  else if(d.decyzja==="TAK") note=noteBox(id,"Notatka (opcjonalnie)",false,d.uwagi);
+  const meta=d.decyzja? '<div class="meta-line">Decyzja: '+DLAB[d.decyzja]+' · owner: '+esc(state.ekspert)+' · '+esc(d.data)+'</div>':'';
+  return '<div class="decision"><div class="decision-label">Decyzja recenzenta ('+esc(state.ekspert)+')</div><div class="dbtns">'+
+    b("TAK","tak","TAK","może wejść do banku treści")+
+    b("POPRAW","popraw","POPRAW","drobne poprawki")+
+    b("USUN","usun","USUŃ","nie nadaje się")+
+    '</div>'+note+meta+'</div>';
+}
+function noteBox(id,label,req,val){
+  return '<div class="note" id="note-'+id+'"><label class="'+(req?'req':'')+'">'+label+'</label>'+
+    '<textarea oninput="setUwagi(\''+id+'\',this.value)" placeholder="'+(req?'Wpisz treść — trafi do eksportu i do zespołu poprawek…':'Opcjonalna notatka do zatwierdzenia…')+'">'+esc(val)+'</textarea>'+
+    '<div class="hint">Ta decyzja wymaga uzasadnienia przed publikacją.</div></div>';
+}
+function cardQuiz(p){
+  const d=sess().decisions[p.id];
+  const decClass=d.decyzja?" d-"+d.decyzja:"";
+  const stamp=d.decyzja?'<span class="stamp '+d.decyzja+'">'+DLAB[d.decyzja]+'</span>':'';
+  const ctx=p.kontekst?'<div class="ctx"><span>Kontekst</span><p>'+esc(p.kontekst)+'</p></div>':'';
+  const opts=p.opcje.map(o=>{
+    const why=(!o.poprawna && o.uzasadnienie_dystraktora)?'<span class="why"><b>dystraktor celuje:</b> '+esc(o.uzasadnienie_dystraktora)+'</span>':'';
+    return '<li class="opt'+(o.poprawna?' correct':'')+'"><span class="opt-mark">'+(o.poprawna?'&#10004;':'&#9675;')+'</span>'+esc(o.tekst)+why+'</li>';
+  }).join("");
+  const z=p.zrodlo;
+  const src='<div class="src">Źródło: '+esc(z.akt)+' — '+esc(z.jednostka)+' <span class="ver">(stan prawny '+esc(z.stan_prawny)+' · '+esc(z.chunk_id)+')</span></div>';
+  return '<div class="card'+decClass+'" id="card-'+p.id+'">'+
+    '<div class="card-head"><span class="id">'+esc(p.id)+'</span>'+
+      '<span class="tag">'+esc(TYP[p.typ]||p.typ)+'</span>'+
+      '<span class="tag bloom">Bloom: '+esc(p.poziom_blooma)+'</span>'+
+      '<span class="tag">rola: '+esc(p.rola)+'</span>'+stamp+'</div>'+
+    '<div class="cel">Cel: '+esc(p.cel_uczenia)+'</div>'+ctx+
+    '<div class="q">'+esc(p.pytanie)+'</div>'+
+    '<ul class="opts">'+opts+'</ul>'+
+    '<details class="fb"><summary>Feedback dla ucznia</summary>'+
+      '<div class="fb-row"><b>Poprawnie</b>'+esc(p.feedback_poprawny)+'</div>'+
+      '<div class="fb-row"><b>Błędnie</b>'+esc(p.feedback_niepoprawny)+'</div></details>'+
+    src+dz(p.id)+'</div>';
+}
+function cardLista(p){
+  const d=sess().decisions[p.id];
+  const decClass=d.decyzja?" d-"+d.decyzja:"";
+  const stamp=d.decyzja?'<span class="stamp '+d.decyzja+'">'+DLAB[d.decyzja]+'</span>':'';
+  return '<div class="card'+decClass+'" id="card-'+p.id+'">'+
+    '<div class="card-head"><span class="id">'+esc(p.id)+'</span>'+
+      '<span class="tag">zadanie listy kontrolnej</span>'+
+      '<span class="tag">odbiorca: '+esc(ROLE[sess().rola])+'</span>'+
+      '<span class="tag">lista wspólna dla obu ról</span>'+stamp+'</div>'+
+    '<div class="q">&#9744; '+esc(p.nazwa)+'</div>'+
+    '<div class="prawo">Prawo: '+esc(p.prawo)+'</div>'+
+    '<div class="desc">'+descHtml(p.opis)+'</div>'+
+    '<div class="src">Źródło: '+esc(LISTA.meta.zrodlo)+'</div>'+
+    dz(p.id)+'</div>';
+}
+function rRecenzja(){
+  if(!sess()) return '<p class="screen-sub" style="margin-top:30px">Brak aktywnej propozycji do recenzji. Wróć do kroku 3 i wygeneruj wsad.</p>';
+  const s=sess(); const c=counts();
+  const qm = QMETA[s.rola];
+  const meta = s.material==="quiz"
+    ? {tytul:qm.tytul, zrodlo:"Źródło prawa: <b>"+esc(qm.akt)+"</b><br>Stan prawny: <b>"+esc(qm.stan_prawny)+"</b> · Wybory: "+esc(qm.wybory)}
+    : {tytul:LISTA.meta.tytul, zrodlo:"Źródło: <b>"+esc(LISTA.meta.zrodlo)+"</b><br>Otwarcie etapu: "+esc(LISTA.meta.otwarcie)};
+  const chip=(f,lab,n,cls)=>'<button class="chip '+(cls||'')+'" aria-pressed="'+(state.rFilter===f)+'" onclick="setFilter(\''+f+'\')">'+lab+' <span class="n">'+n+'</span></button>';
+  const chips='<div class="chips">'+
+    chip("all","Wszystkie",s.items.length)+chip("none","Nieocenione",c.none)+
+    chip("TAK","TAK",c.TAK,"tak")+chip("POPRAW","POPRAW",c.POPRAW,"popraw")+chip("USUN","USUŃ",c.USUN,"usun")+'</div>';
+  const list=s.items.filter(p=>{const d=s.decisions[p.id].decyzja;
+    if(state.rFilter==="all")return true; if(state.rFilter==="none")return !d; return d===state.rFilter;});
+  const body=list.length? list.map(p=>s.material==="quiz"?cardQuiz(p):cardLista(p)).join("")
+    : '<div class="b-empty" style="text-align:center;padding:34px">Brak pozycji w tym filtrze.</div>';
+  const done=s.items.length-c.none;
+  return '<p class="screen-eyebrow">Krok 4 · Arkusz recenzji — kontrola jakości (bramka ludzka)</p>'+
+    '<h2 class="screen-title">'+esc(meta.tytul)+'</h2>'+
+    '<div class="source">'+meta.zrodlo+'</div>'+
+    '<div class="infobox"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>'+
+    '<span><b>Dowodem wykonania recenzji nie jest ten arkusz, lecz zapis do akceptacji eksperta:</b> po zatwierdzeniu materiały z decyzją TAK zapisują się jako plik CSV o nazwie <i>{ekspert}_{Bank Materiałów}_{etap}_{odbiorca}_{data}</i>, a pozycje POPRAW trafiają z Twoimi notatkami do osobnego arkusza CSV — gotowego do ponownej poprawy w AI.</span></div>'+
+    '<div class="progress">Ocenione: <b>'+done+' / '+s.items.length+'</b> &nbsp;·&nbsp; TAK '+c.TAK+' · POPRAW '+c.POPRAW+' · USUŃ '+c.USUN+'</div>'+
+    chips+body;
+}
+
+/* ================= BANK ================= */
+function bTitle(b){ return b.typ==="quiz"? b.payload.pytanie : b.payload.nazwa; }
+function setBankRola(v){ state.bankRola=(state.bankRola===v?"all":v); render(); }
+function setBankStatus(v){ state.bankStatus=(state.bankStatus===v?"all":v); render(); }
+function rBank(){
+  const pass=b=>(state.bankRola==="all"||b.rola===state.bankRola)&&(state.bankStatus==="all"||b.status===state.bankStatus);
+  const chipR=(v,lab)=>'<button class="chip" aria-pressed="'+(state.bankRola===v)+'" onclick="setBankRola(\''+v+'\')">'+lab+'</button>';
+  const chipS=(v,lab,cls)=>'<button class="chip '+(cls||'')+'" aria-pressed="'+(state.bankStatus===v)+'" onclick="setBankStatus(\''+v+'\')">'+lab+'</button>';
+  const filters='<div class="chips">'+chipR("komisja","Członkowie komisji")+chipR("obserwator","Obserwatorzy")+
+    '<span style="width:8px"></span>'+
+    chipS("opublikowane","opublikowane","tak")+chipS("do_poprawek","do poprawek","popraw")+chipS("wykluczone","wykluczone","usun")+chipS("archiwalne","archiwalne")+'</div>';
+  const secs=ETAPY.map(e=>{
+    const items=state.bank.filter(b=>b.etap===e.k && pass(b));
+    const blN=state.backlog.filter(x=>x.etap===e.k).length;
+    let body="";
+    if(items.length){
+      ["komisja","obserwator"].forEach(r=>{
+        const ri=items.filter(b=>b.rola===r);
+        if(ri.length){
+          body+='<div class="role-h">'+esc(ROLE[r])+'</div>'+ri.map(b=>
+            '<div class="b-item"><div class="b-row"><span class="schip '+b.status+'">'+SLAB[b.status]+'</span>'+
+            '<span class="id">'+esc(b.id)+'</span><span class="tag">'+esc(MAT[b.typ])+'</span></div>'+
+            '<div class="b-title">'+esc(bTitle(b))+'</div>'+
+            (b.uwagi?'<div class="b-uwagi">uwagi recenzenta: '+esc(b.uwagi)+'</div>':'')+
+            '<div class="b-meta">wersja '+esc(b.wersja)+' · obowiązuje od '+esc(b.data)+' · owner: '+esc(b.owner)+'</div></div>').join("");
+        }
+      });
+    } else {
+      body='<div class="b-empty">— brak materiałów w banku'+(blN?' · w backlogu: '+blN+' zgłoszenie(a)':'')+' —</div>';
+    }
+    const total=state.bank.filter(b=>b.etap===e.k).length;
+    return '<div class="bank-sec"><div class="bank-head"><span class="bk">'+e.k+')</span><h3>'+esc(e.t)+'</h3><span class="cn">'+total+' pozycji</span></div>'+
+      '<div class="bank-body">'+body+'</div></div>';
+  }).join("");
+  const backlog=state.backlog.length?
+    '<div class="backlog-sec"><h3>Backlog — zgłoszenia poza pilotażem (do decyzji ownera FOP)</h3>'+
+    state.backlog.map(x=>'<div class="b-item"><div class="b-row"><span class="schip do_poprawek">backlog</span>'+
+      '<span class="tag">'+esc(etapLabel(x.etap))+'</span><span class="tag">'+esc(ROLE[x.rola])+'</span><span class="tag">'+esc(MAT[x.material])+'</span></div>'+
+      '<div class="b-meta">zgłoszono '+esc(x.data)+' · '+esc(x.zglosil)+' · status: '+esc(x.status)+'</div></div>').join("")+'</div>' : "";
+  return '<p class="screen-eyebrow">Bank treści · jedna baza dla obu ról</p>'+
+    '<h2 class="screen-title">Bank materiałów — posegregowany po etapach i odbiorcach</h2>'+
+    '<p class="screen-sub">Bank uzupełnia się po zatwierdzeniu recenzji. W pilotażu treści istnieją dla obu ról: etap F — lista kontrolna (jedna, wspólna) oraz etap H — pytania do quizów (20 pozycji dla członka komisji i 20 dla obserwatora). Nowa publikacja tej samej ścieżki archiwizuje poprzednią wersję.</p>'+
+    '<div class="next-row" style="margin:0 0 14px"><button class="btn" onclick="downloadPub(\'bank\')">Zapisz bazę zaakceptowanych pytań (HTML)</button></div>'+
+    filters+secs+backlog;
+}
+
+/* ================= EKSPORT ================= */
+function buildExport(){
+  return {
+    prototyp:"Materiały edukacyjne FOP — silnik generacji i aktualizacji treści mikrolearningu (prototyp klikalny)",
+    data_eksportu: today(), recenzent: state.ekspert||null,
+    zrodla_prawa:{wytyczne:"Uchwała PKW 211/2023 · stan 2023-09-25", kodeks:"Kodeks wyborczy · stan 2023-03-31", wybory:"Sejm/Senat/referendum 15.10.2023 (dane pilotażowe)"},
+    regula_bramki:"AI proponuje wsad → recenzja FOP (obowiązkowa) → publikacja z wersją, datą obowiązywania i ownerem. Do banku trafiają wyłącznie pozycje TAK.",
+    zakres_pilotazu:"komisja×F×lista i obserwator×F×lista (jedna wspólna lista) · komisja×H×quiz (20) i obserwator×H×quiz (20)",
+    bank: state.bank.map(b=>({id:b.id,rola:b.rola,etap:b.etap,typ:b.typ,status:b.status,wersja:b.wersja,
+      data_obowiazywania:b.data,owner:b.owner,uwagi:b.uwagi,tytul:bTitle(b),
+      zrodlo:(b.typ==="quiz"? (b.payload.zrodlo? b.payload.zrodlo.akt+" — "+b.payload.zrodlo.jednostka+" (stan "+b.payload.zrodlo.stan_prawny+")" : null) : b.payload.prawo)})),
+    backlog: state.backlog
+  };
+}
+function openExport(){ document.getElementById("json-out").value=JSON.stringify(buildExport(),null,2);
+  document.getElementById("modal").classList.add("open"); }
+function closeExport(){ document.getElementById("modal").classList.remove("open"); }
+function downloadJSON(){
+  const blob=new Blob([JSON.stringify(buildExport(),null,2)],{type:"application/json"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+  a.download="materialy-fop-"+today()+".json";
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+  toast("Pobrano plik audytu");
+}
+function copyJSON(){ const ta=document.getElementById("json-out"); ta.select();
+  try{ navigator.clipboard.writeText(ta.value); }catch(e){ document.execCommand("copy"); } toast("Skopiowano do schowka"); }
+
+/* ================= RENDER ================= */
+function render(){
+  renderTopbar();
+  const app=document.getElementById("app");
+  switch(state.screen){
+    case "start": app.innerHTML=rStart(); break;
+    case "odbiorca": app.innerHTML=rOdbiorca(); break;
+    case "etap": app.innerHTML=rEtap(); break;
+    case "generacja": app.innerHTML=rGeneracja(); break;
+    case "fallback": app.innerHTML=rFallback(); break;
+    case "recenzja": app.innerHTML=rRecenzja(); break;
+    case "bank": app.innerHTML=rBank(); break;
+  }
+}
+render();
+</script>
+</body>
+</html>
