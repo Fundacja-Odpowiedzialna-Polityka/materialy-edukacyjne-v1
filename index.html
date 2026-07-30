@@ -1157,7 +1157,7 @@ function cardLista(p){
     '<div class="q">&#9744; '+esc(p.nazwa)+'</div>'+
     '<div class="prawo">Prawo: '+esc(p.prawo)+'</div>'+
     '<div class="desc">'+descHtml(p.opis)+'</div>'+
-    '<div class="src">Źródło: '+esc(LISTA.meta.zrodlo)+'</div>'+
+    '<div class="src">Źródło: '+esc((LISTY[sess().etap]||LISTA).meta.zrodlo)+'</div>'+
     dz(p.id)+'</div>';
 }
 function rRecenzja(){
@@ -1166,7 +1166,7 @@ function rRecenzja(){
   const qm = QMETA[s.rola];
   const meta = s.material==="quiz"
     ? {tytul:qm.tytul, zrodlo:"Źródło prawa: <b>"+esc(qm.akt)+"</b><br>Stan prawny: <b>"+esc(qm.stan_prawny)+"</b> · Wybory: "+esc(qm.wybory)}
-    : {tytul:LISTA.meta.tytul, zrodlo:"Źródło: <b>"+esc(LISTA.meta.zrodlo)+"</b><br>Otwarcie etapu: "+esc(LISTA.meta.otwarcie)};
+    : (function(){ const L=(LISTY[s.etap]||LISTA); return {tytul:L.meta.tytul, zrodlo:"Źródło: <b>"+esc(L.meta.zrodlo)+"</b><br>Otwarcie etapu: "+esc(L.meta.otwarcie)}; })();
   const chip=(f,lab,n,cls)=>'<button class="chip '+(cls||'')+'" aria-pressed="'+(state.rFilter===f)+'" onclick="setFilter(\''+f+'\')">'+lab+' <span class="n">'+n+'</span></button>';
   const chips='<div class="chips">'+
     chip("all","Wszystkie",s.items.length)+chip("none","Nieocenione",c.none)+
