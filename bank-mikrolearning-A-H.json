@@ -1,0 +1,1493 @@
+{
+ "meta": {
+  "tytul": "Mikrolearning A–H: wsad pytań dla etapów A, B, C, D, E, G (F i H — istniejące banki)",
+  "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju); Kodeks wyborczy",
+  "stan_prawny": "2023-09-25 (wytyczne) / 2023-03-31 (Kodeks wyborczy)",
+  "wybory": "Sejm/Senat/referendum 15.10.2023",
+  "uwaga_wersyjna": "Po publikacji wytycznych PKW na wybory 2027 cały bank podlega re-recenzji (numery punktów mogą się zmienić).",
+  "pokrycie": {
+   "A": "R1 (6 pozycji)",
+   "B": "R2 (6)",
+   "C": "R3 (6)",
+   "D": "R4 (6)",
+   "E": "R5 (6)",
+   "F": "R6 — bank-R6-zamkniecie-lokalu.json (8 pozycji, do recenzji)",
+   "G": "R7 (6)",
+   "H": "R8 — bank pilotażu v1.0 (Ekspert 5, 2026-07-24, opublikowany)"
+  }
+ },
+ "pytania": [
+  {
+   "id": "wsp-R1-001",
+   "rola": "wspolna",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Rozpoznać godzinę zbiórki komisji w dniu głosowania.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "zapamietywanie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: komisja zbiera się w lokalu na tyle wcześnie, by przygotować głosowanie, lecz nie później niż o godzinie 6:00.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit: wystarczy przyjść na 7:00, bo wtedy zaczyna się głosowanie — godzina 7:00 to otwarcie lokalu, nie zbiórka komisji."
+    }
+   ],
+   "feedback_poprawny": "Tak. Zbiórka najpóźniej o 6:00 zostawia czas na przeliczenie kart, ostemplowanie i sprawdzenie urny przed otwarciem o 7:00 (pkt 38, stan 2023-09-25).",
+   "feedback_niepoprawny": "Godzina 7:00 to moment otwarcia lokalu dla wyborców. Komisja musi być wcześniej — najpóźniej o 6:00 — aby wykonać czynności przygotowawcze (pkt 38, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt38",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 38",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R1-002",
+   "rola": "czlonek_komisji",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Zdecydować, jak przeliczyć karty do głosowania przed otwarciem lokalu i gdzie wpisać wynik.",
+   "punkt_protokolu": "pkt 1",
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Godzina 6:20. Przewodnicząca rozdziela zadania. Tomasz dostaje pakiety kart do głosowania.",
+   "pytanie": "Zdecyduj, co Tomasz z komisją robi z kartami przed rozpoczęciem głosowania.",
+   "opcje": [
+    {
+     "tekst": "Przelicza karty odrębnie dla Sejmu, Senatu i referendum i wpisuje liczby w punkcie 1 protokołów.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Liczy jednym ciągiem łączną liczbę kart z trzech głosowań razem — na koniec i tak chodzi o sumę.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka łączenia głosowań: rozliczenie kart prowadzi się odrębnie dla Sejmu, Senatu i referendum."
+    },
+    {
+     "tekst": "Odkłada liczenie kart na wieczór, bo znaczenie ma dopiero końcowe rozliczenie po głosowaniu.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „policzy się później”: bez liczby początkowej w punkcie 1 protokołu wieczorne rozliczenie kart nie ma punktu odniesienia."
+    }
+   ],
+   "feedback_poprawny": "Tak. Przeliczenie odrębne i wpis do punktu 1 protokołów to warunek prawidłowego rozliczenia kart po zakończeniu głosowania (pkt 39 ppkt 2, stan 2023-09-25).",
+   "feedback_niepoprawny": "Karty przelicza się przed głosowaniem, odrębnie dla każdego z trzech głosowań, a wynik trafia do punktu 1 protokołów — to fundament wieczornego rozliczenia (pkt 39 ppkt 2, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt39",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 39",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R1-003",
+   "rola": "czlonek_komisji",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Rozpoznać minimalny skład komisji podczas głosowania.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Komisja liczy 7 osób. Wskaż minimalny skład, w jakim może wykonywać czynności do zakończenia głosowania.",
+   "opcje": [
+    {
+     "tekst": "4 osoby, w tym przewodniczący lub zastępca — połowę składu zaokrągla się w górę.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "3 osoby — połowa z 7 to 3,5, więc wystarczą 3.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka zaokrąglenia: ułamek zaokrągla się w górę, nie w dół."
+    },
+    {
+     "tekst": "7 osób — do zakończenia głosowania komisja pracuje w pełnym składzie.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka progu: pełny skład nie jest wymagany w trakcie głosowania; wymóg 2/3 dotyczy dopiero ustalania wyników."
+    }
+   ],
+   "feedback_poprawny": "Tak. Połowa z 7 to 3,5 — po zaokrągleniu w górę 4 osoby, w tym przewodniczący lub zastępca (pkt 37, stan 2023-09-25).",
+   "feedback_niepoprawny": "Minimalny skład to co najmniej 1/2 pełnego składu z zaokrągleniem ułamka w górę, z udziałem przewodniczącego lub zastępcy — dla 7 osób to 4 (pkt 37, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt37",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 37",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R1-004",
+   "rola": "obserwator",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Rozpoznać prawo obserwatorki do obecności przy sprawdzeniu i opieczętowaniu urny przed otwarciem lokalu.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Godzina 6:50. Komisja przygotowuje się do sprawdzenia, czy urna jest pusta. Członek komisji mówi do Anny: „Obserwacja zaczyna się od siódmej, zapraszamy po otwarciu”.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Zostaje i obserwuje sprawdzenie pustej urny oraz jej opieczętowanie, notując przebieg i numery ewentualnych plomb.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Wychodzi i wraca na 7:00 — czynności przed otwarciem to wewnętrzna praca komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „obserwacja od 7:00”: urna ma być widoczna dla obserwatorów przez cały czas, a moment jej zamknięcia to kluczowy punkt obserwacji."
+    },
+    {
+     "tekst": "Prosi o samodzielne zajrzenie do urny, by osobiście potwierdzić, że jest pusta.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: sprawdzenia dokonuje komisja; obserwatorka patrzy i notuje, nie wykonuje czynności."
+    }
+   ],
+   "feedback_poprawny": "Tak. Urna po zamknięciu ma być przez cały czas widoczna m.in. dla obserwatorów społecznych — obecność przy jej sprawdzeniu i opieczętowaniu to rdzeń roli świadka (pkt 39 ppkt 7, stan 2023-09-25).",
+   "feedback_niepoprawny": "Czynności przy urnie przed otwarciem lokalu nie są zamknięte dla obserwatorów — urna ma pozostawać widoczna m.in. dla obserwatorów społecznych; sprawdzenia dokonuje jednak komisja, nie Anna (pkt 39 ppkt 7, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt39",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 39",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R1-005",
+   "rola": "czlonek_komisji",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Zdecydować, które materiały agitacyjne komisja usuwa, a które pozostawia.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": "Podczas obchodu przed otwarciem lokalu komisja znajduje ulotki w korytarzu budynku oraz baner kandydata na płocie sąsiedniej posesji, wiszący tam od tygodnia.",
+   "pytanie": "Wskaż prawidłowe działanie komisji.",
+   "opcje": [
+    {
+     "tekst": "Usuwa ulotki z budynku; baner na sąsiednim terenie, umieszczony przed ciszą wyborczą, pozostawia.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Usuwa i ulotki, i baner — w dniu głosowania w zasięgu wzroku nie może być agitacji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka zasięgu: materiały na terenie sąsiadującym, umieszczone przed ciszą, komisja pozostawia."
+    },
+    {
+     "tekst": "Niczego nie usuwa, tylko zgłasza wójtowi i czeka na służby.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka bierności: komisja usuwa materiały sama, a o pomoc do wójta zwraca się dopiero, gdy nie może tego uczynić."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja usuwa materiały w lokalu oraz wewnątrz i na zewnątrz budynku; materiały na terenie sąsiadującym, umieszczone przed ciszą wyborczą, pozostawia (pkt 39 ppkt 6, stan 2023-09-25).",
+   "feedback_niepoprawny": "Granice są dwie: budynek z lokalem — komisja usuwa (sama, a przy trudnościach z pomocą wójta); teren sąsiadujący z materiałami sprzed ciszy — pozostawia (pkt 39 ppkt 6, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt39",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 39",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R1-006",
+   "rola": "wspolna",
+   "faza": "otwarcie_lokalu",
+   "cel_uczenia": "Rozpoznać zakaz wynoszenia urny i sposób odnotowania jej otwarcia.",
+   "punkt_protokolu": "pkt 24 (Sejm/Senat), pkt 32 (referendum)",
+   "poziom_blooma": "rozumienie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: zamkniętą urnę można w trakcie dnia na krótko wynieść z lokalu, np. przy przemeblowaniu sali.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pułapka „byle zamknięta”: zakaz wynoszenia urny z lokalu obowiązuje bez względu na powód; urna ma pozostać zamknięta od zamknięcia do otwarcia po głosowaniu."
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    }
+   ],
+   "feedback_poprawny": "Tak — to fałsz. Urny nie wolno wynosić z lokalu, a gdyby doszło do jej otwarcia, komisja odnotowuje zdarzenie i przyczynę w punkcie 24 protokołów sejmowego i senackiego oraz w punkcie 32 protokołu referendalnego (pkt 41, stan 2023-09-25).",
+   "feedback_niepoprawny": "Urna musi pozostać w lokalu i zamknięta przez cały czas głosowania; jej otwarcie to zdarzenie do wyjaśnienia w protokole (pkt 24 / pkt 32), nie kwestia organizacyjna (pkt 41, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt41",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 41",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R2-001",
+   "rola": "czlonek_komisji",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Zdecydować, czy dokument przedstawiony przez wyborcę wystarcza do ustalenia tożsamości.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Wyborca podaje prawo jazdy, które straciło ważność pół roku temu. Zdjęcie wyraźne, dane czytelne, podobieństwo nie budzi wątpliwości.",
+   "pytanie": "Zdecyduj, co robi komisja.",
+   "opcje": [
+    {
+     "tekst": "Może wydać karty — wystarczy dokument ze zdjęciem pozwalający pewnie ustalić tożsamość, także nieważny.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Odmawia wydania kart — dokument tożsamości okazywany komisji musi być ważny w dniu głosowania.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka ważności: warunkiem jest możliwość ustalenia tożsamości, nie termin ważności dokumentu."
+    },
+    {
+     "tekst": "Prosi o okazanie dowodu osobistego — tylko ten dokument stanowi podstawę wydania kart wyborcy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka katalogu: dopuszczalny jest każdy dokument ze zdjęciem (np. paszport, prawo jazdy, legitymacja), nie wyłącznie dowód osobisty."
+    }
+   ],
+   "feedback_poprawny": "Tak. Tożsamość ustala się na podstawie dowodu osobistego lub innego dokumentu ze zdjęciem — także nieważnego — o ile nie budzi to wątpliwości (pkt 45 ppkt 1; art. 52 § 1 Kodeksu wyborczego; stan 2023-09-25).",
+   "feedback_niepoprawny": "Kryterium jest pewność ustalenia tożsamości, a nie rodzaj czy ważność dokumentu — wystarczy dokument ze zdjęciem, w tym nieważny, jeśli wątpliwości nie ma (pkt 45 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt45",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 45",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R2-002",
+   "rola": "czlonek_komisji",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Zdecydować, jak zweryfikować mObywatel przy wątpliwościach co do autentyczności.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": "Wyborca okazuje mDowód w aplikacji mObywatel. Członka komisji niepokoi statyczny wygląd ekranu.",
+   "pytanie": "Wskaż właściwy krok weryfikacji.",
+   "opcje": [
+    {
+     "tekst": "Prosi o wyjście z aplikacji i ponowne zalogowanie, po czym sprawdza elementy dynamiczne ekranu.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Odmawia wydania kart — aplikacja w telefonie nie jest dokumentem tożsamości i nie podlega weryfikacji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka katalogu: komisja może potwierdzić tożsamość na podstawie mObywatela; wątpliwości rozstrzyga się weryfikacją w usłudze, nie odmową."
+    },
+    {
+     "tekst": "Przepisuje dane z ekranu do notatki i wydaje karty, aby nie blokować kolejki przy stole komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka ochrony danych: sprawdzenie ma minimalizować ryzyko ujawnienia danych; przepisywanie danych z ekranu temu przeczy i nie weryfikuje autentyczności."
+    }
+   ],
+   "feedback_poprawny": "Tak. Przy wątpliwościach członek komisji prosi o sprawdzenie w usłudze mObywatel, w szczególności przez wyjście i ponowne zalogowanie; autentyczność potwierdzają elementy dynamiczne (pkt 45 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "mObywatel jest dopuszczalny, a wątpliwości rozstrzyga ponowne zalogowanie i elementy dynamiczne ekranu — nie odmowa ani notowanie danych wyborcy (pkt 45 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt45",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 45",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R2-003",
+   "rola": "wspolna",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Rozpoznać zasadę: bez podpisu wyborcy w spisie nie wydaje się kart.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: dopóki wyborca nie potwierdzi własnoręcznym podpisem odbioru kart, komisja ich nie wydaje.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit „podpis można uzupełnić potem”: podpis w spisie poprzedza wydanie kart; wyjątkiem jest tylko udokumentowana niepełnosprawność z adnotacją w Uwagach parafowaną wspólnie z przewodniczącym lub zastępcą."
+    }
+   ],
+   "feedback_poprawny": "Tak. Podpis w rubryce spisu poprzedza wydanie kart; jedyny wyjątek to wyborca z udokumentowanym znacznym lub umiarkowanym stopniem niepełnosprawności — wtedy adnotacja w Uwagach z parafami (pkt 53, stan 2023-09-25).",
+   "feedback_niepoprawny": "Kolejność jest odwrotna, niż podpowiada intuicja kolejki: najpierw podpis, potem karty; wyjątek dotyczy wyłącznie udokumentowanej niepełnosprawności i wymaga adnotacji z parafami (pkt 53, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt53",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 53",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R2-004",
+   "rola": "czlonek_komisji",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Zdecydować, jak obsłużyć odmowę przyjęcia jednej z kart.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "analiza",
+   "typ": "scenariusz",
+   "kontekst": "Wyborczyni mówi: „Poproszę karty do Sejmu i Senatu, referendum mnie nie interesuje”.",
+   "pytanie": "Zdecyduj, co robi członek komisji wydający karty.",
+   "opcje": [
+    {
+     "tekst": "Wydaje karty do Sejmu i Senatu, a w rubryce Uwagi spisu wpisuje adnotację „bez referendum”.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Wydaje komplet trzech kart — wyborczyni może niechcianą kartę wrzucić pustą.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „kompletu”: wyborca ma prawo odmówić przyjęcia karty, a komisja odnotowuje to adnotacją w Uwagach."
+    },
+    {
+     "tekst": "Odmawia wydania jakichkolwiek kart do czasu, aż wyborczyni zdecyduje się na wszystkie trzy głosowania.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka warunkowania: udział w jednym głosowaniu nie zależy od przyjęcia kart w pozostałych."
+    }
+   ],
+   "feedback_poprawny": "Tak. Przy odmowie przyjęcia karty członek komisji czyni w Uwagach właściwą adnotację — tu „bez referendum” (pkt 50, stan 2023-09-25).",
+   "feedback_niepoprawny": "Odmowa przyjęcia części kart jest przewidziana wprost: komisja wydaje pozostałe karty i odnotowuje odmowę adnotacją w Uwagach, np. „bez referendum” (pkt 50, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt50",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 50",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R2-005",
+   "rola": "czlonek_komisji",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Rozpoznać zakaz ponownego wydania karty.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Wyborca wraca od stolika: „Pomyliłem się przy Sejmie, poproszę nową kartę, tę oddam”.",
+   "pytanie": "Zdecyduj, co robi komisja.",
+   "opcje": [
+    {
+     "tekst": "Odmawia ponownego wydania karty niezależnie od przyczyny żądania.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Wydaje nową kartę po odebraniu i zniszczeniu pomyłkowo wypełnionej.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „wymiany”: wytyczne nie przewidują wymiany karty z powodu pomyłki czy zniszczenia."
+    },
+    {
+     "tekst": "Wydaje nową kartę, jeśli zgodę wyrazi przewodniczący komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka kompetencji: przewodniczący nie ma uprawnienia do uchylenia tej zasady decyzją indywidualną."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja odmawia ponownego wydania kart bez względu na przyczynę (pomyłka, zniszczenie), z wyjątkiem szczególnej sytuacji z pkt 51 (pkt 56, stan 2023-09-25).",
+   "feedback_niepoprawny": "Reguła jest twarda właśnie po to, by liczba kart się rozliczała: ponownego wydania odmawia się niezależnie od powodu, poza wyjątkiem z pkt 51 (pkt 56, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt56",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 56",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R2-006",
+   "rola": "obserwator",
+   "faza": "obsluga_wyborcy",
+   "cel_uczenia": "Rozpoznać granicę między obowiązkowym wyjaśnieniem a agitacją oraz właściwą reakcję obserwatorki.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Anna słyszy, jak członek komisji tłumaczy wyborcy sposób głosowania, po czym dodaje: „Ja tam wiem, kto się sprawdził”.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Odnotowuje zdarzenie (kto, godzina, treść) — wyjaśnienia komisji nie mogą zawierać elementów agitacyjnych.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Przerywa rozmowę i poucza członka komisji o zakazie agitacji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: obserwatorka nie kieruje pracą komisji; jej narzędziem jest zapis i raport."
+    },
+    {
+     "tekst": "Nie reaguje — skoro komisja ma obowiązek udzielać wyjaśnień, komentarz mieści się w tym obowiązku informacyjnym.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka zakresu: obowiązek dotyczy sposobu głosowania i warunków ważności głosu; sugestia personalna to element agitacyjny."
+    }
+   ],
+   "feedback_poprawny": "Tak. Wyjaśnienia komisji nie mogą zawierać elementów agitacyjnych — spostrzeżenie o ich przekroczeniu Anna dokumentuje i przekazuje w trybie raportowania (pkt 57, stan 2023-09-25).",
+   "feedback_niepoprawny": "Granica przebiega w treści: sposób głosowania i ważność głosu — tak, sugestie personalne — nie; a narzędziem Anny jest notatka, nie interwencja (pkt 57, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt57",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 57",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R3-001",
+   "rola": "czlonek_komisji",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Zdecydować, kto i gdzie potwierdza podpisem odbiór kart przy głosowaniu przez pełnomocnika.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Pełnomocniczka okazuje dowód i akt pełnomocnictwa. Spis potwierdza: wyborca ujęty, nie głosował, pełnomocnictwa nie cofnięto.",
+   "pytanie": "Zdecyduj, jak wygląda potwierdzenie odbioru kart.",
+   "opcje": [
+    {
+     "tekst": "Pełnomocniczka potwierdza odbiór własnym czytelnym podpisem w rubryce spisu przypisanej wyborcy.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Podpis nie jest potrzebny — dołączony do spisu akt pełnomocnictwa zastępuje potwierdzenie odbioru kart.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka zastąpienia: akt trafia do spisu, ale odbioru kart pełnomocnik i tak dowodzi podpisem w rubryce wyborcy."
+    },
+    {
+     "tekst": "Członek komisji parafuje rubrykę potwierdzenia odbioru kart w imieniu nieobecnego wyborcy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka wyręczenia: komisja odnotowuje głosowanie pełnomocnika w Uwagach i na liście pełnomocnictw, ale podpis odbioru składa pełnomocnik."
+    }
+   ],
+   "feedback_poprawny": "Tak. Pełnomocnik potwierdza otrzymanie kart własnym czytelnym podpisem w rubryce spisu przypisanej wyborcy; komisja wpisuje też jego imię i nazwisko w Uwagach z oznaczeniem „pełnomocnik” i odnotowuje fakt na liście pełnomocnictw (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Sekwencja: sprawdzenie spisu → wpis w Uwagach z oznaczeniem „pełnomocnik” → podpis pełnomocnika w rubryce wyborcy → adnotacja na liście pełnomocnictw → akt do spisu → wydanie kart (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R3-002",
+   "rola": "czlonek_komisji",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Rozstrzygnąć kolizję: wyborca osobiście po głosie pełnomocnika.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "analiza",
+   "typ": "scenariusz",
+   "kontekst": "Po południu przychodzi wyborca. W spisie widnieje adnotacja, że rano głosował w jego imieniu pełnomocnik. Wyborca wyjmuje pisemne oświadczenie o cofnięciu pełnomocnictwa.",
+   "pytanie": "Rozstrzygnij, co robi komisja.",
+   "opcje": [
+    {
+     "tekst": "Nie dopuszcza wyborcy do głosowania — po oddaniu głosu przez pełnomocnika cofnięcie jest bezskuteczne.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Dopuszcza — głos osobisty ma pierwszeństwo przed głosem pełnomocnika.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka pierwszeństwa: pierwszeństwo działa tylko w drugą stronę — głos osobisty oddany wcześniej wygasza pełnomocnictwo."
+    },
+    {
+     "tekst": "Dopuszcza po przyjęciu oświadczenia o cofnięciu, bo wola wyborcy jest nadrzędna.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka czasu: cofnięcie skutkuje tylko przed głosowaniem pełnomocnika; po nim jest bezskuteczne."
+    }
+   ],
+   "feedback_poprawny": "Tak. Jeżeli pełnomocnik wziął już udział w głosowaniu, komisja nie dopuszcza wyborcy, a złożenie oświadczenia o cofnięciu jest bezskuteczne (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Oś czasu rozstrzyga: przed głosem pełnomocnika wyborca może cofnąć pełnomocnictwo lub zagłosować osobiście (co je wygasza); po głosie pełnomocnika — już nie (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R3-003",
+   "rola": "wspolna",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Rozpoznać zakres aktu pełnomocnictwa.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "zapamietywanie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: akt pełnomocnictwa sporządzony w związku z wyborami do Sejmu i Senatu uprawnia również do głosowania w referendum.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit „osobnego pełnomocnictwa na referendum”: ten sam akt obejmuje głosowanie w referendum przeprowadzanym łącznie z wyborami."
+    }
+   ],
+   "feedback_poprawny": "Tak. Akt pełnomocnictwa sporządzony dla wyborów do Sejmu i do Senatu uprawnia także do głosowania w referendum (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Nie potrzeba odrębnego dokumentu: jeden akt pełnomocnictwa obejmuje wybory do Sejmu i Senatu oraz referendum (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R3-004",
+   "rola": "czlonek_komisji",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Rozpoznać przesłanki odmowy wydania kart pełnomocnikowi i zatrzymania aktu.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Wskaż sytuację, w której komisja odmawia pełnomocnikowi wydania kart i zatrzymuje akt pełnomocnictwa.",
+   "opcje": [
+    {
+     "tekst": "Wyborca zagłosował osobiście, pełnomocnictwo cofnięto lub wygasło, albo nieujęcie w spisie nie jest omyłką.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Pełnomocnik nie jest ujęty w spisie wyborców tego obwodu głosowania w dniu wyborów.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka podmiotu: w spisie ma być wyborca udzielający pełnomocnictwa; pełnomocnik legitymuje się dokumentem i aktem."
+    },
+    {
+     "tekst": "Pełnomocnik okazuje przy stole komisji inny dokument ze zdjęciem niż dowód osobisty.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka katalogu dokumentów: pełnomocnik okazuje dowód osobisty lub inny dokument ze zdjęciem."
+    }
+   ],
+   "feedback_poprawny": "Tak. Odmowa i zatrzymanie aktu następują, gdy urząd potwierdzi, że nieujęcie wyborcy nie jest błędem, gdy wyborca głosował wcześniej osobiście albo gdy pełnomocnictwo wygasło lub zostało cofnięte (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Trzy przesłanki dotyczą wyborcy i samego pełnomocnictwa, nie dokumentów pełnomocnika: wcześniejszy głos osobisty, wygaśnięcie lub cofnięcie, potwierdzone nieujęcie w spisie bez omyłki (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R3-005",
+   "rola": "obserwator",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Rozpoznać właściwą reakcję obserwatorki na pominięcie adnotacji przy głosowaniu pełnomocnika.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Anna obserwuje wydanie kart pełnomocnikowi. Komisja wpisała „pełnomocnik” w Uwagach spisu, ale nie sięgnęła po listę wyborców, którzy udzielili pełnomocnictwa.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Notuje spostrzeżenie (godzina, stanowisko, brak adnotacji na liście pełnomocnictw) i raportuje we właściwym trybie.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Podchodzi do stołu i przypomina komisji o obowiązku odnotowania głosowania pełnomocnika na liście.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: przypominanie i korygowanie czynności to ingerencja; obserwatorka dokumentuje."
+    },
+    {
+     "tekst": "Uznaje sprawę za nieistotną — wystarczający jest sam wpis w rubryce Uwagi spisu wyborców.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka kompletności: fakt głosowania pełnomocnika odnotowuje się i w spisie, i na liście pełnomocnictw; brak drugiej adnotacji to realne uchybienie."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja odnotowuje głosowanie pełnomocnika także na liście wyborców, którzy udzielili pełnomocnictwa — pominięcie tej adnotacji Anna dokumentuje i raportuje, nie koryguje (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Obie adnotacje są obowiązkowe (spis + lista pełnomocnictw), a rolą Anny jest precyzyjny zapis uchybienia, nie jego naprawianie przy stole (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R3-006",
+   "rola": "czlonek_komisji",
+   "faza": "pelnomocnik",
+   "cel_uczenia": "Rozpoznać formę skutecznego cofnięcia pełnomocnictwa w dniu głosowania.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Wskaż, jak wyborca skutecznie cofa pełnomocnictwo w lokalu w dniu głosowania.",
+   "opcje": [
+    {
+     "tekst": "Doręcza komisji pisemne oświadczenie o cofnięciu, potwierdzając wolę podpisem złożonym w obecności komisji.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Składa ustne oświadczenie wobec przewodniczącego, które komisja wpisuje do Uwag.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka formy: podstawą odnotowania cofnięcia jest oświadczenie pisemne z podpisem złożonym w obecności komisji."
+    },
+    {
+     "tekst": "Telefonuje do urzędu gminy, który przekazuje komisji informację o cofnięciu.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka kanału: cofnięcie w dniu głosowania odbywa się wobec komisji, nie przez urząd gminy."
+    }
+   ],
+   "feedback_poprawny": "Tak. Podstawą odnotowania cofnięcia jest pisemne oświadczenie, w którym wola wyborcy została potwierdzona podpisem złożonym w obecności komisji; fakt odnotowuje się w spisie i na liście pełnomocnictw (pkt 59, stan 2023-09-25).",
+   "feedback_niepoprawny": "Skuteczna forma jest jedna: pismo z podpisem złożonym w obecności komisji — dopiero ono trafia do spisu wraz z adnotacjami (pkt 59, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt59",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 59",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R4-001",
+   "rola": "wspolna",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Rozpoznać, kto może pomagać wyborcy niepełnosprawnemu przy głosowaniu.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "zapamietywanie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: wyborcy niepełnosprawnemu może na jego prośbę pomagać inna osoba, z wyłączeniem członków komisji i mężów zaufania.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit „komisja pomoże najlepiej”: pomoc przy oddaniu głosu jest wyłączona właśnie dla członków komisji i mężów zaufania, by oddzielić organizatora głosowania od aktu wyboru."
+    }
+   ],
+   "feedback_poprawny": "Tak. To dosłowna treść art. 53 Kodeksu wyborczego (stan 2023-03-31): pomoc innej osoby na prośbę wyborcy, z wyłączeniem członków komisji wyborczych i mężów zaufania.",
+   "feedback_niepoprawny": "Reguła ma dwa elementy: pomoc następuje na prośbę wyborcy i nie może jej udzielać członek komisji ani mąż zaufania (art. 53 Kodeksu wyborczego, stan 2023-03-31). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "kodeks-wyborczy:art53",
+    "akt": "Kodeks wyborczy",
+    "jednostka": "art. 53",
+    "stan_prawny": "2023-03-31",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R4-002",
+   "rola": "czlonek_komisji",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Zdecydować, jak zareagować na prośbę o pomoc przy wypełnieniu karty skierowaną do członka komisji.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Wyborca niewidomy prosi Tomasza: „Pomoże mi pan zaznaczyć? Sam nie dam rady”.",
+   "pytanie": "Zdecyduj, co robi Tomasz.",
+   "opcje": [
+    {
+     "tekst": "Wyjaśnia, że nie może pomóc przy oddaniu głosu; wskazuje pomoc osoby towarzyszącej i nakładkę Braille’a.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Pomaga zaznaczyć pola na karcie — wyraźna prośba wyborcy uchyla ustawowe ograniczenia komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „prośba uchyla zakaz”: prośba jest warunkiem pomocy innej osoby, ale wyłączenie członków komisji pozostaje."
+    },
+    {
+     "tekst": "Kieruje wyborcę do męża zaufania, który jako osoba spoza składu komisji może udzielić pomocy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka katalogu wyłączeń: mąż zaufania jest wyłączony z pomocy tak samo jak członek komisji."
+    }
+   ],
+   "feedback_poprawny": "Tak. Wyłączenie obejmuje członków komisji i mężów zaufania (art. 53 KW, stan 2023-03-31), a komisja wydaje wyborcy niepełnosprawnemu na jego prośbę nakładki w alfabecie Braille’a (pkt 61, stan 2023-09-25).",
+   "feedback_niepoprawny": "Tomasz nie może pomóc przy zaznaczaniu, ale nie zostawia wyborcy bez wsparcia: osoba towarzysząca (na prośbę wyborcy) oraz nakładki Braille’a to legalne ścieżki (art. 53 KW; pkt 61). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "kodeks-wyborczy:art53",
+    "akt": "Kodeks wyborczy; Uchwała PKW nr 211/2023",
+    "jednostka": "art. 53 KW; pkt 61 wytycznych",
+    "stan_prawny": "2023-03-31 / 2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R4-003",
+   "rola": "czlonek_komisji",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Rozpoznać, kto i w jakim trybie przekazuje ustnie treść obwieszczeń.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": "Wyborczyni, lat 74, prosi o odczytanie, jakie listy kandydatów są zarejestrowane.",
+   "pytanie": "Wskaż prawidłowy tryb.",
+   "opcje": [
+    {
+     "tekst": "Przewodniczący lub zastępca, w obecności innego członka komisji, przekazuje informacje w zakresie opisanym w wytycznych.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Dowolny członek komisji odczytuje obwieszczenie w całości przy stoliku wyborczyni.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka podmiotu: czynność wykonuje przewodniczący lub zastępca w obecności innego członka, nie dowolna osoba z komisji."
+    },
+    {
+     "tekst": "Komisja odsyła wyborczynię do obwieszczeń na ścianie — przekaz ustny nie jest przewidziany.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka odmowy: dla wyborców niepełnosprawnych i tych, którzy ukończyli 60 lat, ustny przekaz treści obwieszczeń jest obowiązkiem komisji."
+    }
+   ],
+   "feedback_poprawny": "Tak. Na prośbę wyborcy niepełnosprawnego oraz wyborcy, który ukończył 60 lat, treść obwieszczeń przekazuje ustnie przewodniczący lub zastępca w obecności innego członka komisji, w zakresie z pkt 58 (stan 2023-09-25).",
+   "feedback_niepoprawny": "Trzy elementy trybu: uprawniony wyborca (niepełnosprawny lub 60+), właściwy podmiot (przewodniczący/zastępca + świadek z komisji) i ograniczony zakres informacji (pkt 58, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt58",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 58",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R4-004",
+   "rola": "wspolna",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Rozstrzygnąć granicę między pomocą informacyjną a agitacją.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "analiza",
+   "typ": "scenariusz",
+   "kontekst": "Wyborca przy stole komisji: „Panie, tyle tych list… A na kogo warto?”.",
+   "pytanie": "Rozstrzygnij, jak wygląda prawidłowa reakcja.",
+   "opcje": [
+    {
+     "tekst": "Wyjaśnienie sposobu głosowania i warunków ważności głosu — bez jakiejkolwiek sugestii personalnej.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Dyskretna podpowiedź poza protokołem — skoro wyborca sam prosi, nie jest to agitacja.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „na prośbę nie jest agitacją”: charakter agitacyjny treści nie zależy od tego, kto o nią prosi."
+    },
+    {
+     "tekst": "Odmowa dalszej rozmowy — komisja nie udziela wyborcom żadnych wyjaśnień.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka odmowy: wyjaśnienie sposobu głosowania i warunków ważności głosu jest na wniosek wyborcy obowiązkiem komisji."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja ma obowiązek wyjaśnić sposób głosowania i warunki ważności głosu, a wyjaśnienie nie może zawierać elementów agitacyjnych; członkowie nie udzielają informacji wykraczających poza pkt 44, 57 i 58 (pkt 57–58, stan 2023-09-25).",
+   "feedback_niepoprawny": "Obowiązek i zakaz idą w parze: informacja o „jak głosować ważnie” — tak; wskazanie „na kogo” — nie, również na prośbę (pkt 57–58, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt57",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 57",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R4-005",
+   "rola": "obserwator",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Rozpoznać, kiedy pomoc przy głosowaniu wykracza poza ramy prawa i jak to udokumentować.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Anna widzi przy stoliku: osoba towarzysząca bierze kartę starszego wyborcy i zaznacza pola, nie czekając na jego wskazania. Wyborca milczy, wyraźnie skonsternowany.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Dokumentuje zdarzenie (godzina, stolik, brak widocznej prośby wyborcy) i przekazuje je w raporcie.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Podchodzi i zatrzymuje rękę osoby towarzyszącej — ktoś musi na miejscu chronić głos starszego wyborcy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: fizyczna interwencja należy do komisji; obserwatorka jest świadkiem zdarzenia, nie strażnikiem stolika."
+    },
+    {
+     "tekst": "Nie notuje niczego — pomoc osoby towarzyszącej nie wymaga wyraźnej prośby samego wyborcy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka przesłanki: pomoc innej osoby jest dopuszczalna na prośbę wyborcy; działanie bez jego woli to sygnał naruszenia tajności i swobody głosu."
+    }
+   ],
+   "feedback_poprawny": "Tak. Warunkiem pomocy jest prośba wyborcy (art. 53 KW, stan 2023-03-31) — zaznaczanie karty bez jego wskazań to zdarzenie do precyzyjnego zapisu i raportu, nie do samodzielnej interwencji Anny.",
+   "feedback_niepoprawny": "Dwa kroki rozumowania: najpierw przesłanka prawna (pomoc na prośbę wyborcy — art. 53 KW), potem narzędzie roli (zapis i raport, nie interwencja). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "kodeks-wyborczy:art53",
+    "akt": "Kodeks wyborczy",
+    "jednostka": "art. 53",
+    "stan_prawny": "2023-03-31",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R4-006",
+   "rola": "czlonek_komisji",
+   "faza": "pomoc_wyborcy",
+   "cel_uczenia": "Rozpoznać obowiązek wyjaśnienia sposobu głosowania.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: na wniosek wyborcy komisja jest obowiązana wyjaśnić mu sposób głosowania oraz warunki ważności głosu.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit „komisja tylko wydaje karty”: wyjaśnienie sposobu głosowania i warunków ważności głosu, zgodnie z informacjami na kartach, jest na wniosek wyborcy obowiązkiem komisji."
+    }
+   ],
+   "feedback_poprawny": "Tak. Na wniosek wyborcy komisja wyjaśnia sposób głosowania i warunki ważności głosu, zgodnie z informacjami umieszczonymi na kartach; wyjaśnienie nie może zawierać elementów agitacyjnych (pkt 57, stan 2023-09-25).",
+   "feedback_niepoprawny": "To obowiązek, nie uprzejmość — z jednym ograniczeniem: bez treści agitacyjnych (pkt 57, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt57",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 57",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R5-001",
+   "rola": "czlonek_komisji",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Zdecydować o kolejności czynności przy wyborcy z zaświadczeniem.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Turysta z drugiego końca Polski podaje dowód i zaświadczenie o prawie do głosowania. W spisie go nie ma.",
+   "pytanie": "Zdecyduj, co robi komisja przed wydaniem kart.",
+   "opcje": [
+    {
+     "tekst": "Odbiera zaświadczenie, dołącza je do spisu i dopisuje wyborcę na dodatkowym formularzu — potem wydaje karty.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Sprawdza hologram i oddaje zaświadczenie wyborcy — dokument może mu być potrzebny w podróży powrotnej.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka zwrotu: zaświadczenie odbiera się od wyborcy i dołącza do spisu; zwrócone mogłoby posłużyć do ponownego głosowania."
+    },
+    {
+     "tekst": "Odmawia wydania kart — zaświadczenie uprawnia do głosowania w obwodzie wskazanym przy jego wydaniu, nie tutaj.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „przypisanego obwodu”: zaświadczenie upoważnia do głosowania w dowolnym obwodzie, także we własnym."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja dopisuje wyborcę na dodatkowym formularzu spisu, odbiera zaświadczenie i dołącza je do spisu, wpisując w Uwagach np. „Zaświadczenie” — dopiero wtedy wydaje karty (pkt 47 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "Kluczowa jest kolejność i zatrzymanie dokumentu: dopisanie do spisu + odebranie zaświadczenia + adnotacja poprzedzają wydanie kart (pkt 47 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R5-002",
+   "rola": "czlonek_komisji",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Rozpoznać cechę oryginału zaświadczenia i wyjątek dla zaświadczeń konsularnych.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Wskaż, po czym komisja rozpoznaje oryginał zaświadczenia o prawie do głosowania.",
+   "opcje": [
+    {
+     "tekst": "Po hologramie z nadrukiem „PLT 2023”; zaświadczenia wydane przez konsula hologramu nie mają.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Po okrągłej pieczęci urzędu gminy oraz odręcznym podpisie wójta lub upoważnionego pracownika.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka cechy: wytyczne każą zwracać uwagę na hologram „PLT 2023”, nie na rodzaj pieczęci."
+    },
+    {
+     "tekst": "Po numerze PESEL wyborcy wpisanym na zaświadczeniu i zgodnym z okazanym dokumentem tożsamości.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka weryfikacji: dane osobowe nie odróżniają oryginału od kopii; cechą oryginału jest hologram."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja zwraca szczególną uwagę, czy na zaświadczeniu jest hologram „PLT 2023”; zaświadczenia konsularne hologramu nie mają, a w razie wątpliwości kontaktuje się z urzędem gminy (pkt 47 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "Cechą oryginału jest hologram „PLT 2023” — z jednym wyjątkiem (konsul) i jedną ścieżką wątpliwości (urząd gminy) (pkt 47 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R5-003",
+   "rola": "wspolna",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Rozpoznać zakres uprawnień z zaświadczenia.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: zaświadczenie o prawie do głosowania upoważnia do udziału w wyborach do Sejmu i do Senatu oraz w referendum.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Mit „zaświadczenie tylko na wybory”: dokument obejmuje wszystkie trzy głosowania przeprowadzane tego dnia."
+    }
+   ],
+   "feedback_poprawny": "Tak. Zaświadczenie upoważnia do wzięcia udziału w wyborach do Sejmu i do Senatu oraz w referendum (pkt 47 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "Jeden dokument, trzy głosowania: Sejm, Senat i referendum (pkt 47 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R5-004",
+   "rola": "czlonek_komisji",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Rozstrzygnąć przypadek obywatela stale mieszkającego za granicą bez zaświadczenia.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "analiza",
+   "typ": "scenariusz",
+   "kontekst": "Mężczyzna okazuje ważny polski paszport i kartę stałego pobytu za granicą: „Przyjechałem do rodziny, chcę zagłosować”. W spisie go nie ma, zaświadczenia nie posiada.",
+   "pytanie": "Rozstrzygnij decyzję komisji.",
+   "opcje": [
+    {
+     "tekst": "Nie dopisuje go do spisu — bez zaświadczenia i wcześniejszego ujęcia w spisie dopisanie jest niedopuszczalne.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Dopisuje na podstawie ważnego paszportu, który potwierdza polskie obywatelstwo i tożsamość wyborcy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka dokumentu: paszport potwierdza tożsamość, ale nie zastępuje ujęcia w spisie ani zaświadczenia."
+    },
+    {
+     "tekst": "Dopisuje po telefonicznym potwierdzeniu polskiego obywatelstwa wyborcy w urzędzie gminy.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka ścieżki: telefon do gminy służy wyjaśnianiu omyłek w spisie, nie tworzeniu uprawnienia, którego nie ma."
+    }
+   ],
+   "feedback_poprawny": "Tak. Niedopuszczalne jest dopisanie w dniu głosowania obywatela polskiego stale zamieszkującego za granicą, o ile nie został ujęty w spisie ani nie przedstawi zaświadczenia — nawet z ważnym paszportem i dokumentem zamieszkania (pkt 47, stan 2023-09-25).",
+   "feedback_niepoprawny": "Paszport otwiera drzwi do ustalenia tożsamości, ale prawo do głosowania w tym obwodzie daje spis albo zaświadczenie — tu nie ma żadnego z nich (pkt 47, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R5-005",
+   "rola": "czlonek_komisji",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Zdecydować o procedurze dopisania wyborcy pominiętego w spisie przez omyłkę.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Mieszkanka osiedla od lat głosująca w tym samym lokalu nie figuruje w spisie. Twierdzi, że to pomyłka.",
+   "pytanie": "Zdecyduj, jak komisja może ją dopisać.",
+   "opcje": [
+    {
+     "tekst": "Po telefonicznym potwierdzeniu omyłki w ewidencji ludności: dopisanie z parafą i notatką dołączaną do spisu.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Na podstawie dowodu osobistego z adresem zameldowania położonym na terenie tego obwodu głosowania.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka dowodu: adres w dokumencie nie zastępuje potwierdzenia omyłki przez urząd gminy."
+    },
+    {
+     "tekst": "Odsyła wyborczynię do urzędu gminy po zaświadczenie o prawie do głosowania i dopisuje ją po powrocie.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka ścieżki: dla omyłki w spisie przewidziano potwierdzenie telefoniczne i dopisanie na miejscu, nie wyprawę po zaświadczenie."
+    }
+   ],
+   "feedback_poprawny": "Tak. Osobie omyłkowo pominiętej komisja umożliwia głosowanie po telefonicznym potwierdzeniu omyłki przez ewidencję ludności; dopisanie na dodatkowym formularzu opatruje się parafą, a do spisu dołącza notatkę z nazwiskiem pracownika urzędu i godziną (pkt 47 ppkt 2, stan 2023-09-25).",
+   "feedback_niepoprawny": "Procedura ma trzy ogniwa: telefoniczne potwierdzenie w ewidencji ludności, parafa przy dopisaniu, notatka dołączona do spisu (pkt 47 ppkt 2, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R5-006",
+   "rola": "obserwator",
+   "faza": "zaswiadczenie",
+   "cel_uczenia": "Rozpoznać uchybienie przy obsłudze zaświadczenia i właściwą reakcję obserwatorki.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Anna widzi, jak członek komisji sprawdza zaświadczenie wyborcy, dopisuje go do spisu, po czym oddaje dokument wyborcy.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Notuje zdarzenie — zaświadczenie powinno zostać odebrane i dołączone do spisu; zwrot to uchybienie do raportu.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Informuje wyborcę przy stole komisji, że dokument musi zostać oddany i dołączony do spisu wyborców.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: pouczanie wyborców i korygowanie czynności komisji nie należy do obserwatorki."
+    },
+    {
+     "tekst": "Uznaje zwrot za dopuszczalny — zaświadczenie jest dokumentem wyborcy i po sprawdzeniu do niego wraca.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka własności: zaświadczenie jest „biletem jednorazowym” — odebrane i dołączone do spisu chroni przed ponownym użyciem."
+    }
+   ],
+   "feedback_poprawny": "Tak. Zaświadczenie należy odebrać od wyborcy i dołączyć do spisu z adnotacją w Uwagach — zwrócenie go wyborcy Anna dokumentuje (godzina, stanowisko, przebieg) i raportuje (pkt 47 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "Sedno kontroli: dokument zostaje przy spisie, nie przy wyborcy — a narzędziem Anny jest zapis, nie korekta przy stole (pkt 47 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt47",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 47",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R7-001",
+   "rola": "czlonek_komisji",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Rozpoznać minimalny skład komisji przy ustalaniu wyników.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Komisja liczy 9 osób. Wskaż minimalny skład do czynności związanych z ustaleniem wyników głosowania.",
+   "opcje": [
+    {
+     "tekst": "6 osób, w tym przewodniczący lub zastępca — 2/3 składu z zaokrągleniem w górę.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "5 osób — tyle, ile wystarczało w trakcie głosowania.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka progu: po zakończeniu głosowania próg rośnie z 1/2 do 2/3 pełnego składu."
+    },
+    {
+     "tekst": "9 osób — do ustalenia wyników głosowania potrzebny jest komplet powołanego składu komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka „pełnego składu”: wymagane jest co najmniej 2/3 składu, w możliwie pełnym gronie, ale nie bezwzględnie komplet."
+    }
+   ],
+   "feedback_poprawny": "Tak. Czynności ustalania wyników komisja wykonuje wspólnie, w składzie co najmniej 2/3 pełnego składu (ułamek w górę), z przewodniczącym lub zastępcą — dla 9 osób to 6 (pkt 104, stan 2023-09-25).",
+   "feedback_niepoprawny": "Wieczorem próg jest wyższy niż w dzień: 2/3 zamiast 1/2, zaokrąglane w górę, z udziałem przewodniczącego lub zastępcy (pkt 104, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt104",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 104",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "wsp-R7-002",
+   "rola": "wspolna",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Rozpoznać zakaz dzielenia komisji na grupy robocze.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "rozumienie",
+   "typ": "prawda_falsz",
+   "kontekst": null,
+   "pytanie": "Oceń: aby przyspieszyć pracę, komisja może podzielić się na dwie grupy — jedna liczy karty do Sejmu, druga do Senatu.",
+   "opcje": [
+    {
+     "tekst": "Prawda",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pułapka wydajności: tworzenie grup roboczych po zakończeniu głosowania jest wprost niedopuszczalne — czynności wykonuje się wspólnie."
+    },
+    {
+     "tekst": "Fałsz",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    }
+   ],
+   "feedback_poprawny": "Tak — to fałsz. Niedopuszczalne jest tworzenie z członków komisji grup roboczych wykonujących czynności oddzielnie; karty okazuje się wszystkim obecnym członkom (pkt 105–106, stan 2023-09-25).",
+   "feedback_niepoprawny": "Wspólność czynności to gwarancja kontroli: zakaz grup roboczych i okazywanie każdej karty wszystkim obecnym członkom idą w parze (pkt 105–106, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt105",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 105",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R7-003",
+   "rola": "czlonek_komisji",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Zdecydować o pierwszej czynności przed otwarciem urny.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Lokal zamknięty, protokół z liczby podpisów gotowy. Ktoś sięga po klucz do urny: „No to otwieramy?”.",
+   "pytanie": "Zdecyduj, co komisja robi w pierwszej kolejności.",
+   "opcje": [
+    {
+     "tekst": "Sprawdza nienaruszalność pieczęci na urnie i wlocie oraz plomb-nalepek, potem otwiera urnę.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Otwiera urnę od razu — stan pieczęci i plomb oceni się później, przy pakowaniu dokumentów z wyborów.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka kolejności: nienaruszalność pieczęci i plomb sprawdza się przed otwarciem, bo po nim dowodu już nie ma."
+    },
+    {
+     "tekst": "Fotografuje urnę telefonem członka komisji, dokumentując jej stan na potrzeby protokołu głosowania.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka narzędzia: wytyczne przewidują sprawdzenie pieczęci i plomb przez komisję, nie dokumentację fotograficzną prywatnym telefonem."
+    }
+   ],
+   "feedback_poprawny": "Tak. Komisja sprawdza nienaruszalność pieczęci na urnie i na wlocie oraz plomb-nalepek, po czym otwiera urnę i wyjmuje karty (pkt 112, stan 2023-09-25).",
+   "feedback_niepoprawny": "Sekwencja jest dowodowa: najpierw stan zabezpieczeń, potem otwarcie — odwrócenie kolejności niszczy możliwość weryfikacji (pkt 112, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt112",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 112",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R7-004",
+   "rola": "czlonek_komisji",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Rozpoznać źródło liczby wpisywanej w punkcie 1 protokołu.",
+   "punkt_protokolu": "pkt 1",
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": null,
+   "pytanie": "Wskaż, skąd pochodzi liczba otrzymanych kart wpisywana w punkcie 1 każdego protokołu głosowania.",
+   "opcje": [
+    {
+     "tekst": "Z przeliczenia kart przed rozpoczęciem głosowania, powiększonego o karty otrzymane z rezerwy.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Z liczby kart do głosowania wyjętych z urny wyborczej po zakończeniu głosowania w obwodzie.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka końca i początku: karty z urny to inne pozycje protokołu; punkt 1 dokumentuje stan wejściowy."
+    },
+    {
+     "tekst": "Z liczby podpisów wyborców potwierdzających odbiór kart w rubrykach spisu wyborców.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka miary: podpisy w spisie mierzą liczbę wyborców, którym wydano karty, nie liczbę kart otrzymanych przez komisję."
+    }
+   ],
+   "feedback_poprawny": "Tak. W punkcie 1 komisja wpisuje liczby kart ustalone przy przeliczeniu przed rozpoczęciem głosowania (pkt 39 ppkt 2), doliczając ewentualne karty z rezerwy — odrębnie dla Sejmu, Senatu i referendum (pkt 111 ppkt 1, stan 2023-09-25).",
+   "feedback_niepoprawny": "Punkt 1 patrzy na początek dnia: karty przeliczone o poranku plus rezerwa — to od tej liczby zaczyna się wieczorne rozliczenie (pkt 111 ppkt 1, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt111",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 111",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "czl-R7-005",
+   "rola": "czlonek_komisji",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Zastosować zasadę wpisywania liczb w kratki protokołu.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "wielokrotny_wybor",
+   "kontekst": "Ustalona liczba kart niewykorzystanych w jednym z głosowań wynosi zero.",
+   "pytanie": "Wskaż prawidłowy zapis w kratkach protokołu.",
+   "opcje": [
+    {
+     "tekst": "Cyfra „0” w ostatniej kratce z prawej strony.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Kratki pozostają puste — zero nie wymaga zapisu.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka pustych kratek: brak zapisu nie różni się od pominięcia pozycji; zero wpisuje się cyfrą „0”."
+    },
+    {
+     "tekst": "Pozioma kreska przez rząd kratek, jak przy anulowaniu rubryki.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka konwencji: kreska nie jest liczbą; protokół wymaga cyfry w ostatniej kratce z prawej."
+    }
+   ],
+   "feedback_poprawny": "Tak. Liczby wpisuje się od prawej strony; jeżeli ustalona liczba wynosi zero, w ostatniej kratce z prawej wpisuje się cyfrę „0” (pkt 110, stan 2023-09-25).",
+   "feedback_niepoprawny": "Reguła jest mechaniczna, ale chroni przed niejednoznacznością: ostatnia cyfra w ostatniej kratce z prawej, a zero to też cyfra (pkt 110, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt110",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 110",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  },
+  {
+   "id": "obs-R7-006",
+   "rola": "obserwator",
+   "faza": "rozliczenie_kart",
+   "cel_uczenia": "Rozpoznać naruszenie zasady wspólnego wykonywania czynności i właściwą reakcję.",
+   "punkt_protokolu": null,
+   "poziom_blooma": "stosowanie",
+   "typ": "scenariusz",
+   "kontekst": "Podczas segregowania kart jeden z członków komisji zabiera plik kart do osobnego stolika i przegląda je samodzielnie.",
+   "pytanie": "Rozpoznaj, co robi Anna.",
+   "opcje": [
+    {
+     "tekst": "Dokumentuje zdarzenie (godzina, osoba, czynność) — karty okazuje się wszystkim obecnym członkom.",
+     "poprawna": true,
+     "uzasadnienie_dystraktora": null
+    },
+    {
+     "tekst": "Zwraca członkowi komisji uwagę i prosi, aby wrócił z kartami do wspólnego stołu komisji.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Przekroczenie roli: korygowanie pracy komisji na bieżąco to ingerencja; obserwatorka zapisuje i raportuje."
+    },
+    {
+     "tekst": "Uznaje to za dopuszczalne usprawnienie pracy przy dużej liczbie kart do przejrzenia tego wieczoru.",
+     "poprawna": false,
+     "uzasadnienie_dystraktora": "Pomyłka wydajności: przeglądanie kart pojedynczo przez część członków lub w odrębnych grupach jest wprost zakazane."
+    }
+   ],
+   "feedback_poprawny": "Tak. Każda karta jest okazywana wszystkim obecnym członkom komisji, a przeglądanie kart pojedynczo lub w grupach jest zakazane — samodzielny stolik to zdarzenie do zapisu i raportu Anny (pkt 106, stan 2023-09-25).",
+   "feedback_niepoprawny": "Test jest prosty: czy wszyscy obecni członkowie widzą karty? Jeśli nie — to naruszenie zasady wspólności, które Anna dokumentuje, nie koryguje (pkt 106, stan 2023-09-25). Spróbuj ponownie.",
+   "zrodlo": {
+    "chunk_id": "wytyczne-kraj:pkt106",
+    "akt": "Uchwała PKW nr 211/2023 (wytyczne dla OKW w kraju)",
+    "jednostka": "pkt 106",
+    "stan_prawny": "2023-09-25",
+    "wybory": "Sejm/Senat/referendum 15.10.2023"
+   },
+   "recenzja": {
+    "status": "do_recenzji",
+    "owner": null,
+    "data": null
+   }
+  }
+ ]
+}

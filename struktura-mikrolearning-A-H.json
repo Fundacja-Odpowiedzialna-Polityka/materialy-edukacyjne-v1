@@ -1,0 +1,379 @@
+{
+ "meta": {
+  "typ": "struktura_mikrolearningu",
+  "wersja": "propozycja do recenzji",
+  "data": "2026-08-17",
+  "zasada": "Rozdział i lekcja to metadane — treść prawna żyje wyłącznie w pozycjach banku (id_pozycji); zmiana pozycji flaguje elementy do re-recenzji. Sceny: rama fikcyjna AI do recenzji Dominiki, treść prawna dziedziczona przez wsad_v1.",
+  "budzet_czasu": "trzon 8 rozdziałów × 10 min = 80 min na rolę (limit 2h z zapasem na RA/RΔ)",
+  "zrodla_bankow": {
+   "A-E,G": "bank-mikrolearning-A-H.json (36 pozycji, do recenzji, walidacja 0/0)",
+   "F": "bank-R6-zamkniecie-lokalu.json (8 pozycji, do recenzji) + job aid kom-F-001..004 (bank v1.0)",
+   "H": "bank pilotażu v1.0 Ekspert 5, 2026-07-24: kom-ustalenie-001..020, obs-ustalenie-001..020 (opublikowane)"
+  },
+  "re_recenzja_trigger": "publikacja wytycznych PKW 2027"
+ },
+ "rozdzialy": [
+  {
+   "id": "R1",
+   "etap": "A",
+   "tytul": "Otwarcie lokalu",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R1-L1",
+     "tytul": "Zanim przyjdzie pierwszy wyborca",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "wsp-R1-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R1-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R1-003"
+      }
+     ]
+    },
+    {
+     "id": "R1-L2",
+     "tytul": "Urna pod strażą",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "obs-R1-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R1-005"
+      },
+      {
+       "typ": "pytanie",
+       "id": "wsp-R1-006"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R2",
+   "etap": "B",
+   "tytul": "Obsługa wyborcy",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R2-L1",
+     "tytul": "Tożsamość i podpis",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R2-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R2-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "wsp-R2-003"
+      }
+     ]
+    },
+    {
+     "id": "R2-L2",
+     "tytul": "Karty: odmowa, pomyłka, granica słowa",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R2-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R2-005"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-R2-006"
+      }
+     ]
+    }
+   ],
+   "sceny_do_przygotowania": "[DO UZUPEŁNIENIA: mapowanie scenek z audytu (A21–A23, A28–A30) na sceny V2 — decyzja ownera i briefy Dominiki]"
+  },
+  {
+   "id": "R3",
+   "etap": "C",
+   "tytul": "Głosowanie przez pełnomocnika",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R3-L1",
+     "tytul": "Akt, spis, podpis",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "wsp-R3-003"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R3-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R3-006"
+      }
+     ]
+    },
+    {
+     "id": "R3-L2",
+     "tytul": "Kolizje i odmowy",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R3-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R3-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-R3-005"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R4",
+   "etap": "D",
+   "tytul": "Wyborca prosi o pomoc",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R4-L1",
+     "tytul": "Kto może pomóc, a kto nie",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "wsp-R4-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R4-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R4-003"
+      }
+     ]
+    },
+    {
+     "id": "R4-L2",
+     "tytul": "Informacja bez agitacji",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R4-006"
+      },
+      {
+       "typ": "pytanie",
+       "id": "wsp-R4-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-R4-005"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R5",
+   "etap": "E",
+   "tytul": "Głosowanie na zaświadczenie",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R5-L1",
+     "tytul": "Bilet jednorazowy",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "wsp-R5-003"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R5-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R5-002"
+      }
+     ]
+    },
+    {
+     "id": "R5-L2",
+     "tytul": "Spis: dopisać czy odmówić",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R5-005"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R5-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-R5-006"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R6",
+   "etap": "F",
+   "tytul": "Zamknięcie lokalu",
+   "czas_min": 10,
+   "status": "W PROTOTYPIE (pilotaż, decyzja ownera 2026-08-17)",
+   "lekcje": [
+    {
+     "id": "R6-L1",
+     "tytul": "Ostatni wyborca i pieczętowanie urny",
+     "czas_min": 5,
+     "zrodlo": "struktura-R6-mikrolearning.json"
+    },
+    {
+     "id": "R6-L2",
+     "tytul": "Kto zostaje w lokalu",
+     "czas_min": 5,
+     "zrodlo": "struktura-R6-mikrolearning.json"
+    }
+   ],
+   "sceny": [
+    "SC-R6-01",
+    "SC-R6-02 (warianty Tomasz/Anna)"
+   ]
+  },
+  {
+   "id": "R7",
+   "etap": "G",
+   "tytul": "Rozliczenie kart",
+   "czas_min": 10,
+   "lekcje": [
+    {
+     "id": "R7-L1",
+     "tytul": "Wspólnie albo wcale",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R7-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "wsp-R7-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-R7-006"
+      }
+     ]
+    },
+    {
+     "id": "R7-L2",
+     "tytul": "Plomby, urna, punkt 1",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "czl-R7-003"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R7-004"
+      },
+      {
+       "typ": "pytanie",
+       "id": "czl-R7-005"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "R8",
+   "etap": "H",
+   "tytul": "Ustalenie wyników głosowania",
+   "czas_min": 10,
+   "status": "BANK OPUBLIKOWANY v1.0 (Ekspert 5, 2026-07-24) — struktura lekcji do recenzji",
+   "lekcje": [
+    {
+     "id": "R8-L1",
+     "tytul": "Ważna karta, ważny głos",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "kom-ustalenie-001"
+      },
+      {
+       "typ": "pytanie",
+       "id": "kom-ustalenie-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-ustalenie-001"
+      }
+     ],
+     "uwaga": "dobór 3 z 40 opublikowanych pozycji — selekcję pod cele lekcji zatwierdza ekspert FOP"
+    },
+    {
+     "id": "R8-L2",
+     "tytul": "Protokół bez poprawek po fakcie",
+     "czas_min": 5,
+     "elementy": [
+      {
+       "typ": "pytanie",
+       "id": "kom-ustalenie-003"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-ustalenie-002"
+      },
+      {
+       "typ": "pytanie",
+       "id": "obs-ustalenie-003"
+      }
+     ],
+     "uwaga": "jw. — pozostałe 34 pozycje banku H dostępne w trybie testowym"
+    }
+   ]
+  }
+ ],
+ "sciezka_anny": {
+  "id": "RA",
+  "tytul": "Kodeks Obserwatora (tylko Anna)",
+  "zrodlo": "Rozdzialy_mikrolearningu_FOP_propozycja.md",
+  "uwaga": "3 lekcje z plików kodeks-01..10.md + wariant Anny SC-R6-02; poza tym wsadem"
+ },
+ "modul_delty": {
+  "id": "RΔ",
+  "trigger": "publikacja wytycznych PKW 2027",
+  "uwaga": "executive summary zmian + quiz „co się zmieniło” — generowany przez silnik po wgraniu nowych wytycznych"
+ }
+}
