@@ -6,7 +6,7 @@ let src = parts[parts.length - 1].split('</script>')[0];
 
 // hoisting state do globalThis (wzorzec harnessu)
 src = src.replace('const state = {', 'globalThis.state = {');
-for (const name of ['MIKRO_R6_Q','MIKRO','QUIZY_PL','QUIZY_EN','QUIZY','LISTY','ETAPY','MIKRO_AH_Q','MIKRO_FAZA_ETAP','MIKRO_ROZDZIALY','SRC_QUIZ_KOM','SRC_QUIZ_OBS']) {
+for (const name of ['MIKRO_R6_Q','MIKRO','QUIZY_PL','QUIZY_EN','QUIZY','LISTY','ETAPY','MIKRO_AH_Q','MIKRO_FAZA_ETAP','MIKRO_ROZDZIALY','SRC_QUIZ_KOM','SRC_QUIZ_OBS','QMETA','LISTA']) {
   src = src.replace('const ' + name + ' = ', 'globalThis.' + name + ' = ');
 }
 
@@ -284,3 +284,60 @@ t4('panel banku: sekcja R1–R8 + statusy', bp2.includes('R1 ·') && bp2.include
 
 console.log(f4 === 0 ? 'ALL PASS (A–H)' : f4 + ' FAILURES (A–H)');
 if (f4 > 0) process.exitCode = 1;
+
+// ==== TESTY KORALIKÓW POSTĘPU ====
+let f5 = 0;
+const t5 = (name, cond) => { console.log((cond ? 'PASS' : 'FAIL') + ' ' + name); if (!cond) f5++; };
+
+// unit: koraliki()
+const kk = koraliki(['ok','bad','cur',''], 2, 4);
+t5('koraliki(): 4 kropki, licznik 2/4, aria', (kk.match(/class="seg[ \"]/g)||[]).length===4 && kk.includes('2/4') && kk.includes('aria-valuenow="2"'));
+
+// tryb testowy: segBar renderuje koraliki z klasami ok/bad/cur
+testOpen(); trybSet('test'); testRola('komisja'); testSel('F','quiz'); testStartRun();
+testPick(1); testCheck(); testNext();
+let hq = rTest();
+t5('quiz testowy: koraliki z 36 kropkami i cur', (hq.match(/class="seg/g)||[]).length>=36 && hq.includes('seg cur') || hq.includes('cur"'));
+
+// mikro: koraliki elementów lekcji
+testOpen(); trybSet('mikro'); mikroRozdzSel('R3'); mikroRola('komisja'); mikroLekcja('R3-L1');
+let hm = rTest();
+t5('mikro L1: 3 koraliki, pierwszy cur, licznik 0/3', (hm.match(/class="seg[ "]/g)||[]).length===3 && hm.includes('0/3'));
+mikroPick(0); mikroCheck(); mikroNext();
+hm = rTest();
+t5('po odpowiedzi: koralik 1 zapalony (ok/bad), licznik 1/3', (hm.includes('seg ok')||hm.includes('seg bad')) && hm.includes('1/3'));
+
+// mikro: koraliki kroków sceny
+testOpen(); trybSet('mikro'); mikroRozdzSel('R6'); mikroRola('komisja'); mikroLekcja('R6-L2');
+let hs = rTest();
+t5('scena: koraliki kroków 0/6 + koraliki elementów', hs.includes('0/6') && hs.includes('0/3'));
+mikroScNext();
+hs = rTest();
+t5('krok 2: koralik 1 done, licznik 1/6', hs.includes('seg done') && hs.includes('1/6'));
+
+// mikro: wynik z koralikami podsumowania
+mikroScPick(0); mikroScCheck(); mikroScNext(); // d1 ok -> krok3
+mikroScNext(); // n -> d2
+mikroScPick(0); mikroScCheck(); mikroScNext(); // d2 -> alt
+mikroScNext(); // alt -> n3
+mikroScNext(); // koniec sceny
+mikroPick(0); mikroCheck(); mikroNext(); // wsp-R6-008
+// SC-R6-02: 5 kroków
+mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext();
+mikroScPick(0); mikroScCheck(); mikroScNext();
+mikroScPick(0); mikroScCheck(); mikroScNext(); mikroScNext();
+let hw = rTest();
+t5('wynik: koraliki podsumowania 3/3 z ok', state.test.mk.phase==='wynik' && hw.includes('3/3') && hw.includes('seg ok'));
+
+// recenzja: koraliki decyzji — minimalna sesja
+state.session = {rola:'komisja', etap:'F', material:'quiz',
+  items:[{id:'x1'},{id:'x2'},{id:'x3'}],
+  decisions:{x1:{decyzja:'TAK',uwagi:'',data:''},x2:{decyzja:'POPRAW',uwagi:'',data:''},x3:{decyzja:null,uwagi:'',data:''}}};
+state.rFilter='USUN';
+let hr = '';
+try { hr = rRecenzja(); } catch(e) { console.log('rRecenzja threw: '+e.message); }
+t5('recenzja: koraliki tak/popraw + pusty, licznik 2/3', hr.includes('seg tak') && hr.includes('seg popraw') && hr.includes('2/3'));
+state.session = null;
+
+console.log(f5 === 0 ? 'ALL PASS (koraliki)' : f5 + ' FAILURES (koraliki)');
+if (f5 > 0) process.exitCode = 1;
