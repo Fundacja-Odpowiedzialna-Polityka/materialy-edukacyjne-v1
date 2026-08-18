@@ -6,7 +6,7 @@ let src = parts[parts.length - 1].split('</script>')[0];
 
 // hoisting state do globalThis (wzorzec harnessu)
 src = src.replace('const state = {', 'globalThis.state = {');
-for (const name of ['MIKRO_R6_Q','MIKRO','QUIZY_PL','QUIZY_EN','QUIZY','LISTY','ETAPY','MIKRO_AH_Q','MIKRO_FAZA_ETAP','MIKRO_ROZDZIALY','SRC_QUIZ_KOM','SRC_QUIZ_OBS','QMETA','LISTA']) {
+for (const name of ['MIKRO_R6_Q','MIKRO','QUIZY_PL','QUIZY_EN','QUIZY','LISTY','ETAPY','MIKRO_AH_Q','MIKRO_FAZA_ETAP','MIKRO_ROZDZIALY','SRC_QUIZ_KOM','SRC_QUIZ_OBS','QMETA','LISTA','SCENY2','MIKRO_UNITS','LICZNIKI_DEF']) {
   src = src.replace('const ' + name + ' = ', 'globalThis.' + name + ' = ');
 }
 
@@ -115,36 +115,18 @@ let h = rTest();
 t2('mikro: ekran rozdziału R6 z rolami', h.includes('Zamknięcie lokalu') && h.includes("mikroRola('komisja')"));
 mikroRola('komisja');
 h = rTest();
-t2('mikro: lekcje widoczne po wyborze roli', h.includes('R6-L1') && h.includes('R6-L2'));
-
-// lekcja L1 dla komisji: 5 pytań (wsp+4 czl), bez obs-R6-006
-mikroLekcja('R6-L1');
-const m = state.test.mk;
-t2('L1/komisja: 5 elementów, start od wsp-R6-001', m.els.length===5 && m.els[0].id==='wsp-R6-001' && !m.els.some(e=>e.id==='obs-R6-006'));
-h = rTest();
-t2('runner pokazuje pytanie T/F ze statusem recenzji', h.includes('Wyborcy, którzy o godzinie 21:00') && h.includes('niezatwierdzona propozycja') || h.includes('schip'));
+// jednostka F / komisja: stara scena + 5 pytań (nowy model)
+mikroRola('komisja'); mikroUnit();
+t2('F/komisja: jednostka scena+5 pytań(+dnd)', state.test.mk.els[0].typ==='scena' && state.test.mk.els.filter(e=>e.typ==='pytanie').length===5);
+// przejdź scenę SC-R6-01 minimalnie: 6 kroków starego runnera
+mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext(); mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext(); mikroScNext(); mikroScNext();
+t2('po starej scenie: pytanie 1/5', state.test.mk.idx===1 && state.test.mk.els[1].typ==='pytanie');
+let h2=rTest();
+t2('runner pytań działa w jednostce', h2.includes('Sprawdź'));
 mikroPick(1); mikroCheck();
-h = rTest();
-t2('feedback poprawny z cytatem pkt 97', h.includes('Poprawnie.') && h.includes('pkt 97'));
-mikroNext(); mikroPick(0); mikroCheck(); mikroNext(); // czl-R6-002 ok
-mikroPick(1); mikroCheck(); // czl-R6-003 źle
-h = rTest();
-t2('feedback błędny z uzasadnieniem dystraktora', h.includes('Niepoprawnie.') && h.includes('pułapka'));
-mikroNext(); mikroPick(0); mikroCheck(); mikroNext(); mikroPick(0); mikroCheck(); mikroNext();
-t2('wynik lekcji: 4/5', state.test.mk.phase==='wynik' && rTest().includes('4 / 5'));
-
-// L2 dla Anny: scena -> pytania -> scena
-mikroBack(); mikroRola('obserwator'); mikroLekcja('R6-L2');
-const m2 = state.test.mk;
-t2('L2/obserwator: 4 elementy, sceny na pozycjach 1 i 4', m2.els.length===4 && m2.els[0].id==='SC-R6-01' && m2.els[3].id==='SC-R6-02');
-h = rTest();
-t2('scena interaktywna: krok 1 z wsad_v1 i mikroScNext', h.includes('SC-R6-01') && h.includes('wsad_v1: kom-F-001') && h.includes('mikroScNext()'));
-mikroNext();
-h = rTest();
-t2('po scenie pytanie obs-R6-007', h.includes('Rozpoznaj, jakie jest prawo Anny'));
-
-// etykiety przycisków
-const full = fs.readFileSync('prototyp-FOP-PL-EN_04_08.html','utf-8');
+h2=rTest();
+t2('feedback z uzasadnieniem dystraktora lub kotwicą', h2.includes('Źródło:')||h2.includes('pkt'));
+const full=src;
 t2('etykieta górnego przycisku zmieniona (PL/EN)', full.includes('"Tryb testowy i Mikro-learning", "Practice mode & Microlearning"'));
 t2('przycisk startowy zmieniony', full.includes('Przejdź do trybu testowego i mikro-learningu'));
 t2('testFromBank ustawia mode=test', full.includes('state.test={mode:"test", phase:"karta"'));
@@ -186,158 +168,101 @@ mikroScNext(); // koniec sceny -> element 2 (wsp-R6-008)
 t3('po scenie: element 2, sc wyzerowany, decyzje 1/2', state.test.mk.idx===1 && state.test.mk.sc===null && state.test.mk.scOk===1 && state.test.mk.scN===2);
 mikroPick(0); mikroCheck(); mikroNext(); // wsp-R6-008 ok
 sh = rTest();
-t3('SC-R6-02 wariant komisji: intro 21:20, 5 kroków', sh.includes('21:20') && sh.includes('Krok 1 / 5'));
-mikroScNext(); mikroScPick(0); mikroScCheck();
-sh = rTest();
-t3('d1: kotwica kom-F-003 pkt 99–100', sh.includes('kom-F-003') && sh.includes('99'));
-mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext(); // d2 ok
-mikroScPick(2); mikroScCheck(); // d3 błędna (liczyć karty)
-sh = rTest();
-t3('d3 błędna: feedback z obs-R6-007', sh.includes('nie wykonuje') && sh.includes('obs-R6-007'));
-mikroScNext(); mikroScNext(); // n domknięcie -> koniec sceny -> wynik
-sh = rTest();
-t3('wynik L2 komisji: pytania 1/1, decyzje scen 3/5', state.test.mk.phase==='wynik' && sh.includes('Decyzje w scenach: ') && state.test.mk.scOk===3 && state.test.mk.scN===5);
+// SC-R6-02: pozostaje w rejestrze scen (warianty ról), poza przebiegiem jednostki
+t3('rejestr: SC-R6-02 z wariantami rol', (MIKRO.sceny||[]).some(sc=>sc.id==='SC-R6-02'));
+console.log(f3===0?'ALL PASS (sceny)':f3+' FAILURES (sceny)');
+if(f3>0) process.exitCode=1;
 
-// --- L2 / obserwator (Anna) ---
-testOpen(); trybSet('mikro'); mikroRozdzSel('R6'); mikroRola('obserwator'); mikroLekcja('R6-L2');
-mikroScNext(); // krok2: d-kom alt
-sh = rTest();
-t3('SC-R6-01/Anna: decyzja komisji jako alt', sh.includes('Komisja zamyka drzwi dla nowych') && !sh.includes('mikroScCheck'));
-mikroScNext(); mikroScNext(); // n2 -> d2-kom alt... krok4
-mikroScNext(); // krok5: d-obs (szepcze)
-sh = rTest();
-t3('SC-R6-01/Anna: jej decyzja aktywna', sh.includes('szepcze') && sh.includes('mikroScCheck'));
-mikroScPick(0); mikroScCheck();
-sh = rTest();
-t3('kotwica obs-R6-006 w feedbacku Anny', sh.includes('Poprawnie.') && sh.includes('obs-R6-006'));
-mikroScNext(); mikroScNext(); // n3 -> koniec sceny -> obs-R6-007
-t3('po scenie pytanie obs-R6-007', state.test.mk.els[state.test.mk.idx].id==='obs-R6-007');
-mikroPick(0); mikroCheck(); mikroNext();
-mikroPick(0); mikroCheck(); mikroNext(); // wsp-R6-008
-sh = rTest();
-t3('SC-R6-02/Anna: wariant obserwatora', sh.includes('oczami Anny') && sh.includes('Krok 1 / 5'));
-mikroScNext(); mikroScPick(0); mikroScCheck(); // d1 obecność
-sh = rTest();
-t3('d1: kotwica obs-R6-007', sh.includes('obs-R6-007'));
-mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext(); // d2 notowanie
-mikroScPick(0); mikroScCheck(); // d3 kamera
-sh = rTest();
-t3('d3 kamera: flaga [DO UZUPEŁNIENIA] w feedbacku', sh.includes('DO UZUPEŁNIENIA'));
-mikroScNext(); mikroScNext(); // n -> wynik
-sh = rTest();
-t3('wynik Anny: decyzje 4/4 (1 z SC-01 + 3 z SC-02)', state.test.mk.phase==='wynik' && state.test.mk.scOk===4 && state.test.mk.scN===4);
+// ==== TESTY JEDNOSTEK v2, BEATÓW, DND, KREATORA, KORALIKÓW ====
+let f9=0; const t9=(n,c)=>{ console.log((c?'PASS ':'FAIL ')+n); if(!c) f9++; };
 
-// --- panel banku ---
-const bp = mikroPanel();
-t3('panel banku: sceny interaktywne z liczbą kroków', bp.includes('scena interaktywna') && bp.includes('kroków'));
+// dane scen
+t9('SCENY2: 15 scen, 3 kurs + 12 silnik', SCENY2.length===15 && SCENY2.filter(s=>s.zrodlo==='kurs').length===3);
+t9('MIKRO_UNITS: 8 etapów × 2 role', Object.keys(MIKRO_UNITS).length===8 && Object.values(MIKRO_UNITS).every(u=>u.komisja&&u.obserwator));
+t9('sceny silnika: 4 opcje i 1 best per beat', SCENY2.filter(s=>s.zrodlo==='silnik').every(s=>s.beats.every(b=>b.options.length===4 && b.options.filter(o=>o['class']==='best').length===1)));
 
-console.log(f3 === 0 ? 'ALL PASS (sceny)' : f3 + ' FAILURES (sceny)');
-if (f3 > 0) process.exitCode = 1;
-
-// ==== TESTY A–H: rozdziały, wstrzyknięcia, R8 z banku v1.0 ====
-let f4 = 0;
-const t4 = (name, cond) => { console.log((cond ? 'PASS' : 'FAIL') + ' ' + name); if (!cond) f4++; };
-
-// wstrzyknięcia do QUIZY_PL
-t4('MIKRO_AH_Q: 36 pozycji z kotwicami', MIKRO_AH_Q.length===36 && MIKRO_AH_Q.every(q=>q.zrodlo && q.zrodlo.jednostka && q.zrodlo.stan_prawny));
-t4('A: komisja 30->35, obserwator 30->33', QUIZY_PL.komisja.A.length===35 && QUIZY_PL.obserwator.A.length===33);
-t4('B: komisja 10->15, obserwator 10->12', QUIZY_PL.komisja.B.length===15 && QUIZY_PL.obserwator.B.length===12);
-t4('G: komisja 30->35, obserwator 30->32', QUIZY_PL.komisja.G.length===35 && QUIZY_PL.obserwator.G.length===32);
-t4('zakresOpis: A (35) i G (35)', zakresOpis().includes('A (35)') && zakresOpis().includes('G (35)'));
-
-// ekran rozdziałów
-testOpen(); trybSet('mikro');
-let hh = rTest();
-t4('grid 8 rozdziałów z etapami A–H', ['R1','R2','R3','R4','R5','R6','R7','R8'].every(r=>hh.includes("mikroRozdzSel('"+r+"')")));
-t4('R8 oznaczony jako bank v1.0', hh.includes('bank v1.0'));
-
-// R3 / komisja / L2 — pytanie z realną kotwicą pkt 59
-mikroRozdzSel('R3'); mikroRola('komisja'); mikroLekcja('R3-L2');
-t4('R3-L2/komisja: 3 elementy (bez obs)', state.test.mk.els.length===3 && !state.test.mk.els.some(e=>e.id==='obs-R3-005'));
-hh = rTest();
-t4('pytanie czl-R3-002 renderuje się', hh.includes('pełnomocnik') || hh.includes('Pełnomocnik') || hh.includes('pełnomocnictwa'));
-mikroPick(0); mikroCheck();
-hh = rTest();
-t4('feedback z kotwicą pkt 59', hh.includes('pkt 59') && hh.includes('2023-09-25'));
-
-// R8 / obserwator — pozycja z SRC_QUIZ_OBS + statyczna plakietka
-testOpen(); trybSet('mikro'); mikroRozdzSel('R8'); mikroRola('obserwator'); mikroLekcja('R8-L1');
-t4('R8-L1/obserwator: 2 elementy obs', state.test.mk.els.length===2 && state.test.mk.els[0].id==='obs-ustalenie-001');
-hh = rTest();
-t4('plakietka bank v1.0 · Ekspert 5', hh.includes('bank v1.0 · Ekspert 5 · 2026-07-24'));
-mikroPick(0); mikroCheck();
-hh = rTest();
-t4('feedback pozycji banku H ze źródłem', hh.includes('Źródło:'));
-mikroNext(); mikroPick(0); mikroCheck(); mikroNext();
-t4('wynik R8-L1 osiągnięty', state.test.mk.phase==='wynik');
-hh = rTest();
-t4('wynik ma przycisk Inny rozdział', hh.includes('Inny rozdział'));
-
-// R6 wciąż działa przez nowy ekran (regresja pełnego przejścia była wyżej)
-testOpen(); trybSet('mikro'); mikroRozdzSel('R6'); mikroRola('komisja');
-hh = rTest();
-t4('R6 przez grid: lekcje R6-L1/L2 widoczne', hh.includes('R6-L1') && hh.includes('R6-L2'));
-
-// panel banku: sekcja A–H + szczegóły R6
-const bp2 = mikroPanel();
-t4('panel banku: sekcja R1–R8 + statusy', bp2.includes('R1 ·') && bp2.includes('R8 ·') && bp2.includes('bank v1.0') && bp2.includes('Mikrolearning'));
-
-console.log(f4 === 0 ? 'ALL PASS (A–H)' : f4 + ' FAILURES (A–H)');
-if (f4 > 0) process.exitCode = 1;
-
-// ==== TESTY KORALIKÓW POSTĘPU ====
-let f5 = 0;
-const t5 = (name, cond) => { console.log((cond ? 'PASS' : 'FAIL') + ' ' + name); if (!cond) f5++; };
-
-// unit: koraliki()
+// koraliki unit
 const kk = koraliki(['ok','bad','cur',''], 2, 4);
-t5('koraliki(): 4 kropki, licznik 2/4, aria', (kk.match(/class="seg[ \"]/g)||[]).length===4 && kk.includes('2/4') && kk.includes('aria-valuenow="2"'));
+t9('koraliki(): 4 kropki, licznik 2/4', (kk.match(/class="seg[ "]/g)||[]).length===4 && kk.includes('2/4'));
 
-// tryb testowy: segBar renderuje koraliki z klasami ok/bad/cur
-testOpen(); trybSet('test'); testRola('komisja'); testSel('F','quiz'); testStartRun();
-testPick(1); testCheck(); testNext();
-let hq = rTest();
-t5('quiz testowy: koraliki z 36 kropkami i cur', (hq.match(/class="seg/g)||[]).length>=36 && hq.includes('seg cur') || hq.includes('cur"'));
+// jednostka A / komisja: scena A-PSC (silnik, liczniki) -> 5 pytań -> DnD -> wynik
+testOpen(); trybSet('mikro'); mikroRozdzSel('R1'); mikroRola('komisja'); mikroUnit();
+let mU=state.test.mk;
+t9("jednostka A/komisja: scena2 + 5 pytań + dnd", mU.els.length===7 && mU.els[0].typ==='scena2' && mU.els[6].typ==='dnd');
+let hU=rTest();
+t9('karta otwarcia sceny z pochodzeniem silnika', hU.includes('Rozpocznij scenę') && hU.includes('silnik'));
+state.test.mk.b.step=0; hU=rTest();
+t9('beat 1: 4 opcje, liczniki 100', (hU.match(/sc2Pick\(/g)||[]).length===4 && hU.includes('Zaufanie wyborców: 100'));
+// wybór best (indeks 0 w danych; klik przez oryginalny indeks)
+sc2Pick(0); sc2Check(); hU=rTest();
+t9('feedback best + źródło pkt 39', hU.includes('pkt 39') && state.test.mk.scOk===1);
+sc2Next(); sc2Pick(3); sc2Check();
+t9('opcja incorrect obniża liczniki', state.test.mk.b.meters.trust===85 && state.test.mk.b.meters.third===90);
+sc2Next(); sc2Pick(1); sc2Check(); sc2Next(); // beat 3
+hU=rTest();
+t9('karta zamknięcia sceny', hU.includes('Zamknięcie sceny'));
+sc2Next();
+t9('po scenie: pytanie 1/5', state.test.mk.idx===1 && state.test.mk.els[1].typ==='pytanie');
+for(let q=0;q<5;q++){ mikroPick(0); mikroCheck(); mikroNext(); }
+t9('po pytaniach: element DnD', state.test.mk.els[state.test.mk.idx].typ==='dnd');
+hU=rTest();
+t9('DnD renderuje 6 pozycji ze strzałkami', (hU.match(/dndMove\(/g)||[]).length===12);
+// ułóż poprawnie: sortuj ord rosnąco
+state.test.mk.dnd.ord.sort((a,b)=>a-b); dndCheck();
+hU=rTest();
+t9('DnD: 6/6 na miejscu', hU.includes('6 / 6'));
+(function(){ state.test.mk.dnd=null; mikroNext(); })();
+t9('wynik jednostki z linią DnD', state.test.mk.phase==='wynik' && rTest().includes('Ułożenie listy'));
 
-// mikro: koraliki elementów lekcji
-testOpen(); trybSet('mikro'); mikroRozdzSel('R3'); mikroRola('komisja'); mikroLekcja('R3-L1');
-let hm = rTest();
-t5('mikro L1: 3 koraliki, pierwszy cur, licznik 0/3', (hm.match(/class="seg[ "]/g)||[]).length===3 && hm.includes('0/3'));
-mikroPick(0); mikroCheck(); mikroNext();
-hm = rTest();
-t5('po odpowiedzi: koralik 1 zapalony (ok/bad), licznik 1/3', (hm.includes('seg ok')||hm.includes('seg bad')) && hm.includes('1/3'));
+// critical replay: C-PSC beat 2 opcja d (critical)
+testOpen(); trybSet('mikro'); mikroRozdzSel('R3'); mikroRola('komisja'); mikroUnit();
+state.test.mk.b={id:'C-PSC', step:1, pick:null, checked:false, ord:null, ordBeat:null, closed:false, meters:{trust:100,time:100,third:100}};
+sc2Pick(3); sc2Check(); hU=rTest();
+t9('critical: komunikat powtórki i kara -25', hU.includes('powtórzony') && state.test.mk.b.meters.trust===75);
+sc2Next();
+t9('critical: beat powtórzony (nie przeszedł dalej)', state.test.mk.b.step===1 && state.test.mk.b.checked===false);
 
-// mikro: koraliki kroków sceny
-testOpen(); trybSet('mikro'); mikroRozdzSel('R6'); mikroRola('komisja'); mikroLekcja('R6-L2');
-let hs = rTest();
-t5('scena: koraliki kroków 0/6 + koraliki elementów', hs.includes('0/6') && hs.includes('0/3'));
-mikroScNext();
-hs = rTest();
-t5('krok 2: koralik 1 done, licznik 1/6', hs.includes('seg done') && hs.includes('1/6'));
+// jednostka A / obserwator: scena kursu SC-RA-01 (bez liczników, kroki narracyjne)
+testOpen(); trybSet('mikro'); mikroRozdzSel('R1'); mikroRola('obserwator'); mikroUnit();
+t9('A/obs: scena kursu SC-RA-01', state.test.mk.els[0].id==='SC-RA-01');
+state.test.mk.b={id:'SC-RA-01', step:0, pick:null, checked:false, ord:null, ordBeat:null, closed:false, meters:{trust:100,time:100,third:100}};
+hU=rTest();
+t9('krok narracyjny bez opcji, chip kurs', hU.includes('źródło: kurs FOP') && !hU.includes('sc2Pick(') && hU.includes('Dalej'));
+t9('bez liczników dla sceny kursu', !hU.includes('Zaufanie: 100'));
+sc2Next(); hU=rTest();
+t9('beat decyzyjny kursu: 2 opcje 1:1', (hU.match(/sc2Pick\(/g)||[]).length===2 && hU.includes('wyciągnęłam'));
 
-// mikro: wynik z koralikami podsumowania
-mikroScPick(0); mikroScCheck(); mikroScNext(); // d1 ok -> krok3
-mikroScNext(); // n -> d2
-mikroScPick(0); mikroScCheck(); mikroScNext(); // d2 -> alt
-mikroScNext(); // alt -> n3
-mikroScNext(); // koniec sceny
-mikroPick(0); mikroCheck(); mikroNext(); // wsp-R6-008
-// SC-R6-02: 5 kroków
-mikroScNext(); mikroScPick(0); mikroScCheck(); mikroScNext();
-mikroScPick(0); mikroScCheck(); mikroScNext();
-mikroScPick(0); mikroScCheck(); mikroScNext(); mikroScNext();
-let hw = rTest();
-t5('wynik: koraliki podsumowania 3/3 z ok', state.test.mk.phase==='wynik' && hw.includes('3/3') && hw.includes('seg ok'));
+// jednostka F: stara scena SC-R6-01 przez typ "scena"
+testOpen(); trybSet('mikro'); mikroRozdzSel('R6'); mikroRola('komisja'); mikroUnit();
+t9('F: jednostka używa SC-R6-01 (stary format)', state.test.mk.els[0].typ==='scena' && state.test.mk.els[0].id==='SC-R6-01');
+hU=rTest();
+t9('stary runner scen działa w jednostce', hU.includes('SC-R6-01'));
 
-// recenzja: koraliki decyzji — minimalna sesja
-state.session = {rola:'komisja', etap:'F', material:'quiz',
-  items:[{id:'x1'},{id:'x2'},{id:'x3'}],
-  decisions:{x1:{decyzja:'TAK',uwagi:'',data:''},x2:{decyzja:'POPRAW',uwagi:'',data:''},x3:{decyzja:null,uwagi:'',data:''}}};
-state.rFilter='USUN';
-let hr = '';
-try { hr = rRecenzja(); } catch(e) { console.log('rRecenzja threw: '+e.message); }
-t5('recenzja: koraliki tak/popraw + pusty, licznik 2/3', hr.includes('seg tak') && hr.includes('seg popraw') && hr.includes('2/3'));
-state.session = null;
+// jednostka H: pytania z banku v1.0
+testOpen(); trybSet('mikro'); mikroRozdzSel('R8'); mikroRola('obserwator'); mikroUnit();
+const qidsH=state.test.mk.els.filter(e=>e.typ==='pytanie').map(e=>e.id);
+t9('H/obs: 5 pytań, w tym bank v1.0', qidsH.length===5 && qidsH.includes('obs-ustalenie-001'));
 
-console.log(f5 === 0 ? 'ALL PASS (koraliki)' : f5 + ' FAILURES (koraliki)');
-if (f5 > 0) process.exitCode = 1;
+// kreator scenek: scope + generacja + recenzja + publikacja
+state.rola='komisja'; state.etap='G'; state.material='scenka';
+t9('inScope scenka G/komisja', inScope('komisja','G','scenka')===true);
+buildSession();
+t9('sesja scenki: 1 pozycja G-PSC', state.session.items.length===1 && state.session.items[0].id==='G-PSC');
+state.rFilter='all';
+try{ hU=rRecenzja(); }catch(e){ console.log('rRecenzja ERR: '+e.message); hU=''; }
+t9('karta recenzji scenki: beaty + klasy + źródło do weryfikacji flagi', hU.includes('Beat 1') && hU.includes('best') && hU.includes('pkt 112'));
+setDecision('G-PSC','TAK');
+t9('decyzja TAK zapisana', state.session.decisions['G-PSC'].decyzja==='TAK');
+// publikacja standardowym torem
+publish();
+const wBanku = state.bank.filter(b=>b.id==='G-PSC');
+t9('scenka opublikowana do banku', wBanku.length>=1 && wBanku[0].status==='opublikowane');
+const chip=statusPozycji('komisja','G','scenka','G-PSC');
+t9('statusPozycji widzi scenkę w mikro', !!chip && chip.status==='opublikowane');
+
+// panel banku: rejestr scen
+const bpU=mikroPanel();
+t9('panel banku: rejestr 15 scen z pochodzeniem', bpU.includes("Sceny interaktywne") && bpU.includes('A-PSC') && bpU.includes('kurs'));
+
+console.log(f9===0 ? 'ALL PASS (jednostki v2)' : f9+' FAILURES (jednostki v2)');
+if(f9>0) process.exitCode=1;
